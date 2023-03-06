@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.0.3 (2023-03-06)
+
+
+### Bug Fixes
+
+* wip ([a9a04d9](https://github.com/SocialGouv/helm-charts/commit/a9a04d9f4193f3b5459a2d1bf2817fb7e1c8c342))
+
 ## 1.0.2 (2023-03-06)
 
 
