@@ -1,9 +1,12 @@
 name: 🎉 Release Commit
 
 on: 
-  workflow_dispatch:
-  pull_request:
-    types: [closed]
+  # workflow_dispatch:
+  # pull_request:
+  #   types: [closed]
+  push:
+    branches:
+      - main
     
     
 concurrency:
