@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file. See [commit
 
 ## 1.0.1 (2023-03-06)
 
+
+### Bug Fixes
+
+* yaml ([daadbf3](https://github.com/SocialGouv/helm-charts/commit/daadbf3809d4315a1afefdd75e60f8d40d359d44))
+
+## 1.0.1 (2023-03-06)
+
 ## 1.0.1 (2023-03-06)
 
 ## 1.0.1 (2023-03-06)
