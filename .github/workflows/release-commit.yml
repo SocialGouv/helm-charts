@@ -1,21 +1,16 @@
 name: 🎉 Release Commit
 
 on: 
-  # workflow_dispatch:
-  # pull_request:
-  #   types: [closed]
   push:
     branches:
       - main
     
-    
 concurrency:
   cancel-in-progress: true
-  group: ${{ github.workflow }}-${{ github.ref_name }}
+  group: ${{ github.workflow }}-${{ github.ref_name }}-${{ startsWith(github.event.head_commit.message, 'chore(release): ') && 'release' || 'commit' }}
 
 jobs:
   yarn-release:
-    # if:  github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     if: "${{ !startsWith(github.event.head_commit.message, 'chore(release): ') }}"
     runs-on: ubuntu-latest
     name: Create release using commit-and-tag-version
