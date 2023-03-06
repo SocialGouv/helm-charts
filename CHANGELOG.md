@@ -34,6 +34,8 @@ All notable changes to this project will be documented in this file. See [commit
 
 ## 1.0.1 (2023-03-06)
 
+## 1.0.1 (2023-03-06)
+
 
 ### Bug Fixes
 
