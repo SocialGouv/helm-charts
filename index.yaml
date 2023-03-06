@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  maildev:
+  - apiVersion: v2
+    created: "2023-03-06T14:21:21.796867992Z"
+    description: A Helm chart for maildev
+    digest: 86f5269a48fd96625003a30fd027ed9d6bb446e8aa391bddcf1f9f7e7156492f
+    name: maildev
+    urls:
+    - https://github.com/SocialGouv/helm-charts/releases/download/maildev-1.0.0/maildev-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-03-06T14:21:21.796873292Z"
