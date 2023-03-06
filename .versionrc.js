@@ -37,6 +37,8 @@ bumpFiles.push(
   }))
 )
 
+bumpFiles.push({ filename: "package.json", type: "json" })
+
 module.exports = {
   bumpFiles,
 }
