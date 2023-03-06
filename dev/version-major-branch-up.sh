@@ -20,7 +20,7 @@ branch=`git branch | grep "\*" | cut -d " " -f 2-9`
 
 set -e
 MAJOR_VERSION=$(git describe --tags $(git rev-list --tags --max-count=1) | cut -d '.' -f 1)
-git branch -f $MAJOR_VERSION master # reset major version to current
+git branch -f $MAJOR_VERSION main # reset major version to current
 git checkout $MAJOR_VERSION || git checkout -b $MAJOR_VERSION
 set +e
 
