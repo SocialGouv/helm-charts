@@ -29,7 +29,7 @@ const getChartsRecursive = (dir, list = []) => {
 
 const chartsUpdater = "dev/standard-version-chart-updater.js"
 
-const charts = getChartsRecursive("plugins")
+const charts = getChartsRecursive("charts")
 bumpFiles.push(
   ...charts.map((chartDir) => ({
     filename: `${chartDir}/Chart.yaml`,
