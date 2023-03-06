@@ -5,7 +5,8 @@
   "private": true,
   "devDependencies": {
     "commit-and-tag-version": "^11.1.0",
-    "fs-extra": "^11.1.0"
+    "fs-extra": "^11.1.0",
+    "js-yaml": "^4.1.0"
   },
   "scripts": {
     "release": "commit-and-tag-version"
