@@ -21,7 +21,7 @@ jobs:
 
       - name: Sync Readme.md
         run: |
-          git fetch origin main
+          git fetch --depth=1 origin main
           git checkout main -- README.md
           git add README.md
 
