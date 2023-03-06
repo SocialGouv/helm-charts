@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file. See [commit
 
 ### Bug Fixes
 
+* wip ([28fdb66](https://github.com/SocialGouv/helm-charts/commit/28fdb66fe64f93d79d35508fc2c03b5b0198b0b1))
+
+## 1.0.2 (2023-03-06)
+
+
+### Bug Fixes
+
 * try new release ([953b9eb](https://github.com/SocialGouv/helm-charts/commit/953b9eb604d184925de0cd8a4de0ae9c54ebd2b7))
 
 ## 1.0.2 (2023-03-06)
