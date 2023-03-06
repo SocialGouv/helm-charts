@@ -3,8 +3,8 @@ name: 📰 Sync Readme
 on:
   push:
     branches:
-      - "*"
-    files:
+      - main
+    paths:
       - "README.md"
 
 concurrency:
@@ -12,7 +12,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
 
 jobs:
-  release:
+  sync-readme:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
