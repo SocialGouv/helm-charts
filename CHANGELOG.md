@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file. See [commit
 
 ### Bug Fixes
 
+* sync gh-pages readme ([262838d](https://github.com/SocialGouv/helm-charts/commit/262838dba6b6e0116485901775bf068f41356529))
+
+## 1.0.1 (2023-03-06)
+
+
+### Bug Fixes
+
 * add sync readme.md ([7937a22](https://github.com/SocialGouv/helm-charts/commit/7937a221c6cda947be06adb124c94a1008392044))
 
 ## 1.0.1 (2023-03-06)
