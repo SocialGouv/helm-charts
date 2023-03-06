@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "repository": "git@github.com:SocialGouv/helm-charts.git",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "commit-and-tag-version": "^11.1.0",
+    "fs-extra": "^11.1.0"
+  },
+  "scripts": {
+    "release": "commit-and-tag-version"
+  },
+  "commit-and-tag-version": {
+    "scripts": {
+      "posttag": "dev/version-major-branch-up.sh"
+    }
+  }
+}
