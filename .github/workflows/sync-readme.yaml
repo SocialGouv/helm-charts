@@ -27,7 +27,8 @@ jobs:
 
       - name: Sync Readme.md
         run: |
-          git fetch --depth=1 origin main
+          git fetch --depth=1 origin gh-pages
+          git checkout gh-pages
           git checkout main -- README.md
           git add README.md
           git push origin gh-pages
