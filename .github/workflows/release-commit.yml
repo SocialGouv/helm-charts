@@ -7,7 +7,7 @@ on:
     
 concurrency:
   cancel-in-progress: true
-  group: ${{ github.workflow }}-${{ github.ref_name }}-${{ startsWith(github.event.head_commit.message, 'chore(release): ') && 'release' || 'commit' }}
+  group: "${{ github.workflow }}-${{ github.ref_name }}-${{ startsWith(github.event.head_commit.message, 'chore(release): ') && 'release' || 'commit' }}"
 
 jobs:
   yarn-release:
