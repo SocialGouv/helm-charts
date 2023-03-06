@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   yarn-release:
-    if:  github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    # if:  github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     name: Create release using commit-and-tag-version
     steps:
