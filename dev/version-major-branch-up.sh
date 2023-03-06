@@ -27,4 +27,5 @@ set +e
 git checkout $branch
 unstash
 
+git config --global push.autoSetupRemote true
 git push -f origin $MAJOR_VERSION
