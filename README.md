@@ -1,2 +1,1 @@
 # SocialGouv Helm Charts Registry ☸️
-
