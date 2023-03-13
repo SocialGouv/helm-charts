@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.4.1 (2023-03-13)
+
+
+### Bug Fixes
+
+* cnpg include scope ([28e01ee](https://github.com/SocialGouv/helm-charts/commit/28e01ee78f7161937a1e9498a2971dac7a18e84f))
+
 ## 1.4.0 (2023-03-13)
 
 
