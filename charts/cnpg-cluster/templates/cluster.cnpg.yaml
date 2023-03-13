@@ -145,7 +145,33 @@ spec:
     {{- else }}
     {{- end }}
 {{- end }}
+  
+  minSyncReplicas: {{ .Values.minSyncReplicas }}
+  maxSyncReplicas: {{ .Values.maxSyncReplicas }}
+  postgresql:
+    parameters:
+      {{- with .Values.postgresqlParameters }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
 
+  monitoring:
+    enablePodMonitor: {{ .Values.monitoring.enablePodMonitor }}
+
+  bootstrap:
+    # recovery: 
+    #   backup: 
+    #     name: backup-example
+    initdb:
+      database: {{ .Values.dbName }}
+      owner: {{ .Values.dbOwner }}
+      secret:
+        name: {{ include "cnpg-cluster.dbSecretName" . }}
+      # postgis configuration plugins
+      postInitTemplateSQL:
+        {{- range $name := .Values.extensions }}
+          - CREATE EXTENSION IF NOT EXISTS "{{ $name }}";
+        {{- end }}
+        
 {{- with .Values.clusterExtraSpec }}
   {{- toYaml . | nindent 2 }}
 {{- end }}

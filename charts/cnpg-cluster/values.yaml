@@ -54,7 +54,7 @@ extraAffinity: {}
 
 persistence:
   # -- Size of each instance storage volume
-  size: 1Gi
+  size: 8Gi
   # -- Resize existent PVCs, defaults to true	
   resizeInUseVolumes:
   # persistence.storageClass -- StorageClass to use for database data,
@@ -154,3 +154,16 @@ poolers: {}
 #       parameters:
 #         max_client_conn: "1000"
 #         default_pool_size: "10"
+
+minSyncReplicas: 0
+maxSyncReplicas: 0
+
+postgresqlParameters: {}
+
+extensions: []
+
+dbName: app
+dbOwner: app
+
+monitoring:
+  enablePodMonitor: false
