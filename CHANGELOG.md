@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.3.0 (2023-03-13)
+
+
+### Features
+
+* add some cnpg parameters ([c978ccf](https://github.com/SocialGouv/helm-charts/commit/c978ccf449c7195e6f8fe6a05c09837a31bc6ad6))
+
 ## 1.2.0 (2023-03-13)
 
 
