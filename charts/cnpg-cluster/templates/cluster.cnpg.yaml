@@ -157,6 +157,11 @@ spec:
   monitoring:
     enablePodMonitor: {{ .Values.monitoring.enablePodMonitor }}
 
+  {{ if .Values.superuserSecretName }}
+  superuserSecret:
+    name: {{ .Values.superuserSecretName }}
+  {{ end}}
+
   bootstrap:
     # recovery: 
     #   backup: 

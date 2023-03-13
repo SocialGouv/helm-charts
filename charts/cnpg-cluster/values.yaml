@@ -167,3 +167,5 @@ dbOwner: app
 
 monitoring:
   enablePodMonitor: false
+
+superuserSecretName:
