@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.4.0 (2023-03-13)
+
+
+### Features
+
+* cnpg add superuserSecretName option ([f07521c](https://github.com/SocialGouv/helm-charts/commit/f07521c1e01ce2dabc1f85e38773a06a3cb2d406))
+
 ## 1.3.0 (2023-03-13)
 
 
