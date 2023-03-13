@@ -7,7 +7,8 @@ replicaCount: 1
 
 image:
   # -- Postgres image repository. Keep empty to use operator's default image. See: https://cloudnative-pg.io/documentation/1.17/operator_capability_levels/#override-of-operand-images-through-the-crd
-  repository: "ghcr.io/cloudnative-pg/postgresql"
+  # repository: "ghcr.io/cloudnative-pg/postgresql"
+  repository: "ghcr.io/cloudnative-pg/postgis"
   # -- Postgres image pull policy
   pullPolicy: IfNotPresent
   # -- Override the Postgres image tag
