@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.1.0 (2023-03-13)
+
+
+### Features
+
+* import enix cnpg-cluster chart ([dd9f1cf](https://github.com/SocialGouv/helm-charts/commit/dd9f1cff4248225fbbffd924633d1772bcd60c8d))
+
 ## 1.0.5 (2023-03-06)
 
 ## 1.0.4 (2023-03-06)
