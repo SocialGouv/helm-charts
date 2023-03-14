@@ -3,6 +3,16 @@ entries:
   cnpg-cluster:
   - apiVersion: v2
     appVersion: 14.5-6
+    created: "2023-03-14T00:53:16.042506602Z"
+    description: A Helm chart to create cloudnative-pg.io clusters
+    digest: c745c2eb4d5255f8510e45e0942a12c5e3d22790e1d65f26408884dd5ac29f3d
+    name: cnpg-cluster
+    type: application
+    urls:
+    - https://SocialGouv.github.io/helm-charts/cnpg-cluster-1.4.2.tgz
+    version: 1.4.2
+  - apiVersion: v2
+    appVersion: 14.5-6
     created: "2023-03-13T17:52:06.145613859Z"
     description: A Helm chart to create cloudnative-pg.io clusters
     digest: 7921a2615d0c4aea3b0c613c6bb10e8802ec6650c7cceac862097cfe3f9c9e4e
@@ -52,6 +62,14 @@ entries:
     - https://SocialGouv.github.io/helm-charts/cnpg-cluster-1.1.0.tgz
     version: 1.1.0
   maildev:
+  - apiVersion: v2
+    created: "2023-03-14T00:53:16.042871206Z"
+    description: A Helm chart for maildev
+    digest: 6d2dcc787a89937f71ea2831db9374ab27fb92325487683fb2df191bc40ca742
+    name: maildev
+    urls:
+    - https://SocialGouv.github.io/helm-charts/maildev-1.4.2.tgz
+    version: 1.4.2
   - apiVersion: v2
     created: "2023-03-13T17:52:06.146134556Z"
     description: A Helm chart for maildev
@@ -116,4 +134,4 @@ entries:
     urls:
     - https://github.com/SocialGouv/helm-charts/releases/download/maildev-1.0.0/maildev-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-13T17:52:06.144007368Z"
+generated: "2023-03-14T00:53:16.041652392Z"
