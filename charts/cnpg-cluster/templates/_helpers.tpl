@@ -56,10 +56,3 @@ Backup secret name
 {{- define "cnpg-cluster.backupSecretName" -}}
 {{ or .Values.secretName (print (include "cnpg-cluster.fullname" .) `-backup`) }}
 {{- end }}
-
-{{/*
-DB secret name
-*/}}
-{{- define "cnpg-cluster.dbSecretName" -}}
-{{ or .Values.dbSecretName (print (include "cnpg-cluster.fullname" .) `-db`) }}
-{{- end }}

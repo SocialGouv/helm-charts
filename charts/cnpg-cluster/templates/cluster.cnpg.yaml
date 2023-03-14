@@ -169,8 +169,10 @@ spec:
     initdb:
       database: {{ .Values.dbName }}
       owner: {{ .Values.dbOwner }}
+      {{ if .Values.dbSecretName }}
       secret:
-        name: {{ include "cnpg-cluster.dbSecretName" . }}
+        name: {{ .Values.dbSecretName }}
+      {{ end }}
       # postgis configuration plugins
       postInitTemplateSQL:
         {{- range $name := .Values.extensions }}
