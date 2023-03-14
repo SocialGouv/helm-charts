@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.4.2 (2023-03-14)
+
+
+### Bug Fixes
+
+* empty dbSecretName ([95882e8](https://github.com/SocialGouv/helm-charts/commit/95882e8c366153e8614def2ad870f50d256c1b4d))
+
 ## 1.4.1 (2023-03-13)
 
 
