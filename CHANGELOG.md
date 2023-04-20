@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.4.4 (2023-04-20)
+
+
+### Bug Fixes
+
+* CNPG ScheduledBackups ([46f34cc](https://github.com/SocialGouv/helm-charts/commit/46f34ccd37ead3b6e551f0b3d922a214d718d2ff))
+
 ## 1.4.3 (2023-03-28)
 
 ## 1.4.2 (2023-03-14)
