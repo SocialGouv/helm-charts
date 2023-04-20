@@ -8,5 +8,5 @@ metadata:
 spec:
   cluster:
     name: {{ include "cnpg-cluster.fullname" $ }}
-  {{- toYaml $spec | nindent 2 }}
+    {{- toYaml $name | nindent 2 }}: {{ $spec }}
 {{- end }}
