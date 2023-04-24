@@ -121,23 +121,23 @@ spec:
       azureCredentials:
         {{- with .Values.backup.azureCredentials.connectionString }}
         connectionString:
-          name: {{ include "cnpg-cluster.backupSecretName" $ }}
-          key: "connectionString"
+          name: {{ .name }}
+          key: {{ .key }}
         {{- end }}
         {{- with .Values.backup.azureCredentials.storageAccount }}
         storageAccount:
-          name: {{ include "cnpg-cluster.backupSecretName" $ }}
-          key: "storageAccount"
+          name: {{ .name }}
+          key: {{ .key }}
         {{- end }}
         {{- with .Values.backup.azureCredentials.storageKey }}
         storageKey:
-          name: {{ include "cnpg-cluster.backupSecretName" $ }}
-          key: "storageKey"
+          name: {{ .name }}
+          key: {{ .key }}
         {{- end }}
         {{- with .Values.backup.azureCredentials.storageSasToken }}
         storageSasToken:
-          name: {{ include "cnpg-cluster.backupSecretName" $ }}
-          key: "storageSasToken"
+          name: {{ .name }}
+          key: {{ .key }}
         {{- end }}
         {{- with .Values.backup.azureCredentials.inheritFromAzureAD }}
         inheritFromAzureAD: {{ . }}
