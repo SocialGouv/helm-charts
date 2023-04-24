@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.4.6 (2023-04-24)
+
+
+### Bug Fixes
+
+* azureCredentials ([1b392b8](https://github.com/SocialGouv/helm-charts/commit/1b392b8ec43550058540f828f83e80733ad87660))
+
 ## 1.4.5 (2023-04-20)
 
 
