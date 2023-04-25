@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.5.0 (2023-04-25)
+
+
+### Features
+
+* bootstrap from backup ([ed23356](https://github.com/SocialGouv/helm-charts/commit/ed23356e0e71875f68db57808d7cb68f773a17ea))
+
 ## 1.4.6 (2023-04-24)
 
 
