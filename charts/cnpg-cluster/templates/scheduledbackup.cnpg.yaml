@@ -6,6 +6,7 @@ metadata:
   labels:
     {{- include "cnpg-cluster.labels" $ | nindent 4 }}
 spec:
+  backupOwnerReference: self
   cluster:
     name: {{ include "cnpg-cluster.fullname" $ }}
   {{- toYaml $name | nindent 2 }}: "{{ $spec }}"
