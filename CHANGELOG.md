@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.5.2 (2023-04-25)
+
+
+### Bug Fixes
+
+* externalCluster only if recovery ([2e46905](https://github.com/SocialGouv/helm-charts/commit/2e469058fb3c166efb212bcf99f1eae4761eef76))
+
 ## 1.5.1 (2023-04-25)
 
 
