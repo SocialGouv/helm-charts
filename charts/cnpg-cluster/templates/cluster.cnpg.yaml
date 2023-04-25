@@ -185,10 +185,12 @@ spec:
         {{- end }}
     {{- end }}
 
+  {{- if .Values.recovery.enabled }}
   externalClusters:
     - name: cnpg-recovery
       barmanObjectStore:
         {{- toYaml .Values.recovery.backup | nindent 8 }}
+  {{- end }}
 
 {{- with .Values.clusterExtraSpec }}
   {{- toYaml . | nindent 2 }}
