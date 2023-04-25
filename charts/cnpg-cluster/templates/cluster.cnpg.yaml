@@ -163,9 +163,10 @@ spec:
   {{ end}}
 
   bootstrap:
-    # recovery: 
-    #   backup: 
-    #     name: backup-example
+    {{- if .Values.recovery.enabled }}
+    recovery:
+      source: cnpg-recovery 
+    {{- else }}
     initdb:
       database: {{ .Values.dbName }}
       owner: {{ .Values.dbOwner }}
@@ -178,7 +179,13 @@ spec:
         {{- range $name := .Values.extensions }}
           - CREATE EXTENSION IF NOT EXISTS "{{ $name }}";
         {{- end }}
-        
+    {{- end }}
+
+  externalClusters:
+    - name: cnpg-recovery
+      barmanObjectStore:
+        {{- toYaml .Values.recovery.backup | nindent 8 }}
+
 {{- with .Values.clusterExtraSpec }}
   {{- toYaml . | nindent 2 }}
 {{- end }}
