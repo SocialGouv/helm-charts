@@ -168,7 +168,7 @@ spec:
       source: cnpg-recovery 
       {{- if .Values.recovery.targetTime }}
       recoveryTarget:
-        targetTime: {{ .Values.recovery.targetTime }}
+        targetTime: "{{ .Values.recovery.targetTime }}"
       {{- end }}
     {{- else }}
     initdb:
