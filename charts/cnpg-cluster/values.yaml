@@ -170,3 +170,6 @@ monitoring:
   enablePodMonitor: false
 
 superuserSecretName:
+
+recovery:
+  enabled: false
