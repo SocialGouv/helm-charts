@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.5.6 (2023-05-11)
+
+
+### Bug Fixes
+
+* cluster name for recovery ([5a2b999](https://github.com/SocialGouv/helm-charts/commit/5a2b999fb693bd380f4cea12ba8be6e032b0966b))
+
 ## 1.5.5 (2023-04-26)
 
 
