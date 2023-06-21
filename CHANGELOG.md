@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.5.7 (2023-06-21)
+
+
+### Bug Fixes
+
+* **cnpg-cluster:** use backup.secretName ([#5](https://github.com/SocialGouv/helm-charts/issues/5)) ([d7636b9](https://github.com/SocialGouv/helm-charts/commit/d7636b9b27f2a1daf8d9df97d832f7daca2de484))
+
 ## 1.5.6 (2023-05-11)
 
 
