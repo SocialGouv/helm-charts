@@ -5,7 +5,9 @@ metadata:
 data:
   # https://github.com/moby/buildkit/blob/master/docs/buildkitd.toml.md
   buildkitd.toml: |
+    {{ if .Values.debug }}
     debug = true
+    {{ end}}
 
     root = "/var/lib/buildkit"
 
