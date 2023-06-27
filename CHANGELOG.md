@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.6.0 (2023-06-27)
+
+
+### Features
+
+* buildkit-service chart ([a26feb4](https://github.com/SocialGouv/helm-charts/commit/a26feb4fafacc7729f499487c892c9a2fdce624e))
+
 ## 1.5.7 (2023-06-21)
 
 
