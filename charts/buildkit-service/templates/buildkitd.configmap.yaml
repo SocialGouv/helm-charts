@@ -1,0 +1,48 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ include "buildkit.fullname" . }}-buildkitd
+data:
+  # https://github.com/moby/buildkit/blob/master/docs/buildkitd.toml.md
+  buildkitd.toml: |
+    debug = true
+
+    root = "/var/lib/buildkit"
+
+    # config for build history API that stores information about completed build commands
+    [history]
+      # maxAge is the maximum age of history entries to keep, in seconds.
+      maxAge = {{ .Values.history.maxAge }}
+      # maxEntries is the maximum number of history entries to keep.
+      maxEntries = {{ .Values.history.maxEntries }}
+
+    [worker]
+
+    [worker.containerd]
+      enabled = false
+
+    [worker.oci]
+      enabled = true
+      
+      rootless = true
+      
+      gc = true
+      gckeepstorage = {{ .Values.gc.keepStorage }}
+      snapshotter = {{ .Values.snapshotter }}
+
+      platforms = {{ .Values.worker.platforms | toJson }}
+
+      {{ range $policy := .Values.gc.extraPolicies }}
+      [[worker.oci.gcpolicy]]
+        {{ $policy }}
+      {{ end }}
+      
+      [[worker.oci.gcpolicy]]
+        filters = ["type==exec.cachemount"]
+        keepBytes = {{ .Values.gc.cachemountPolicy.keepBytes }}
+        keepDuration = {{ .Values.gc.cachemountPolicy.keepDuration }}
+
+      [[worker.oci.gcpolicy]]
+        all = true
+        keepBytes = {{ .Values.gc.defaultPolicy.keepBytes | toYaml }}
+        keepDuration = {{ .Values.gc.defaultPolicy.keepDuration | toYaml }}
