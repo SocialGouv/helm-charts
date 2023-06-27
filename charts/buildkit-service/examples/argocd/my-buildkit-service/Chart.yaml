@@ -1,0 +1,7 @@
+apiVersion: v2
+name: my-buildkit-service
+version: 1.0.0
+dependencies:
+- name: buildkit-service
+  repository: https://socialgouv.github.io/helm-charts
+  version: 1.0.0

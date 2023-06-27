@@ -1,0 +1,3 @@
+.certs
+templates/buildkit-daemon-certs.yaml
+templates/buildkit-daemon-certs.sealed-secret.yaml

@@ -1,0 +1,132 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "buildkit.fullname" . }}
+  labels:
+    {{- include "buildkit.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ include "buildkit.fullname" . }}
+  selector:
+    matchLabels:
+      {{- include "buildkit.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/{{ .Chart.Name }}: unconfined
+        {{- with .Values.podAnnotations -}}
+        {{ toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "buildkit.selectorLabels" . | nindent 8 }}
+    spec:
+      securityContext:
+        fsGroup: 1000
+      
+      initContainers:
+        - name: permissions-fixer
+          image: alpine:3
+          securityContext:
+            runAsUser: 0
+          volumeMounts:
+            - name: cache
+              mountPath: /buildkit-cache
+          command:
+            - sh
+            - -c
+            - (chown -R 1000:1000 /buildkit-cache; chmod -R 0755 /buildkit-cache;)
+
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - name: config
+              mountPath: /etc/buildkit
+            - mountPath: /home/user/.local/share/buildkit
+              name: cache
+          {{- if .Values.tls.enabled }}
+            - name: certs
+              readOnly: true
+              mountPath: /certs
+          {{- end }}
+          args:
+            - --addr
+            - unix:///run/user/1000/buildkit/buildkitd.sock
+            - --addr
+            - tcp://0.0.0.0:1234
+            - --oci-worker-no-process-sandbox
+          {{- if .Values.tls.enabled }}
+            - --tlscacert
+            - /certs/ca.pem
+            - --tlscert
+            - /certs/cert.pem
+            - --tlskey
+            - /certs/key.pem
+          {{- end }}
+          {{- if .Values.debugLog }}
+            - --debug
+          {{- end }}
+          ports:
+            - name: tcp
+              containerPort: 1234
+              protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - buildctl
+              - debug
+              - workers
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          livenessProbe:
+            exec:
+              command:
+              - buildctl
+              - debug
+              - workers
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          securityContext:
+            seccompProfile:
+              type: Unconfined
+            runAsUser: 1000
+            runAsGroup: 1000
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "buildkit.fullname" . }}-buildkitd
+        - name: cache
+          persistentVolumeClaim:
+            claimName: {{ include "buildkit.fullname" . }}-cache
+        {{- if .Values.tls.enabled }}
+        - name: certs
+          secret:
+            secretName: {{ or .Values.tls.secretName (include "buildkit.fullname" .) }}
+        {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: cache
+      spec:
+        {{ if .Values.storage.className }}
+        storageClassName: {{ .Values.storage.className | quote }}
+        {{ end }}
+        resources:
+          requests:
+            storage: {{ .Values.storage.size }}
+        accessModes: {{ .Values.storage.accessModes | toYaml | nindent 10 }}
+    

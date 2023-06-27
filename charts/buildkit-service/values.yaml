@@ -1,0 +1,78 @@
+debug: true
+
+replicaCount: 1
+
+image:
+  # -- Image name
+  repository: moby/buildkit
+  # -- Pull policy
+  pullPolicy: IfNotPresent
+  # -- Image tag
+  tag: "v0.11.6-rootless"
+
+# -- Enable debug logging
+debugLog: true
+
+# -- Pod annotations
+podAnnotations: {}
+
+service:
+  # -- Service type
+  type: ClusterIP
+  # -- Service port
+  port: 1234
+  # -- Static ip address for load balancer
+  loadbalancerIp: ""
+  # -- Service annotations
+  annotations: {}
+
+# -- Resource definitions
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# -- Node selector
+nodeSelector: {}
+
+# -- Tolerations
+tolerations: []
+
+# -- Affinity
+affinity: {}
+
+tls:
+  # -- Enable mTLS, refer to https://github.com/moby/buildkit/tree/master/examples/kubernetes#deployment--service
+  enabled: true
+  secretName: "buildkit-daemon-certs"
+
+storage:
+  className: ""
+  size: "500Gi"
+  accessModes:
+  - "ReadWriteMany"
+
+worker:
+  platforms: ["linux/amd64"]
+
+gc:
+  keepstorage: 495000 # storage size with a margin in MB
+  defaultPolicy:
+    # keepBytes can be an integer number of bytes (e.g. 512000000), a string
+    # with a unit (e.g. "512MB"), or a string percentage of available disk
+    # space (e.g. "10%")
+    keepBytes: 90%
+    keepDuration: "30d"
+  cachemountPolicy:
+    keepBytes: 90%
+    keepDuration: "30d"
+  extraPolicies: []
+
+snapshotter: "auto" # overlayfs or native, default value is "auto".
+
+history:
+  maxAge: 172800
+  maxEntries: 50

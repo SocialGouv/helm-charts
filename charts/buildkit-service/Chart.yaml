@@ -1,0 +1,4 @@
+apiVersion: v2
+version: 1.5.7
+name: buildkit-service
+description: Helm chart for buildkit service deployment
