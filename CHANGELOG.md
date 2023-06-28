@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.7.0 (2023-06-28)
+
+
+### Features
+
+* **cpng-cluster:** activating podmonitor ([#7](https://github.com/SocialGouv/helm-charts/issues/7)) ([fd15ab0](https://github.com/SocialGouv/helm-charts/commit/fd15ab0b37cef49b3ebf4491c7a66760a1f1422f))
+
 ## 1.6.0 (2023-06-27)
 
 
