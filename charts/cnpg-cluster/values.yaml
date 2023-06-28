@@ -173,3 +173,5 @@ superuserSecretName:
 
 recovery:
   enabled: false
+  # the name of the source cluster in the backups
+  # externalClusterName: source-cluster-name
