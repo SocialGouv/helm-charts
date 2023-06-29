@@ -165,7 +165,7 @@ spec:
   bootstrap:
     {{- if .Values.recovery.enabled }}
     recovery:
-      source: cnpg-cluster 
+      source: "{{ or .Values.recovery.externalClusterName "cnpg-cluster" }}"
       {{- if .Values.recovery.targetTime }}
       recoveryTarget:
         targetTime: "{{ .Values.recovery.targetTime }}"
@@ -190,7 +190,7 @@ spec:
 
   {{- if .Values.recovery.enabled }}
   externalClusters:
-    - name: cnpg-cluster
+    - name: "{{ or .Values.recovery.externalClusterName "cnpg-cluster" }}"
       barmanObjectStore:
         {{- toYaml .Values.recovery.backup | nindent 8 }}
   {{- end }}
