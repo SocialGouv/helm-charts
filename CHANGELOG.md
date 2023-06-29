@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.7.1 (2023-06-29)
+
+
+### Bug Fixes
+
+* **cnpg-cluster:** allow customize recovery.externalClusterName ([#10](https://github.com/SocialGouv/helm-charts/issues/10)) ([fcf7f12](https://github.com/SocialGouv/helm-charts/commit/fcf7f123be58714baa0ee9007289ce3fd66211be))
+
 ## 1.7.0 (2023-06-28)
 
 
