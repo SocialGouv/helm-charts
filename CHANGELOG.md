@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.7.2 (2023-06-30)
+
+
+### Bug Fixes
+
+* **cnpg-cluster:** fix PodMonitor ([#9](https://github.com/SocialGouv/helm-charts/issues/9)) ([128b2eb](https://github.com/SocialGouv/helm-charts/commit/128b2eb96d10703bc3fadc70eb46452ec6ed5857))
+
 ## 1.7.1 (2023-06-29)
 
 
