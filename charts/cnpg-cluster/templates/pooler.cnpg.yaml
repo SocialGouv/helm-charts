@@ -10,7 +10,7 @@ spec:
     name: {{ include "cnpg-cluster.fullname" $ }}
   {{- toYaml $spec | nindent 2 }}
 ---
-{{- if .Values.monitoring.enablePodMonitor }}
+{{- if $.Values.monitoring.enablePodMonitor }}
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
