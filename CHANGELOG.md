@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.8.0 (2023-07-24)
+
+
+### Features
+
+* **cnpg-cluster:** add postInitApplicationSQL ([#13](https://github.com/SocialGouv/helm-charts/issues/13)) ([8868ae8](https://github.com/SocialGouv/helm-charts/commit/8868ae8ee9a05574781e8375c53144649700780b))
+
 ## 1.7.3 (2023-06-30)
 
 
