@@ -43,6 +43,16 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
+Common annotations
+*/}}
+{{- define "cnpg-cluster.annotations" -}}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.annotations }}
+{{ toYaml .Values.annotations}}
+{{- end }}
+{{- end }}
+
+{{/*
 Selector labels
 */}}
 {{- define "cnpg-cluster.selectorLabels" -}}

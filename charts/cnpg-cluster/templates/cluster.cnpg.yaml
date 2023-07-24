@@ -4,6 +4,8 @@ metadata:
   name: {{ include "cnpg-cluster.fullname" . }}
   labels:
     {{- include "cnpg-cluster.labels" . | nindent 4 }}
+  annotations:
+    {{- include "cnpg-cluster.annotations" . | nindent 4 }}
 spec:
   instances: {{ .Values.replicaCount }}
   {{- if .Values.image.repository }}

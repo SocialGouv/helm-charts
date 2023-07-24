@@ -5,6 +5,8 @@
 # -- Number of Postgres instances in the cluster
 replicaCount: 1
 
+annotations: {}
+
 image:
   # -- Postgres image repository. Keep empty to use operator's default image. See: https://cloudnative-pg.io/documentation/1.17/operator_capability_levels/#override-of-operand-images-through-the-crd
   # repository: "ghcr.io/cloudnative-pg/postgresql"
