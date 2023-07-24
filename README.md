@@ -1,8 +1,11 @@
 # SocialGouv Helm Charts Registry ☸️
 
+
 This repo manage some of our shared [Helm](https://helm.sh) Charts
 
 ## Helm charts
+
+![GitHub tag (with filter)](https://img.shields.io/github/v/tag/socialgouv/helm-charts)
 
 chart | descriptions
 --------------------------------------------|---------------------------------------------------------------
