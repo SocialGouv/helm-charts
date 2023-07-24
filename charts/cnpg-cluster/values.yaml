@@ -178,3 +178,12 @@ recovery:
 
 # List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)
 postInitApplicationSQL: ""
+
+# PostInitApplicationSQLRefs points references to ConfigMaps or Secrets which contain SQL files, the general implementation order to these references is from all Secrets to all ConfigMaps, and inside Secrets or ConfigMaps, the implementation order is same as the order of each array (by default empty)
+postInitApplicationSQLRefs:
+  # configMapRefs:
+  # - name: post-init-sql-configmap
+  #   key: configmap.sql
+  # secretRefs:
+  # - name: post-init-sql-secret
+  #   key: secret.sql
