@@ -2,6 +2,14 @@ apiVersion: v1
 entries:
   buildkit-service:
   - apiVersion: v2
+    created: "2023-07-24T07:48:46.190712865Z"
+    description: Helm chart for buildkit service deployment
+    digest: 921d86c8dee16f2c0b7dcd336fdceb8d8abd05122df7cd19fc91efe79a4b3347
+    name: buildkit-service
+    urls:
+    - https://SocialGouv.github.io/helm-charts/buildkit-service-1.8.0.tgz
+    version: 1.8.0
+  - apiVersion: v2
     created: "2023-06-30T08:00:23.193971105Z"
     description: Helm chart for buildkit service deployment
     digest: 8fdd0342ca907530666064c15ab30763d799932593b6bc1aa8cacd00bb82771a
@@ -42,6 +50,16 @@ entries:
     - https://SocialGouv.github.io/helm-charts/buildkit-service-1.6.0.tgz
     version: 1.6.0
   cnpg-cluster:
+  - apiVersion: v2
+    appVersion: 14.5-6
+    created: "2023-07-24T07:48:46.191676188Z"
+    description: A Helm chart to create cloudnative-pg.io clusters
+    digest: 1a39536b3d5121b7e1a55666a84f3e61827d0ca39c3e0e8c5436e6f9c5964e07
+    name: cnpg-cluster
+    type: application
+    urls:
+    - https://SocialGouv.github.io/helm-charts/cnpg-cluster-1.8.0.tgz
+    version: 1.8.0
   - apiVersion: v2
     appVersion: 14.5-6
     created: "2023-06-30T08:00:23.194675812Z"
@@ -274,6 +292,14 @@ entries:
     version: 1.1.0
   maildev:
   - apiVersion: v2
+    created: "2023-07-24T07:48:46.192376305Z"
+    description: A Helm chart for maildev
+    digest: 837ec9da4632b6ad12330f5530b23f9ea26028233900dea88b65088c30fc85a8
+    name: maildev
+    urls:
+    - https://SocialGouv.github.io/helm-charts/maildev-1.8.0.tgz
+    version: 1.8.0
+  - apiVersion: v2
     created: "2023-06-30T08:00:23.195062616Z"
     description: A Helm chart for maildev
     digest: 54dce71f6540fc521a85d6c1fa73817483018db006dc81ee9e7d7e020aa46ce2
@@ -481,4 +507,4 @@ entries:
     urls:
     - https://github.com/SocialGouv/helm-charts/releases/download/maildev-1.0.0/maildev-1.0.0.tgz
     version: 1.0.0
-generated: "2023-06-30T08:00:23.192563191Z"
+generated: "2023-07-24T07:48:46.189403733Z"
