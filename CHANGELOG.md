@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.8.2 (2023-07-24)
+
+
+### Bug Fixes
+
+* **cnpg-cluster:** add Values.annotations ([#15](https://github.com/SocialGouv/helm-charts/issues/15)) ([3baf7ac](https://github.com/SocialGouv/helm-charts/commit/3baf7ac94e96274de530324de5dc421384d586fe))
+
 ## 1.8.1 (2023-07-24)
 
 ## 1.8.0 (2023-07-24)
