@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 # -- Number of Postgres instances in the cluster
-replicaCount: 1
+instances: 1
 
 annotations: {}
 

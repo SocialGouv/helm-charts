@@ -67,7 +67,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | persistence.storageClass | string | `""` | StorageClass to use for database data, Applied after evaluating the PVC template, if available. If not specified, generated PVCs will be satisfied by the default storage class |
 | poolers | object | `{}` | Poller resources to create for this Cluster resource See: https://cloudnative-pg.io/documentation/1.17/api_reference/#PoolerSpec |
 | registryCredentials | string | `nil` | Create a docker-registry secret and use it as imagePullSecrets |
-| replicaCount | int | `1` | Number of Postgres instances in the cluster |
+| instances | int | `1` | Number of Postgres instances in the cluster |
 | resources | object | `{}` | CPU/Memory resource requests/limits |
 | scheduledBackups | object | `{}` | ScheduledBackup resources to create for this Cluster resource See: https://cloudnative-pg.io/documentation/1.17/api_reference/#ScheduledBackupSpec |
 | tolerations | list | `[]` | Postgres instances labels for tolerations pod assignment |
