@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.8.3 (2023-07-26)
+
+
+### Bug Fixes
+
+* rename backup store key ([#11](https://github.com/SocialGouv/helm-charts/issues/11)) ([4093b81](https://github.com/SocialGouv/helm-charts/commit/4093b812bdcf1433995f3af095ecddd3359fefd1))
+
 ## 1.8.2 (2023-07-24)
 
 
