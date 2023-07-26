@@ -7,7 +7,7 @@ metadata:
   annotations:
     {{- include "cnpg-cluster.annotations" . | nindent 4 }}
 spec:
-  instances: {{ .Values.replicaCount }}
+  instances: {{ .Values.instances }}
   {{- if .Values.image.repository }}
   imageName: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
   {{- end }}
@@ -58,94 +58,7 @@ spec:
   backup:
     retentionPolicy: "{{ .Values.backup.retentionPolicy }}"
     barmanObjectStore:
-    {{- with .Values.backup.endpointURL }}
-      endpointURL: "{{ . }}"
-    {{- end }}
-    {{- with .Values.backup.endpointCA }}
-      endpointCA: "{{ . }}"
-    {{- end }}
-      destinationPath: {{ .Values.backup.destinationPath }}
-    {{- with .Values.backup.serverName }}
-      serverName: "{{ . }}"
-    {{- end }}
-    {{- with .Values.backup.wal }}
-      wal:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.backup.data }}
-      data:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.backup.tags }}
-      tags:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.backup.historyTags }}
-      historyTags:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- if .Values.backup.s3Credentials }}
-      s3Credentials:
-        {{- with .Values.backup.s3Credentials.accessKeyId }}
-        accessKeyId:
-          name: {{ include "cnpg-cluster.backupSecretName" $ }}
-          key: "accessKeyId"
-        {{- end }}
-        {{- with .Values.backup.s3Credentials.secretAccessKey }}
-        secretAccessKey:
-          name: {{ include "cnpg-cluster.backupSecretName" $ }}
-          key: "secretAccessKey"
-        {{- end }}
-        {{- with .Values.backup.s3Credentials.region }}
-        region:
-          name: {{ include "cnpg-cluster.backupSecretName" $ }}
-          key: "region"
-        {{- end }}
-        {{- with .Values.backup.s3Credentials.sessionToken }}
-        sessionToken:
-          name: {{ include "cnpg-cluster.backupSecretName" $ }}
-          key: "sessionToken"
-        {{- end }}
-        {{- with .Values.backup.s3Credentials.inheritFromIAMRole }}
-        inheritFromIAMRole: {{ . }}
-        {{- end }}
-    {{- else if .Values.backup.googleCredentials }}
-      googleCredentials:
-        {{- with .Values.backup.googleCredentials.gkeEnvironment }}
-        gkeEnvironment: {{ . }}
-        {{- end }}
-        {{- with .Values.backup.googleCredentials.applicationCredentials }}
-        applicationCredentials:
-          name: {{ include "cnpg-cluster.backupSecretName" $ }}
-          key: "applicationCredentials"
-        {{- end }}
-    {{- else if .Values.backup.azureCredentials  }}
-      azureCredentials:
-        {{- with .Values.backup.azureCredentials.connectionString }}
-        connectionString:
-          name: {{ .name }}
-          key: {{ .key }}
-        {{- end }}
-        {{- with .Values.backup.azureCredentials.storageAccount }}
-        storageAccount:
-          name: {{ .name }}
-          key: {{ .key }}
-        {{- end }}
-        {{- with .Values.backup.azureCredentials.storageKey }}
-        storageKey:
-          name: {{ .name }}
-          key: {{ .key }}
-        {{- end }}
-        {{- with .Values.backup.azureCredentials.storageSasToken }}
-        storageSasToken:
-          name: {{ .name }}
-          key: {{ .key }}
-        {{- end }}
-        {{- with .Values.backup.azureCredentials.inheritFromAzureAD }}
-        inheritFromAzureAD: {{ . }}
-        {{- end }}
-    {{- else }}
-    {{- end }}
+      {{- toYaml .Values.backup.barmanObjectStore | nindent 6 }}
 {{- end }}
   
   minSyncReplicas: {{ .Values.minSyncReplicas }}
@@ -171,9 +84,6 @@ spec:
       {{- if .Values.recovery.targetTime }}
       recoveryTarget:
         targetTime: "{{ .Values.recovery.targetTime }}"
-      {{/* {{- else }} */}}
-      {{/* recoveryTarget: */}}
-      {{/*   targetTLI: "latest" */}}
       {{- end }}
     {{- else }}
     initdb:
@@ -202,7 +112,7 @@ spec:
   externalClusters:
     - name: "{{ or .Values.recovery.externalClusterName "cnpg-cluster" }}"
       barmanObjectStore:
-        {{- toYaml .Values.recovery.backup | nindent 8 }}
+        {{- toYaml .Values.recovery.barmanObjectStore | nindent 8 }}
   {{- end }}
 
 {{- with .Values.clusterExtraSpec }}
