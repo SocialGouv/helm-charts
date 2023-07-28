@@ -40,6 +40,6 @@ spec:
           volumes:
             - name: data
               persistentVolumeClaim:
-                claimName: maildev
+                claimName: {{ (or .Values.component .Chart.Name) | lower }}
           restartPolicy: OnFailure
   {{- end }}

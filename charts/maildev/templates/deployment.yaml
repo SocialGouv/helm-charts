@@ -52,7 +52,7 @@ spec:
         - name: data
           {{- if and (.Values.persistence.enabled) }}
           persistentVolumeClaim:
-            claimName: maildev
+            claimName: {{ (or .Values.component .Chart.Name) | lower }}
           {{- else }}
           emptyDir: {}
           {{- end -}}
