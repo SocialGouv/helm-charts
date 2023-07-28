@@ -10,8 +10,11 @@ metadata:
 spec:
   ports:
     - name: http
+      port: 1080
+      targetPort: 1080
+    - name: smtp
       port: {{ .Values.servicePort }}
-      targetPort: {{ .Values.targetPort }}
+      targetPort: 1025
   selector:
     component: {{ (or .Values.component .Chart.Name) | lower }}
   type: ClusterIP

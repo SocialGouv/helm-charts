@@ -1,68 +1,73 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: {{ include "pgweb.fullname" . }}
   labels:
-    component: {{ (or .Values.component .Chart.Name) | lower }}
-    application: {{ .Values.repositoryName }}
-  name: {{ (or .Values.component .Chart.Name) | lower }}
-  namespace: {{ .Values.namespace }}
-  annotations: {}
+    {{- include "pgweb.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
-      component: {{ (or .Values.component .Chart.Name) | lower }}
+      {{- include "pgweb.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
-        component: {{ (or .Values.component .Chart.Name) | lower }}
-        application: {{ .Values.repositoryName }}
+        {{- include "pgweb.selectorLabels" . | nindent 8 }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "pgweb.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - image: sosedoff/pgweb:0.14.1
-          name: pgweb
-          env:
-            {{- if gt (len .Values.env) 0 }}
-            {{- tpl (.Values.env | toYaml) . | nindent 12 }}
-            {{- end }}
-          envFrom:
-            {{- if gt (len .Values.envFrom) 0 }}
-            {{- tpl (.Values.envFrom | toYaml) . | nindent 12 }}
-            {{- end }}
-            {{ if .Values.pgSecretName }}
-            - secretRef:
-                name: {{ .Values.pgSecretName }}
-            {{ end }}
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 8081
-              name: http
+            - name: http
+              containerPort: 8081
+              protocol: TCP
           livenessProbe:
-            failureThreshold: 6
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 30
-            periodSeconds: 5
-            timeoutSeconds: 5
           readinessProbe:
-            failureThreshold: 15
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 1
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 1
-          startupProbe:
-            failureThreshold: 12
-            httpGet:
-              path: /
-              port: http
-            periodSeconds: 5
           resources:
-            limits:
-              cpu: 500m
-              memory: 256Mi
-            requests:
-              cpu: 50m
-              memory: 64Mi
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- with .Values.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.extraArgs }}
+          command:
+            - /usr/bin/pgweb
+          args:
+            - --bind=0.0.0.0
+            - --listen=8081
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
