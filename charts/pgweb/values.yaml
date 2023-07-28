@@ -17,6 +17,10 @@ env: []
 envFrom: []
 pgSecretName:
 
+ingress:
+  enabled: false
+  annotations: {}
+
 image:
   repository: sosedoff/pgweb
   pullPolicy: IfNotPresent
@@ -51,11 +55,6 @@ securityContext:
   # runAsNonRoot: true
   # runAsUser: 1000
 
-
-ingress:
-  enabled: false
-  annotations: {}
-
 # -- custom resources
 resources:
   {}
@@ -83,7 +82,5 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-env: []
 
 extraArgs: []
