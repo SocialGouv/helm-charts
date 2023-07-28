@@ -17,10 +17,7 @@ tests:
           count: 0
       - template: "serviceaccount.yaml"
         matchSnapshot:
-          path: metadata.name
-      - template: "serviceaccount.yaml"
-        matchSnapshot:
-          path: kind
+          path: metadata
   - it: should render with HPA
     values:
       - values-hpa.yaml
@@ -42,10 +39,7 @@ tests:
           path: spec
       - template: "serviceaccount.yaml"
         matchSnapshot:
-          path: metadata.name
-      - template: "serviceaccount.yaml"
-        matchSnapshot:
-          path: kind
+          path: metadata
   - it: should render with ingress
     values:
       - values-ingress.yaml
