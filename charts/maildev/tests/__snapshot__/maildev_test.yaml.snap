@@ -1,0 +1,192 @@
+custom resources:
+  1: |
+    replicas: 1
+    selector:
+      matchLabels:
+        component: maildev
+    template:
+      metadata:
+        labels:
+          component: maildev
+      spec:
+        containers:
+          - args:
+              - --mail-directory
+              - /home/node/maildev-data
+            image: maildev/maildev:latest
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              httpGet:
+                path: /healthz
+                port: http
+            name: maildev
+            ports:
+              - containerPort: 1080
+                name: http
+                protocol: TCP
+              - containerPort: 1025
+                name: smtp
+                protocol: TCP
+            readinessProbe:
+              httpGet:
+                path: /healthz
+                port: http
+            resources:
+              limits:
+                cpu: 42m
+                memory: 100m
+              requests:
+                cpu: 12m
+                memory: 10m
+            volumeMounts:
+              - mountPath: /home/node/maildev-data
+                name: data
+        volumes:
+          - emptyDir: {}
+            name: data
+default manifest:
+  1: |
+    replicas: 1
+    selector:
+      matchLabels:
+        component: maildev
+    template:
+      metadata:
+        labels:
+          component: maildev
+      spec:
+        containers:
+          - args:
+              - --mail-directory
+              - /home/node/maildev-data
+            image: maildev/maildev:latest
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              httpGet:
+                path: /healthz
+                port: http
+            name: maildev
+            ports:
+              - containerPort: 1080
+                name: http
+                protocol: TCP
+              - containerPort: 1025
+                name: smtp
+                protocol: TCP
+            readinessProbe:
+              httpGet:
+                path: /healthz
+                port: http
+            resources:
+              limits:
+                cpu: null
+                memory: null
+              requests:
+                cpu: null
+                memory: null
+            volumeMounts:
+              - mountPath: /home/node/maildev-data
+                name: data
+        volumes:
+          - emptyDir: {}
+            name: data
+persistence and existingClaim enabled:
+  1: |
+    replicas: 1
+    selector:
+      matchLabels:
+        component: maildev
+    template:
+      metadata:
+        labels:
+          component: maildev
+      spec:
+        containers:
+          - args:
+              - --mail-directory
+              - /home/node/maildev-data
+            image: maildev/maildev:latest
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              httpGet:
+                path: /healthz
+                port: http
+            name: maildev
+            ports:
+              - containerPort: 1080
+                name: http
+                protocol: TCP
+              - containerPort: 1025
+                name: smtp
+                protocol: TCP
+            readinessProbe:
+              httpGet:
+                path: /healthz
+                port: http
+            resources:
+              limits:
+                cpu: null
+                memory: null
+              requests:
+                cpu: null
+                memory: null
+            volumeMounts:
+              - mountPath: /home/node/maildev-data
+                name: data
+        volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: maildev
+persistence enabled:
+  1: |
+    replicas: 1
+    selector:
+      matchLabels:
+        component: maildev
+    template:
+      metadata:
+        labels:
+          component: maildev
+      spec:
+        containers:
+          - args:
+              - --mail-directory
+              - /home/node/maildev-data
+            image: maildev/maildev:latest
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              httpGet:
+                path: /healthz
+                port: http
+            name: maildev
+            ports:
+              - containerPort: 1080
+                name: http
+                protocol: TCP
+              - containerPort: 1025
+                name: smtp
+                protocol: TCP
+            readinessProbe:
+              httpGet:
+                path: /healthz
+                port: http
+            resources:
+              limits:
+                cpu: null
+                memory: null
+              requests:
+                cpu: null
+                memory: null
+            volumeMounts:
+              - mountPath: /home/node/maildev-data
+                name: data
+        volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: maildev
+  2: |
+    accessModes:
+      - ReadWriteMany
+    resources:
+      requests:
+        storage: 1024M

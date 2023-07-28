@@ -1,0 +1,49 @@
+suite: test mailder
+#templates:
+tests:
+  - it: should render
+    asserts:
+      - template: deployment.yaml
+        isKind:
+          of: Deployment
+      - template: deployment.yaml
+        hasDocuments:
+          count: 1
+  - it: default manifest
+    asserts:
+      - template: deployment.yaml
+        matchSnapshot:
+          path: spec
+      - template: pvc.yaml
+        hasDocuments:
+          count: 0
+  - it: custom resources
+    values:
+      - values-resources.yaml
+    asserts:
+      - template: deployment.yaml
+        matchSnapshot:
+          path: spec
+      - template: pvc.yaml
+        hasDocuments:
+          count: 0
+  - it: persistence enabled
+    values:
+      - values-persistence.yaml
+    asserts:
+      - template: deployment.yaml
+        matchSnapshot:
+          path: spec
+      - template: pvc.yaml
+        matchSnapshot:
+          path: spec
+  - it: persistence and existingClaim enabled
+    values:
+      - values-persistence-existingClaim.yaml
+    asserts:
+      - template: deployment.yaml
+        matchSnapshot:
+          path: spec
+      - template: pvc.yaml
+        hasDocuments:
+          count: 0

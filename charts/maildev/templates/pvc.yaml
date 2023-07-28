@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ (or .Values.component .Chart.Name) | lower }}
+  name: maildev
   namespace: {{ .Values.namespace }}
   labels:
     component: {{ (or .Values.component .Chart.Name) | lower }}

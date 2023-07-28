@@ -50,9 +50,9 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: data
-          {{- if and (.Values.persistence.enabled) (not .Values.persistence.existingClaim) }}
+          {{- if and (.Values.persistence.enabled) }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim | default ((or .Values.component .Chart.Name) | lower) }}
+            claimName: maildev
           {{- else }}
           emptyDir: {}
-        {{- end -}}
+          {{- end -}}
