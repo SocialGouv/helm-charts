@@ -1,4 +1,9 @@
 apiVersion: v2
+<<<<<<< HEAD
 description: A Helm chart for pgweb
 name: pgweb
 version: 1.9.2
+=======
+name: pgweb
+version: 1.8.4
+>>>>>>> 9e3eabf (feat: pgweb)

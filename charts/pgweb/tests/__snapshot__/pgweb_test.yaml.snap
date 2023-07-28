@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 should render default:
+=======
+custom pgSecretName:
+>>>>>>> 9e3eabf (feat: pgweb)
   1: |
     replicas: 1
     selector:
       matchLabels:
+<<<<<<< HEAD
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/name: pgweb
     template:
@@ -18,10 +23,34 @@ should render default:
               httpGet:
                 path: /
                 port: http
+=======
+        component: pgweb
+    template:
+      metadata:
+        labels:
+          application: null
+          component: pgweb
+      spec:
+        containers:
+          - env: null
+            envFrom:
+              - secretRef:
+                  name: custom-secret
+            image: sosedoff/pgweb:0.14.1
+            livenessProbe:
+              failureThreshold: 6
+              httpGet:
+                path: /
+                port: http
+              initialDelaySeconds: 30
+              periodSeconds: 5
+              timeoutSeconds: 5
+>>>>>>> 9e3eabf (feat: pgweb)
             name: pgweb
             ports:
               - containerPort: 8081
                 name: http
+<<<<<<< HEAD
                 protocol: TCP
             readinessProbe:
               httpGet:
@@ -64,10 +93,59 @@ should render with HPA:
               httpGet:
                 path: /
                 port: http
+=======
+            readinessProbe:
+              failureThreshold: 15
+              httpGet:
+                path: /
+                port: http
+              initialDelaySeconds: 1
+              periodSeconds: 5
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 256Mi
+              requests:
+                cpu: 50m
+                memory: 64Mi
+            startupProbe:
+              failureThreshold: 12
+              httpGet:
+                path: /
+                port: http
+              periodSeconds: 5
+should render:
+  1: |
+    replicas: 1
+    selector:
+      matchLabels:
+        component: pgweb
+    template:
+      metadata:
+        labels:
+          application: null
+          component: pgweb
+      spec:
+        containers:
+          - env: null
+            envFrom: null
+            image: sosedoff/pgweb:0.14.1
+            livenessProbe:
+              failureThreshold: 6
+              httpGet:
+                path: /
+                port: http
+              initialDelaySeconds: 30
+              periodSeconds: 5
+              timeoutSeconds: 5
+>>>>>>> 9e3eabf (feat: pgweb)
             name: pgweb
             ports:
               - containerPort: 8081
                 name: http
+<<<<<<< HEAD
                 protocol: TCP
             readinessProbe:
               httpGet:
@@ -116,3 +194,27 @@ should render with ingress:
                     number: 80
               path: /
               pathType: ImplementationSpecific
+=======
+            readinessProbe:
+              failureThreshold: 15
+              httpGet:
+                path: /
+                port: http
+              initialDelaySeconds: 1
+              periodSeconds: 5
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources:
+              limits:
+                cpu: 500m
+                memory: 256Mi
+              requests:
+                cpu: 50m
+                memory: 64Mi
+            startupProbe:
+              failureThreshold: 12
+              httpGet:
+                path: /
+                port: http
+              periodSeconds: 5
+>>>>>>> 9e3eabf (feat: pgweb)

@@ -1,55 +1,37 @@
 suite: test pgweb
 #templates:
 tests:
-  - it: should render default
+  - it: should render
     asserts:
-      - template: "deployment.yaml"
+      - template: deployment.yaml
         matchSnapshot:
           path: spec
-      - template: "ingress.yaml"
-        hasDocuments:
-          count: 0
-      - template: "service.yaml"
-        matchSnapshot:
-          path: spec
-      - template: "hpa.yaml"
-        hasDocuments:
-          count: 0
-      - template: "serviceaccount.yaml"
-        matchSnapshot:
-          path: metadata.name
-      - template: "serviceaccount.yaml"
-        matchSnapshot:
-          path: kind
-  - it: should render with HPA
-    values:
-      - values-hpa.yaml
-    asserts:
-      - template: "deployment.yaml"
-        matchSnapshot:
-          path: spec
-      - template: "ingress.yaml"
-        hasDocuments:
-          count: 0
-      - template: "service.yaml"
-        matchSnapshot:
-          path: spec
-      - template: "hpa.yaml"
+      - template: deployment.yaml
+        isKind:
+          of: Deployment
+      - template: deployment.yaml
         hasDocuments:
           count: 1
-      - template: "hpa.yaml"
-        matchSnapshot:
-          path: spec
-      - template: "serviceaccount.yaml"
-        matchSnapshot:
-          path: metadata.name
-      - template: "serviceaccount.yaml"
-        matchSnapshot:
-          path: kind
-  - it: should render with ingress
+  - it: custom pgSecretName
     values:
-      - values-ingress.yaml
+      - values-pgSecretName.yaml
     asserts:
-      - template: "ingress.yaml"
+      - template: deployment.yaml
         matchSnapshot:
           path: spec
+      - template: deployment.yaml
+        equal:
+          path: spec.template.spec.containers[0].envFrom[0].secretRef.name
+          value: "custom-secret"
+  - it: custom host
+    values:
+      - values-host.yaml
+    asserts:
+      - template: ingress.yaml
+        equal:
+          path: spec.rules[0].host
+          value: "my.pg.web.com"
+      - template: ingress.yaml
+        equal:
+          path: spec.tls[0].secretName
+          value: "custom-cert"

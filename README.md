@@ -14,6 +14,7 @@ This repo manage some of our shared [Helm](https://helm.sh) Charts
 | [pgweb](./charts/pgweb)                       | [pgweb](https://hub.docker.com/r/sosedoff/pgweb)        |
 
 Issues and contributions welcome 🤗
+<<<<<<< HEAD
 
 ## Lint
 
@@ -28,3 +29,5 @@ update unit-tests snapshots :
 ```
 helm unittest charts/* -u
 ```
+=======
+>>>>>>> 9e3eabf (feat: pgweb)
