@@ -3,4 +3,4 @@ name: cnpg-cluster
 description: A Helm chart to create cloudnative-pg.io clusters
 type: application
 version: 1.8.3
-appVersion: 15
+appVersion: "15"
