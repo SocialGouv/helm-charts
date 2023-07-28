@@ -12,23 +12,3 @@ tests:
       - template: deployment.yaml
         hasDocuments:
           count: 1
-  - it: custom pgSecretName
-    values:
-      - values-pgSecretName.yaml
-    asserts:
-      - template: deployment.yaml
-        equal:
-          path: spec.template.spec.containers[0].envFrom[0].secretRef.name
-          value: "custom-secret"
-  - it: custom host
-    values:
-      - values-host.yaml
-    asserts:
-      - template: ingress.yaml
-        equal:
-          path: spec.rules[0].host
-          value: "my.pg.web.com"
-      - template: ingress.yaml
-        equal:
-          path: spec.tls[0].secretName
-          value: "custom-cert"

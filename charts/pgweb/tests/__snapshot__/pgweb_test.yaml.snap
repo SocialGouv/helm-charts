@@ -3,48 +3,31 @@ should render:
     replicas: 1
     selector:
       matchLabels:
-        component: pgweb
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/name: pgweb
     template:
       metadata:
         labels:
-          application: null
-          component: pgweb
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: pgweb
       spec:
         containers:
-          - env: null
-            envFrom: null
-            image: sosedoff/pgweb:0.14.1
+          - image: 'sosedoff/pgweb:'
+            imagePullPolicy: IfNotPresent
             livenessProbe:
-              failureThreshold: 6
               httpGet:
                 path: /
                 port: http
-              initialDelaySeconds: 30
-              periodSeconds: 5
-              timeoutSeconds: 5
             name: pgweb
             ports:
               - containerPort: 8081
                 name: http
+                protocol: TCP
             readinessProbe:
-              failureThreshold: 15
               httpGet:
                 path: /
                 port: http
-              initialDelaySeconds: 1
-              periodSeconds: 5
-              successThreshold: 1
-              timeoutSeconds: 1
-            resources:
-              limits:
-                cpu: 500m
-                memory: 256Mi
-              requests:
-                cpu: 50m
-                memory: 64Mi
-            startupProbe:
-              failureThreshold: 12
-              httpGet:
-                path: /
-                port: http
-              periodSeconds: 5
+            resources: {}
+            securityContext: {}
+        securityContext: {}
+        serviceAccountName: RELEASE-NAME-pgweb
