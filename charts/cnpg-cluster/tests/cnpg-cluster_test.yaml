@@ -1,0 +1,62 @@
+suite: test cnpg-cluster
+templates:
+  - cluster.cnpg.yaml
+  - scheduledbackup.cnpg.yaml
+tests:
+  - it: cluster should render
+    asserts:
+      - template: cluster.cnpg.yaml
+        isKind:
+          of: Cluster
+      - template: cluster.cnpg.yaml
+        hasDocuments:
+          count: 1
+  - it: cluster with custom instances
+    values:
+      - values-instances.yaml
+    asserts:
+      - template: cluster.cnpg.yaml
+        isKind:
+          of: Cluster
+      - template: cluster.cnpg.yaml
+        equal:
+          path: spec.instances
+          value: 2
+  - it: cluster with custom image tag
+    values:
+      - values-tag.yaml
+    asserts:
+      - template: cluster.cnpg.yaml
+        isKind:
+          of: Cluster
+      - template: cluster.cnpg.yaml
+        equal:
+          path: spec.imageName
+          value: ghcr.io/cloudnative-pg/postgis:12
+  - it: cluster with backup enabled
+    values:
+      - values-backup.yaml
+    asserts:
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec
+  - it: cluster with recovery enabled
+    values:
+      - values-recovery.yaml
+    asserts:
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec
+  - it: cluster with enabled backup and recovery
+    values:
+      - values-backup-recovery.yaml
+    asserts:
+      - matchSnapshot:
+          path: spec
+  - it: cluster with custom pgparams
+    values:
+      - values-pgparams.yaml
+    asserts:
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.postgresql

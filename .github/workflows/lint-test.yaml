@@ -45,3 +45,8 @@ jobs:
 
       - name: Run chart-testing (install)
         run: ct install --config ct.yaml
+
+      - name: Run helm unittest
+        run: |
+          helm plugin install https://github.com/quintush/helm-unittest
+          helm unittest charts/cnpg-cluster

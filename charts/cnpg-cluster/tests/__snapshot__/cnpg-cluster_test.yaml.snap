@@ -1,0 +1,112 @@
+cluster with backup enabled:
+  1: |
+    backup:
+      barmanObjectStore:
+        destinationPath: s3://backups/
+        endpointURL: http://minio:9000
+        s3Credentials:
+          accessKeyId:
+            key: ACCESS_KEY_ID
+            name: minio
+          secretAccessKey:
+            key: ACCESS_SECRET_KEY
+            name: minio
+        serverName: recoveredCluster
+      retentionPolicy: 30d
+    bootstrap:
+      initdb:
+        database: app
+        owner: app
+        postInitTemplateSQL: null
+    imageName: ghcr.io/cloudnative-pg/postgis:15
+    imagePullPolicy: IfNotPresent
+    instances: 1
+    maxSyncReplicas: 0
+    minSyncReplicas: 0
+    monitoring:
+      enablePodMonitor: false
+    postgresql:
+      parameters: null
+    storage:
+      size: 8Gi
+cluster with custom pgparams:
+  1: |
+    parameters:
+      timezone: Europe/Paris
+      work_mem: 512MB
+cluster with enabled backup and recovery:
+  1: |
+    backup:
+      barmanObjectStore:
+        destinationPath: s3://backups/
+        endpointURL: http://minio:9000
+        s3Credentials:
+          accessKeyId:
+            key: ACCESS_KEY_ID
+            name: minio
+          secretAccessKey:
+            key: ACCESS_SECRET_KEY
+            name: minio
+        serverName: recoveredCluster
+      retentionPolicy: 30d
+    bootstrap:
+      recovery:
+        source: my-cluster-name-backup
+    externalClusters:
+      - barmanObjectStore:
+          destinationPath: s3://backups/
+          endpointURL: http://minio:9000
+          s3Credentials:
+            accessKeyId:
+              key: ACCESS_KEY_ID
+              name: minio
+            secretAccessKey:
+              key: ACCESS_SECRET_KEY
+              name: minio
+          serverName: recoveredCluster
+        name: my-cluster-name-backup
+    imageName: ghcr.io/cloudnative-pg/postgis:15
+    imagePullPolicy: IfNotPresent
+    instances: 1
+    maxSyncReplicas: 0
+    minSyncReplicas: 0
+    monitoring:
+      enablePodMonitor: false
+    postgresql:
+      parameters: null
+    storage:
+      size: 8Gi
+  2: |
+    backupOwnerReference: self
+    cluster:
+      name: RELEASE-NAME-cnpg-cluster
+    schedule: 0 0 0 * * 0
+cluster with recovery enabled:
+  1: |
+    bootstrap:
+      recovery:
+        source: my-cluster-name-backup
+    externalClusters:
+      - barmanObjectStore:
+          destinationPath: s3://backups/
+          endpointURL: http://minio:9000
+          s3Credentials:
+            accessKeyId:
+              key: ACCESS_KEY_ID
+              name: minio
+            secretAccessKey:
+              key: ACCESS_SECRET_KEY
+              name: minio
+          serverName: recoveredCluster
+        name: my-cluster-name-backup
+    imageName: ghcr.io/cloudnative-pg/postgis:15
+    imagePullPolicy: IfNotPresent
+    instances: 1
+    maxSyncReplicas: 0
+    minSyncReplicas: 0
+    monitoring:
+      enablePodMonitor: false
+    postgresql:
+      parameters: null
+    storage:
+      size: 8Gi

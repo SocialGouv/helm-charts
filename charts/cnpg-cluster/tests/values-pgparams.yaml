@@ -1,0 +1,3 @@
+postgresqlParameters:
+  timezone: "Europe/Paris"
+  work_mem: 512MB
