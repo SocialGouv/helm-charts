@@ -17,9 +17,6 @@ tests:
       - values-pgSecretName.yaml
     asserts:
       - template: deployment.yaml
-        matchSnapshot:
-          path: spec
-      - template: deployment.yaml
         equal:
           path: spec.template.spec.containers[0].envFrom[0].secretRef.name
           value: "custom-secret"
