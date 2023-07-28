@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    {{ range $key, $val := .Values.ingress.annotations }}
+    "{{ $key }}": {{ $val | quote }}
+    {{ end }}
+  labels:
+    component: {{ (or .Values.component .Chart.Name) | lower }}
+    application: {{ .Values.repositoryName }}
+  name: {{ (or .Values.component .Chart.Name) | lower }}
+  namespace: {{ .Values.namespace }}
+spec:
+  rules:
+    - host: {{ .Values.host | quote }}
+      http:
+        paths:
+          - backend:
+              service:
+                name: {{ (or .Values.component .Chart.Name) | lower }}
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - {{ .Values.host | quote }}
+    {{- if .Values.certSecretName }}
+      secretName: {{ .Values.certSecretName }}
+    {{- else }}
+      secretName: {{ print (or .Values.component .Chart.Name) "-crt" }}
+    {{- end }}

@@ -1,0 +1,2 @@
+host: my.pg.web.com
+certSecretName: custom-cert

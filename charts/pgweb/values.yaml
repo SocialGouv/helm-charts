@@ -1,0 +1,12 @@
+enabled:
+namespace:
+repositoryName:
+host:
+targetPort: 8081
+servicePort: 8081
+certSecretName:
+env: []
+envFrom: []
+pgSecretName:
+ingress:
+  annotations: {}
