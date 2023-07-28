@@ -1,12 +1,12 @@
-{{- if and (or (kindIs "invalid" .Values.cron.enabled) .Values.cron.enabled) (or (and (kindIs "invalid" .Values.persistence.enabled) (eq .Values.global.env "preprod")) .Values.persistence.enabled) }}
+{{- if and .Values.persistence.enabled .Values.cron.enabled }}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: {{ (or .Values.component .Chart.Name) | lower }}
   labels:
     component: {{ (or .Values.component .Chart.Name) | lower }}
-    application: {{ .Values.global.repositoryName }}
-  namespace: {{ or .Values.namespace .Values.global.namespace }}
+    application: {{ .Values.repositoryName }}
+  namespace: {{ .Values.namespace }}
 spec:
   schedule: {{ .Values.cron.schedule | quote }}
   startingDeadlineSeconds: 100
@@ -40,6 +40,6 @@ spec:
           volumes:
             - name: data
               persistentVolumeClaim:
-                claimName: {{ .Values.persistence.existingClaim | default ((or .Values.component .Chart.Name) | lower) }}
+                claimName: {{ (or .Values.component .Chart.Name) | lower }}
           restartPolicy: OnFailure
   {{- end }}

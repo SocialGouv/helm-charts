@@ -1,0 +1,5 @@
+persistence:
+  enabled: true
+
+cron:
+  enabled: true

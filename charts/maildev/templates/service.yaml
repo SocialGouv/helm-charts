@@ -3,9 +3,9 @@ kind: Service
 metadata:
   labels:
     component: {{ (or .Values.component .Chart.Name) | lower }}
-    application: {{ .Values.global.repositoryName }}
+    application: {{ .Values.repositoryName }}
   name: {{ (or .Values.component .Chart.Name) | lower }}
-  namespace: {{ or .Values.namespace .Values.global.namespace }}
+  namespace: {{ .Values.namespace }}
   annotations: {}
 spec:
   ports:

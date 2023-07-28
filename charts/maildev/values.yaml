@@ -3,6 +3,7 @@ namespace:
 host:
 servicePort: 1025
 certSecretName:
+repositoryName:
 
 replicaCount: 1
 
@@ -40,8 +41,8 @@ ingress:
 
 resources:
   limits:
-    cpu: 
-    memory: 
+    cpu:
+    memory:
   requests:
-    cpu: 
-    memory: 
+    cpu:
+    memory:
