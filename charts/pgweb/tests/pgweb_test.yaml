@@ -3,12 +3,18 @@ suite: test mailder
 tests:
   - it: should render
     asserts:
-      - template: deployment.yaml
+      - template: "deployment.yaml"
         matchSnapshot:
           path: spec
-      - template: deployment.yaml
-        isKind:
-          of: Deployment
-      - template: deployment.yaml
-        hasDocuments:
-          count: 1
+      - template: "ingress.yaml"
+        matchSnapshot:
+          path: spec
+      - template: "service.yaml"
+        matchSnapshot:
+          path: spec
+      - template: "hpa.yaml"
+        matchSnapshot:
+          path: spec
+      - template: "serviceaccount.yaml"
+        matchSnapshot:
+          path: spec
