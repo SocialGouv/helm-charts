@@ -27,7 +27,8 @@ service:
   annotations: {}
 
 # -- Resource definitions
-resources: {}
+resources:
+  {}
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
@@ -53,13 +54,14 @@ storage:
   className: ""
   size: "500Gi"
   accessModes:
-  - "ReadWriteMany"
+    - "ReadWriteMany"
 
 worker:
   platforms: ["linux/amd64"]
 
 gc:
-  keepstorage: 495000 # storage size with a margin in MB
+  # -- storage size with a margin in MB
+  keepstorage: 495000
   defaultPolicy:
     # keepBytes can be an integer number of bytes (e.g. 512000000), a string
     # with a unit (e.g. "512MB"), or a string percentage of available disk
@@ -71,7 +73,8 @@ gc:
     keepDuration: "30d"
   extraPolicies: []
 
-snapshotter: "auto" # overlayfs or native, default value is "auto".
+# -- overlayfs or native, default value is "auto".
+snapshotter: "auto"
 
 history:
   maxAge: 172800
