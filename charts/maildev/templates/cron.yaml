@@ -1,4 +1,4 @@
-{{- if and .Values.persistence.enabled .Values.persistence.existingClaim }}
+{{- if and .Values.persistence.enabled .Values.cron.enabled }}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -40,6 +40,6 @@ spec:
           volumes:
             - name: data
               persistentVolumeClaim:
-                claimName: {{ .Values.persistence.existingClaim | default ((or .Values.component .Chart.Name) | lower) }}
+                claimName: maildev
           restartPolicy: OnFailure
   {{- end }}

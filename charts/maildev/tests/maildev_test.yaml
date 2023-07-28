@@ -17,6 +17,9 @@ tests:
       - template: pvc.yaml
         hasDocuments:
           count: 0
+      - template: cron.yaml
+        hasDocuments:
+          count: 0
   - it: custom resources
     values:
       - values-resources.yaml
@@ -37,6 +40,9 @@ tests:
       - template: pvc.yaml
         matchSnapshot:
           path: spec
+      - template: cron.yaml
+        hasDocuments:
+          count: 0
   - it: persistence and existingClaim enabled
     values:
       - values-persistence-existingClaim.yaml
@@ -47,3 +53,19 @@ tests:
       - template: pvc.yaml
         hasDocuments:
           count: 0
+      - template: cron.yaml
+        hasDocuments:
+          count: 0
+  - it: cron enabled
+    values:
+      - values-persistence-cron.yaml
+    asserts:
+      - template: deployment.yaml
+        matchSnapshot:
+          path: spec
+      - template: pvc.yaml
+        matchSnapshot:
+          path: spec
+      - template: cron.yaml
+        matchSnapshot:
+          path: spec
