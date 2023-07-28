@@ -13,8 +13,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   rules:
-    - host: >-
-        {{ .Values.host }}
+    - host: {{ .Values.host | quote }}
       http:
         paths:
           - backend:
@@ -26,10 +25,9 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - >-
-          {{ .Values.host }}
-        {{- if .Values.certSecretName }}
-          secretName: {{ .Values.certSecretName }}
-        {{- else }}
-          secretName: {{ print (or .Values.component .Chart.Name) "-crt" }}
-        {{- end }}
+        - {{ .Values.host | quote }}
+    {{- if .Values.certSecretName }}
+      secretName: {{ .Values.certSecretName }}
+    {{- else }}
+      secretName: {{ print (or .Values.component .Chart.Name) "-crt" }}
+    {{- end }}
