@@ -3,7 +3,7 @@ backup:
   barmanObjectStore:
     destinationPath: s3://backups/
     endpointURL: http://minio:9000
-    serverName: "recoveredCluster"
+    serverName: "some-cluster"
     s3Credentials:
       accessKeyId:
         name: minio
@@ -19,7 +19,7 @@ recovery:
   barmanObjectStore:
     destinationPath: s3://backups/
     endpointURL: http://minio:9000
-    serverName: "recoveredCluster"
+    serverName: "some-cluster-to-recover"
     s3Credentials:
       accessKeyId:
         name: minio

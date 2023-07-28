@@ -33,13 +33,17 @@ tests:
         equal:
           path: spec.imageName
           value: ghcr.io/cloudnative-pg/postgis:12
-  - it: cluster with backup enabled
+  - it: cluster with scheduled backup enabled
     values:
       - values-backup.yaml
     asserts:
       - template: cluster.cnpg.yaml
         matchSnapshot:
           path: spec
+      - template: scheduledbackup.cnpg.yaml
+        equal:
+          path: spec.schedule
+          value: "1 2 3 * * 0"
   - it: cluster with recovery enabled
     values:
       - values-recovery.yaml
