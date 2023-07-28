@@ -1,0 +1,49 @@
+{{ template "chart.header" . }}
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.badgesSection" . }}
+
+## Add repository
+
+`helm repo add socialgouv https://socialgouv.github.ios/helm-charts`
+
+## Install
+
+```sh
+helm install pgweb socialgouv/pgweb
+```
+
+## Helmfile
+
+```yaml
+releases:
+- name: pgweb
+  chart: socialgouv/pgweb
+  namespace: default
+  values:
+  - ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+      hosts:
+      - host: pgweb.your-domain.com
+        paths:
+        - path: /
+          pathType: Prefix
+      tls:
+      - secretName: your-domain-com-tls
+        hosts:
+        - pgweb.your-domain.com
+```
+
+{{ template "chart.homepageLine" . }}
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
