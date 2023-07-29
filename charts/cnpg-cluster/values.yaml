@@ -14,7 +14,7 @@ image:
   # -- Postgres image pull policy
   pullPolicy: IfNotPresent
   # -- Override the Postgres image tag
-  tag: ""
+  tag: "15"
 
 # -- Docker-registry secret names as an array
 imagePullSecrets: []

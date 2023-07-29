@@ -9,7 +9,7 @@ replicaCount: 1
 
 image:
   repository: maildev/maildev
-  tag: latest
+  tag: 2.1.0
   pullPolicy: IfNotPresent
 
 extraArgs:
