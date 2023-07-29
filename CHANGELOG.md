@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.9.1 (2023-07-29)
+
+
+### Bug Fixes
+
+* pin used docker images ([#19](https://github.com/SocialGouv/helm-charts/issues/19)) ([0b7e383](https://github.com/SocialGouv/helm-charts/commit/0b7e383e24746a581037063f19ca70c04a0ed2f3))
+
 ## 1.9.0 (2023-07-28)
 
 
