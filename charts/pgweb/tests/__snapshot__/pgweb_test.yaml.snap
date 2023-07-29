@@ -12,7 +12,7 @@ should render default:
           app.kubernetes.io/name: pgweb
       spec:
         containers:
-          - image: 'sosedoff/pgweb:'
+          - image: sosedoff/pgweb:0.14.1
             imagePullPolicy: IfNotPresent
             livenessProbe:
               httpGet:
@@ -46,7 +46,7 @@ should render default:
       app.kubernetes.io/instance: RELEASE-NAME
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/name: pgweb
-      helm.sh/chart: pgweb-1.8.4
+      helm.sh/chart: pgweb-1.9.0
     name: RELEASE-NAME-pgweb
 should render with HPA:
   1: |
@@ -61,7 +61,7 @@ should render with HPA:
           app.kubernetes.io/name: pgweb
       spec:
         containers:
-          - image: 'sosedoff/pgweb:'
+          - image: sosedoff/pgweb:0.14.1
             imagePullPolicy: IfNotPresent
             livenessProbe:
               httpGet:
@@ -107,7 +107,7 @@ should render with HPA:
       app.kubernetes.io/instance: RELEASE-NAME
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/name: pgweb
-      helm.sh/chart: pgweb-1.8.4
+      helm.sh/chart: pgweb-1.9.0
     name: RELEASE-NAME-pgweb
 should render with ingress:
   1: |

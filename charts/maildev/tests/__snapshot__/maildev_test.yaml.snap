@@ -13,7 +13,7 @@ cron enabled:
           - args:
               - --mail-directory
               - /home/node/maildev-data
-            image: maildev/maildev:latest
+            image: maildev/maildev:2.1.0
             imagePullPolicy: IfNotPresent
             livenessProbe:
               httpGet:
@@ -103,7 +103,7 @@ custom resources:
           - args:
               - --mail-directory
               - /home/node/maildev-data
-            image: maildev/maildev:latest
+            image: maildev/maildev:2.1.0
             imagePullPolicy: IfNotPresent
             livenessProbe:
               httpGet:
@@ -149,7 +149,7 @@ default manifest:
           - args:
               - --mail-directory
               - /home/node/maildev-data
-            image: maildev/maildev:latest
+            image: maildev/maildev:2.1.0
             imagePullPolicy: IfNotPresent
             livenessProbe:
               httpGet:
@@ -195,7 +195,7 @@ persistence and existingClaim enabled:
           - args:
               - --mail-directory
               - /home/node/maildev-data
-            image: maildev/maildev:latest
+            image: maildev/maildev:2.1.0
             imagePullPolicy: IfNotPresent
             livenessProbe:
               httpGet:
@@ -242,7 +242,7 @@ persistence enabled:
           - args:
               - --mail-directory
               - /home/node/maildev-data
-            image: maildev/maildev:latest
+            image: maildev/maildev:2.1.0
             imagePullPolicy: IfNotPresent
             livenessProbe:
               httpGet:
