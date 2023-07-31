@@ -56,6 +56,8 @@ spec:
 
 {{- if .Values.backup.enabled }}
   backup:
+    wal:
+      compression: gzip
     retentionPolicy: "{{ .Values.backup.retentionPolicy }}"
     barmanObjectStore:
       {{- toYaml .Values.backup.barmanObjectStore | nindent 6 }}
