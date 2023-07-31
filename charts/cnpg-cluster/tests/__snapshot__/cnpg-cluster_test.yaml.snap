@@ -18,6 +18,8 @@ cluster with enabled backup and recovery:
             name: minio
         serverName: some-cluster
       retentionPolicy: 30d
+      wal:
+        compression: gzip
     bootstrap:
       recovery:
         source: my-cluster-name-backup
@@ -96,6 +98,8 @@ cluster with scheduled backup enabled:
             name: minio
         serverName: some-cluster
       retentionPolicy: 30d
+      wal:
+        compression: gzip
     bootstrap:
       initdb:
         database: app
