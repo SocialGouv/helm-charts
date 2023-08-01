@@ -3,7 +3,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: nginx
     {{ range $key, $val := .Values.ingress.annotations }}
     "{{ $key }}": {{ $val | quote }}
     {{ end }}
