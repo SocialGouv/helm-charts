@@ -13,6 +13,9 @@ cluster with enabled backup and recovery:
           accessKeyId:
             key: ACCESS_KEY_ID
             name: minio
+          region:
+            key: DEFAULT_REGION
+            name: minio
           secretAccessKey:
             key: ACCESS_SECRET_KEY
             name: minio
@@ -20,6 +23,8 @@ cluster with enabled backup and recovery:
       retentionPolicy: 30d
     bootstrap:
       recovery:
+        recoveryTarget:
+          targetTime: 2020-11-26 15:22:00.00000+00
         source: my-cluster-name-backup
     externalClusters:
       - barmanObjectStore:
@@ -32,7 +37,7 @@ cluster with enabled backup and recovery:
             secretAccessKey:
               key: ACCESS_SECRET_KEY
               name: minio
-          serverName: some-cluster-to-recover
+          serverName: recoveredCluster
         name: my-cluster-name-backup
     imageName: ghcr.io/cloudnative-pg/postgis:15
     imagePullPolicy: IfNotPresent
@@ -49,7 +54,7 @@ cluster with enabled backup and recovery:
     backupOwnerReference: self
     cluster:
       name: RELEASE-NAME-cnpg-cluster
-    schedule: 0 0 0 * * 0
+    schedule: 1 2 3 * * 0
 cluster with recovery enabled:
   1: |
     bootstrap:
@@ -90,6 +95,9 @@ cluster with scheduled backup enabled:
         s3Credentials:
           accessKeyId:
             key: ACCESS_KEY_ID
+            name: minio
+          region:
+            key: DEFAULT_REGION
             name: minio
           secretAccessKey:
             key: ACCESS_SECRET_KEY

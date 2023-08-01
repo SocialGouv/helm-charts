@@ -11,6 +11,10 @@ tests:
       - template: cluster.cnpg.yaml
         hasDocuments:
           count: 1
+      # waiting for release of https://github.com/helm-unittest/helm-unittest/commit/0ace2cc039c1fa33133ea1f26e7cae620443d42a
+      # - containsDocument:
+      #     kind: CronJob
+      #   not: true
   - it: cluster with custom instances
     values:
       - ./values/instances.yaml
@@ -53,7 +57,8 @@ tests:
           path: spec
   - it: cluster with enabled backup and recovery
     values:
-      - ./values/backup-recovery.yaml
+      - ./values/recovery.yaml
+      - ./values/backup.yaml
     asserts:
       - matchSnapshot:
           path: spec

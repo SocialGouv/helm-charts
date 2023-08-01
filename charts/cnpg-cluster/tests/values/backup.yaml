@@ -12,4 +12,7 @@ backup:
       secretAccessKey:
         name: minio
         key: ACCESS_SECRET_KEY
+      region:
+        name: minio
+        key: DEFAULT_REGION
   retentionPolicy: "30d"
