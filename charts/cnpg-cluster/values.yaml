@@ -139,7 +139,6 @@ recovery:
   enabled: false
 
   # -- Name of the source cluster in the backups
-  externalClusterName:
 
   # -- Time to restore from, in RFC3339 format https://datatracker.ietf.org/doc/html/rfc3339
   # targetTime: "2020-11-26 15:22:00.00000+00"
@@ -149,6 +148,8 @@ recovery:
   barmanObjectStore:
     # destinationPath:
     # endpointURL:
+    # name of the recovery server on the s3 backups
+    # serverName:
     # s3Credentials:
     #   accessKeyId:
     #     name:
