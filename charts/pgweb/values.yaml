@@ -15,7 +15,6 @@ servicePort: 8081
 certSecretName:
 env: []
 envFrom: []
-pgSecretName:
 
 ingress:
   enabled: false
@@ -24,7 +23,6 @@ ingress:
 image:
   repository: sosedoff/pgweb
   pullPolicy: IfNotPresent
-  # -- Overrides the image tag whose default is the chart appVersion.
   tag: "0.14.1"
 
 imagePullSecrets: []
