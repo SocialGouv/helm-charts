@@ -5,6 +5,48 @@ cluster with custom pgparams:
       work_mem: 512MB
 cluster with enabled backup and recovery:
   1: |
+    concurrencyPolicy: Forbid
+    jobTemplate:
+      spec:
+        backoffLimit: 0
+        template:
+          metadata:
+            labels:
+              app: cnpg-backup-s3-client
+            name: backup-cron
+          spec:
+            containers:
+              - env:
+                  - name: AWS_ACCESS_KEY_ID
+                    valueFrom:
+                      secretKeyRef:
+                        key: bucket_access_key
+                        name: minio
+                  - name: AWS_SECRET_ACCESS_KEY
+                    valueFrom:
+                      secretKeyRef:
+                        key: bucket_secret_key
+                        name: minio
+                  - name: AWS_DEFAULT_REGION
+                    valueFrom:
+                      secretKeyRef:
+                        key: bucket_region
+                        name: minio
+                  - name: AWS_ENDPOINT_URL
+                    value: http://minio:9000
+                  - name: DESTINATION_PATH
+                    value: s3://backups/dumps
+                envFrom:
+                  - secretRef:
+                      name: pg-hasura-app
+                image: ghcr.io/socialgouv/docker/s3-client:1
+                imagePullPolicy: IfNotPresent
+                name: s3-client
+                securityContext:
+                  allowPrivilegeEscalation: false
+            restartPolicy: Never
+    schedule: 0 0 * * *
+  2: |
     backup:
       barmanObjectStore:
         destinationPath: s3://backups/
@@ -48,7 +90,7 @@ cluster with enabled backup and recovery:
       parameters: null
     storage:
       size: 8Gi
-  2: |
+  3: |
     backupOwnerReference: self
     cluster:
       name: RELEASE-NAME-cnpg-cluster

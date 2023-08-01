@@ -3,7 +3,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   labels:
-    app: sre
+    app: cnpg-backup-s3-client
   name: backup-cron
 spec:
   schedule: "0 0 * * *"
@@ -14,7 +14,7 @@ spec:
       template:
         metadata:
           labels:
-            app: sre
+            app: cnpg-backup-s3-client
           name: backup-cron
         spec:
           securityContext:
@@ -23,7 +23,7 @@ spec:
             fsGroup: 1001
           restartPolicy: Never
           containers:
-            - name: image-checker
+            - name: s3-client
               image: ghcr.io/socialgouv/docker/s3-client:1
               imagePullPolicy: IfNotPresent
               securityContext:

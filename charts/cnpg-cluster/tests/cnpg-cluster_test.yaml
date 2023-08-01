@@ -1,6 +1,7 @@
 suite: test cnpg-cluster
 templates:
   - cluster.cnpg.yaml
+  - backup-cron.yaml
   - scheduledbackup.cnpg.yaml
 tests:
   - it: cluster should render
@@ -11,6 +12,9 @@ tests:
       - template: cluster.cnpg.yaml
         hasDocuments:
           count: 1
+      - template: backup-cron.yaml
+        hasDocuments:
+          count: 0
       # waiting for release of https://github.com/helm-unittest/helm-unittest/commit/0ace2cc039c1fa33133ea1f26e7cae620443d42a
       # - containsDocument:
       #     kind: CronJob
@@ -48,6 +52,9 @@ tests:
         equal:
           path: spec.schedule
           value: "1 2 3 * * 0"
+      - template: backup-cron.yaml
+        hasDocuments:
+          count: 1
   - it: cluster with recovery enabled
     values:
       - ./values/recovery.yaml
@@ -62,6 +69,9 @@ tests:
     asserts:
       - matchSnapshot:
           path: spec
+      - template: backup-cron.yaml
+        hasDocuments:
+          count: 1
   - it: cluster with custom pgparams
     values:
       - ./values/pgparams.yaml
