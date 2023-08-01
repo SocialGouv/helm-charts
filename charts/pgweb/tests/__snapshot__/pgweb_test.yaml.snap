@@ -114,7 +114,7 @@ should render with HPA:
 should render with ingress:
   1: |
     rules:
-      - host: null
+      - host: www.pgweb.com
         http:
           paths:
             - backend:
@@ -126,5 +126,5 @@ should render with ingress:
               pathType: Prefix
     tls:
       - hosts:
-          - null
-        secretName: pgweb-crt
+          - www.pgweb.com
+        secretName: custom-cert
