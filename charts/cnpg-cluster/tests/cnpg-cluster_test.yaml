@@ -53,6 +53,10 @@ tests:
           path: spec.schedule
           value: "1 2 3 * * 0"
       - template: backup-cron.yaml
+        equal:
+          path: spec.schedule
+          value: "4 5 6 * * 0"
+      - template: backup-cron.yaml
         hasDocuments:
           count: 1
   - it: cluster with recovery enabled

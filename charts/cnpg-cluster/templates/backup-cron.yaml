@@ -6,7 +6,7 @@ metadata:
     app: cnpg-backup-s3-client
   name: backup-cron
 spec:
-  schedule: "0 0 * * *"
+  schedule: {{ or .Values.backup.sqlDumpSchedule .Values.backup.schedule "0 0 * * *" }}
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:

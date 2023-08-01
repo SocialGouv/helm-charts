@@ -75,6 +75,9 @@ backup:
   # this cron format has the seconds on the left
   schedule: "0 0 0 * * 0"
 
+  # -- Schedule the SQL dump backups, for instance every Sunday
+  sqlDumpSchedule: "0 0 0 * * 0"
+
   # -- RetentionPolicy is the retention policy to be used for backups and WALs (i.e. '60d').
   # The retention policy is expressed in the form of XXu where XX is a positive integer and
   # u is in [dwm] - days, weeks, months.

@@ -45,7 +45,7 @@ cluster with enabled backup and recovery:
                 securityContext:
                   allowPrivilegeEscalation: false
             restartPolicy: Never
-    schedule: 0 0 * * *
+    schedule: 4 5 6 * * 0
   2: |
     backup:
       barmanObjectStore:
