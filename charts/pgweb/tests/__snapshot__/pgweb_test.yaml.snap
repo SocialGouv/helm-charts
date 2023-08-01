@@ -34,11 +34,8 @@ should render default:
   2: |
     ports:
       - name: http
-        port: 1080
-        targetPort: 1080
-      - name: smtp
-        port: 8081
-        targetPort: 1025
+        port: 80
+        targetPort: 8081
     selector:
       component: pgweb
     type: ClusterIP
@@ -47,7 +44,7 @@ should render default:
       app.kubernetes.io/instance: RELEASE-NAME
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/name: pgweb
-      helm.sh/chart: pgweb-1.9.2
+      helm.sh/chart: pgweb-1.9.4
     name: RELEASE-NAME-pgweb
 should render with HPA:
   1: |
@@ -84,11 +81,8 @@ should render with HPA:
   2: |
     ports:
       - name: http
-        port: 1080
-        targetPort: 1080
-      - name: smtp
-        port: 8081
-        targetPort: 1025
+        port: 80
+        targetPort: 8081
     selector:
       component: pgweb
     type: ClusterIP
@@ -109,7 +103,7 @@ should render with HPA:
       app.kubernetes.io/instance: RELEASE-NAME
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/name: pgweb
-      helm.sh/chart: pgweb-1.9.2
+      helm.sh/chart: pgweb-1.9.4
     name: RELEASE-NAME-pgweb
 should render with ingress:
   1: |
