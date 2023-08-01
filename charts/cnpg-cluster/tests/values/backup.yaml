@@ -4,7 +4,6 @@ backup:
   barmanObjectStore:
     destinationPath: s3://backups/
     endpointURL: http://minio:9000
-    serverName: "some-cluster"
     s3Credentials:
       accessKeyId:
         name: minio

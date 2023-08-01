@@ -19,13 +19,12 @@ cluster with enabled backup and recovery:
           secretAccessKey:
             key: ACCESS_SECRET_KEY
             name: minio
-        serverName: some-cluster
       retentionPolicy: 30d
     bootstrap:
       recovery:
         recoveryTarget:
           targetTime: 2020-11-26 15:22:00.00000+00
-        source: my-cluster-name-backup
+        source: my-cluster-to-restore
     externalClusters:
       - barmanObjectStore:
           destinationPath: s3://backups/
@@ -37,8 +36,7 @@ cluster with enabled backup and recovery:
             secretAccessKey:
               key: ACCESS_SECRET_KEY
               name: minio
-          serverName: recoveredCluster
-        name: my-cluster-name-backup
+        name: my-cluster-to-restore
     imageName: ghcr.io/cloudnative-pg/postgis:15
     imagePullPolicy: IfNotPresent
     instances: 1
@@ -61,7 +59,7 @@ cluster with recovery enabled:
       recovery:
         recoveryTarget:
           targetTime: 2020-11-26 15:22:00.00000+00
-        source: my-cluster-name-backup
+        source: my-cluster-to-restore
     externalClusters:
       - barmanObjectStore:
           destinationPath: s3://backups/
@@ -73,8 +71,7 @@ cluster with recovery enabled:
             secretAccessKey:
               key: ACCESS_SECRET_KEY
               name: minio
-          serverName: recoveredCluster
-        name: my-cluster-name-backup
+        name: my-cluster-to-restore
     imageName: ghcr.io/cloudnative-pg/postgis:15
     imagePullPolicy: IfNotPresent
     instances: 1
@@ -102,7 +99,6 @@ cluster with scheduled backup enabled:
           secretAccessKey:
             key: ACCESS_SECRET_KEY
             name: minio
-        serverName: some-cluster
       retentionPolicy: 30d
     bootstrap:
       initdb:

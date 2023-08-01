@@ -1,11 +1,10 @@
 recovery:
   enabled: true
-  externalClusterName: my-cluster-name-backup
+  externalClusterName: my-cluster-to-restore
   targetTime: "2020-11-26 15:22:00.00000+00"
   barmanObjectStore:
     destinationPath: s3://backups/
     endpointURL: http://minio:9000
-    serverName: "recoveredCluster"
     s3Credentials:
       accessKeyId:
         name: minio
