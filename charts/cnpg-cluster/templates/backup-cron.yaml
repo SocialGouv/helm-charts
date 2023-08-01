@@ -1,0 +1,54 @@
+{{- if .Values.backup.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  labels:
+    app: sre
+  name: backup-cron
+spec:
+  schedule: "0 0 * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          labels:
+            app: sre
+          name: backup-cron
+        spec:
+          #   securityContext:
+          #     runAsUser: 1000
+          #     runAsGroup: 1000
+          #     fsGroup: 1000
+          restartPolicy: Never
+          containers:
+            - name: image-checker
+              image: ghcr.io/socialgouv/docker/s3-client:1
+              imagePullPolicy: IfNotPresent
+              securityContext:
+                allowPrivilegeEscalation: false
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Values.backup.barmanObjectStore.s3Credentials.accessKeyId.name  }}
+                      key: bucket_access_key
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Values.backup.barmanObjectStore.s3Credentials.secretAccessKey.name }}
+                      key: bucket_secret_key
+                - name: AWS_DEFAULT_REGION
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Values.backup.barmanObjectStore.s3Credentials.region.name }}
+                      key: bucket_region
+                - name: AWS_ENDPOINT_URL
+                  value: {{ .Values.backup.barmanObjectStore.endpointURL }}
+                - name: DESTINATION_PATH
+                  value: {{ trimSuffix "/" .Values.backup.barmanObjectStore.destinationPath }}/dumps
+              envFrom:
+                - secretRef:
+                    name: pg-hasura-app
+{{- end}}
