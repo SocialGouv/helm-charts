@@ -3,13 +3,13 @@ should render default:
     replicas: 1
     selector:
       matchLabels:
-        app.kubernetes.io/instance: RELEASE-NAME
-        app.kubernetes.io/name: pgweb
+        component: pgweb
     template:
       metadata:
         labels:
           app.kubernetes.io/instance: RELEASE-NAME
           app.kubernetes.io/name: pgweb
+          component: pgweb
       spec:
         containers:
           - image: sosedoff/pgweb:0.14.1
@@ -53,13 +53,13 @@ should render with HPA:
   1: |
     selector:
       matchLabels:
-        app.kubernetes.io/instance: RELEASE-NAME
-        app.kubernetes.io/name: pgweb
+        component: pgweb
     template:
       metadata:
         labels:
           app.kubernetes.io/instance: RELEASE-NAME
           app.kubernetes.io/name: pgweb
+          component: pgweb
       spec:
         containers:
           - image: sosedoff/pgweb:0.14.1
