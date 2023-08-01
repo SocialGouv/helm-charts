@@ -42,12 +42,9 @@ should render default:
       app.kubernetes.io/name: pgweb
     type: ClusterIP
   3: |
-    labels:
-      app.kubernetes.io/instance: RELEASE-NAME
-      app.kubernetes.io/managed-by: Helm
-      app.kubernetes.io/name: pgweb
-      helm.sh/chart: pgweb-1.9.0
-    name: RELEASE-NAME-pgweb
+    RELEASE-NAME-pgweb
+  4: |
+    ServiceAccount
 should render with HPA:
   1: |
     selector:
@@ -103,12 +100,9 @@ should render with HPA:
       kind: Deployment
       name: RELEASE-NAME-pgweb
   4: |
-    labels:
-      app.kubernetes.io/instance: RELEASE-NAME
-      app.kubernetes.io/managed-by: Helm
-      app.kubernetes.io/name: pgweb
-      helm.sh/chart: pgweb-1.9.0
-    name: RELEASE-NAME-pgweb
+    RELEASE-NAME-pgweb
+  5: |
+    ServiceAccount
 should render with ingress:
   1: |
     rules:
