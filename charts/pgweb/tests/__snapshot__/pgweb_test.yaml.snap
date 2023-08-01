@@ -3,13 +3,13 @@ should render default:
     replicas: 1
     selector:
       matchLabels:
-        app.kubernetes.io/instance: RELEASE-NAME
-        app.kubernetes.io/name: pgweb
+        component: pgweb
     template:
       metadata:
         labels:
           app.kubernetes.io/instance: RELEASE-NAME
           app.kubernetes.io/name: pgweb
+          component: pgweb
       spec:
         containers:
           - image: sosedoff/pgweb:0.14.1
@@ -34,28 +34,32 @@ should render default:
   2: |
     ports:
       - name: http
-        port: 80
-        protocol: TCP
-        targetPort: http
+        port: 1080
+        targetPort: 1080
+      - name: smtp
+        port: 8081
+        targetPort: 1025
     selector:
-      app.kubernetes.io/instance: RELEASE-NAME
-      app.kubernetes.io/name: pgweb
+      component: pgweb
     type: ClusterIP
   3: |
-    RELEASE-NAME-pgweb
-  4: |
-    ServiceAccount
+    labels:
+      app.kubernetes.io/instance: RELEASE-NAME
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: pgweb
+      helm.sh/chart: pgweb-1.9.2
+    name: RELEASE-NAME-pgweb
 should render with HPA:
   1: |
     selector:
       matchLabels:
-        app.kubernetes.io/instance: RELEASE-NAME
-        app.kubernetes.io/name: pgweb
+        component: pgweb
     template:
       metadata:
         labels:
           app.kubernetes.io/instance: RELEASE-NAME
           app.kubernetes.io/name: pgweb
+          component: pgweb
       spec:
         containers:
           - image: sosedoff/pgweb:0.14.1
@@ -80,12 +84,13 @@ should render with HPA:
   2: |
     ports:
       - name: http
-        port: 80
-        protocol: TCP
-        targetPort: http
+        port: 1080
+        targetPort: 1080
+      - name: smtp
+        port: 8081
+        targetPort: 1025
     selector:
-      app.kubernetes.io/instance: RELEASE-NAME
-      app.kubernetes.io/name: pgweb
+      component: pgweb
     type: ClusterIP
   3: |
     maxReplicas: 100
@@ -98,21 +103,28 @@ should render with HPA:
     scaleTargetRef:
       apiVersion: apps/v1
       kind: Deployment
-      name: RELEASE-NAME-pgweb
+      name: pgweb
   4: |
-    RELEASE-NAME-pgweb
-  5: |
-    ServiceAccount
+    labels:
+      app.kubernetes.io/instance: RELEASE-NAME
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: pgweb
+      helm.sh/chart: pgweb-1.9.2
+    name: RELEASE-NAME-pgweb
 should render with ingress:
   1: |
     rules:
-      - host: chart-example.local
+      - host: www.pgweb.com
         http:
           paths:
             - backend:
                 service:
-                  name: RELEASE-NAME-pgweb
+                  name: pgweb
                   port:
-                    number: 80
+                    name: http
               path: /
-              pathType: ImplementationSpecific
+              pathType: Prefix
+    tls:
+      - hosts:
+          - www.pgweb.com
+        secretName: custom-cert

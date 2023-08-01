@@ -1,15 +1,21 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "pgweb.fullname" . }}
   labels:
-    {{- include "pgweb.labels" . | nindent 4 }}
+    component: {{ (or .Values.component .Chart.Name) | lower }}
+    application: {{ .Values.repositoryName }}
+  name: {{ (or .Values.component .Chart.Name) | lower }}
+  namespace: {{ .Values.namespace }}
+  annotations: {}
 spec:
-  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+    - name: http
+      port: 1080
+      targetPort: 1080
+    - name: smtp
+      port: {{ .Values.servicePort }}
+      targetPort: 1025
   selector:
-    {{- include "pgweb.selectorLabels" . | nindent 4 }}
+    component: {{ (or .Values.component .Chart.Name) | lower }}
+  type: ClusterIP
+  
