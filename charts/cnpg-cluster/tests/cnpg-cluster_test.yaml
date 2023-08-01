@@ -13,7 +13,7 @@ tests:
           count: 1
   - it: cluster with custom instances
     values:
-      - values-instances.yaml
+      - ./values/instances.yaml
     asserts:
       - template: cluster.cnpg.yaml
         isKind:
@@ -24,7 +24,7 @@ tests:
           value: 2
   - it: cluster with custom image tag
     values:
-      - values-tag.yaml
+      - ./values/tag.yaml
     asserts:
       - template: cluster.cnpg.yaml
         isKind:
@@ -35,7 +35,7 @@ tests:
           value: ghcr.io/cloudnative-pg/postgis:12
   - it: cluster with scheduled backup enabled
     values:
-      - values-backup.yaml
+      - ./values/backup.yaml
     asserts:
       - template: cluster.cnpg.yaml
         matchSnapshot:
@@ -46,20 +46,20 @@ tests:
           value: "1 2 3 * * 0"
   - it: cluster with recovery enabled
     values:
-      - values-recovery.yaml
+      - ./values/recovery.yaml
     asserts:
       - template: cluster.cnpg.yaml
         matchSnapshot:
           path: spec
   - it: cluster with enabled backup and recovery
     values:
-      - values-backup-recovery.yaml
+      - ./values/backup-recovery.yaml
     asserts:
       - matchSnapshot:
           path: spec
   - it: cluster with custom pgparams
     values:
-      - values-pgparams.yaml
+      - ./values/pgparams.yaml
     asserts:
       - template: cluster.cnpg.yaml
         matchSnapshot:
