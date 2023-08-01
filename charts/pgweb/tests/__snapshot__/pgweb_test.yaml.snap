@@ -103,7 +103,7 @@ should render with HPA:
     scaleTargetRef:
       apiVersion: apps/v1
       kind: Deployment
-      name: RELEASE-NAME-pgweb
+      name: pgweb
   4: |
     labels:
       app.kubernetes.io/instance: RELEASE-NAME
