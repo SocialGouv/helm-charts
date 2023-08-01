@@ -1,2 +1,4 @@
+host: www.pgweb.com
 ingress:
   enabled: true
+certSecretName: custom-cert
