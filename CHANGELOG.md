@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.9.11 (2023-08-02)
+
+
+### Bug Fixes
+
+* **maildev:** add ingress.enabled ([#27](https://github.com/SocialGouv/helm-charts/issues/27)) ([f53bc06](https://github.com/SocialGouv/helm-charts/commit/f53bc0615f1cb38a8437c57728a5d7e55ece13f3))
+
 ## 1.9.10 (2023-08-02)
 
 
