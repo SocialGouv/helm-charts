@@ -1,0 +1,6 @@
+envFrom:
+  - secretRef:
+      name: "some-secret"
+env:
+  - name: hello
+    value: world

@@ -91,6 +91,13 @@ should render with HPA:
       apiVersion: apps/v1
       kind: Deployment
       name: pgweb
+should render with env:
+  1: |
+    - name: hello
+      value: world
+  2: |
+    - secretRef:
+        name: some-secret
 should render with ingress:
   1: |
     rules:

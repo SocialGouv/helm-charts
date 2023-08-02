@@ -50,3 +50,13 @@ tests:
       - template: "ingress.yaml"
         hasDocuments:
           count: 1
+  - it: should render with env
+    values:
+      - values-env.yaml
+    asserts:
+      - template: "deployment.yaml"
+        matchSnapshot:
+          path: spec.template.spec.containers[0].env
+      - template: "deployment.yaml"
+        matchSnapshot:
+          path: spec.template.spec.containers[0].envFrom
