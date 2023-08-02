@@ -44,7 +44,7 @@ should render default:
       app.kubernetes.io/instance: RELEASE-NAME
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/name: pgweb
-      helm.sh/chart: pgweb-1.9.4
+      helm.sh/chart: pgweb-1.9.5
     name: RELEASE-NAME-pgweb
 should render with HPA:
   1: |
@@ -103,7 +103,7 @@ should render with HPA:
       app.kubernetes.io/instance: RELEASE-NAME
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/name: pgweb
-      helm.sh/chart: pgweb-1.9.4
+      helm.sh/chart: pgweb-1.9.5
     name: RELEASE-NAME-pgweb
 should render with ingress:
   1: |
