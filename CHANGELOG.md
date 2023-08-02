@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.9.7 (2023-08-02)
+
+
+### Bug Fixes
+
+* enable pg_dump cron ([#22](https://github.com/SocialGouv/helm-charts/issues/22)) ([61f4300](https://github.com/SocialGouv/helm-charts/commit/61f43006dbf4b09b359dcd7e4df0de308d8c5dec))
+
 ## 1.9.6 (2023-08-02)
 
 
