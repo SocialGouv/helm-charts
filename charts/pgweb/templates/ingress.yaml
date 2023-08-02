@@ -9,7 +9,7 @@ metadata:
   labels:
     component: {{ (or .Values.component .Chart.Name) | lower }}
     application: {{ .Values.repositoryName }}
-  name: {{ (or .Values.component .Chart.Name) | lower }}
+  name: {{ include "pgweb.fullname" . }}
   namespace: {{ .Values.namespace }}
 spec:
   rules:
@@ -18,7 +18,7 @@ spec:
         paths:
           - backend:
               service:
-                name: {{ (or .Values.component .Chart.Name) | lower }}
+                name: {{ include "pgweb.fullname" . }}
                 port:
                   name: http
             path: /

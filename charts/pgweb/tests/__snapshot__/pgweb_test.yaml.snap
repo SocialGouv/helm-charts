@@ -3,13 +3,13 @@ should render default:
     replicas: 1
     selector:
       matchLabels:
-        component: pgweb
+        component: RELEASE-NAME-pgweb
     template:
       metadata:
         labels:
           app.kubernetes.io/instance: RELEASE-NAME
           app.kubernetes.io/name: pgweb
-          component: pgweb
+          component: RELEASE-NAME-pgweb
       spec:
         containers:
           - image: sosedoff/pgweb:0.14.1
@@ -37,19 +37,19 @@ should render default:
         port: 80
         targetPort: 8081
     selector:
-      component: pgweb
+      component: RELEASE-NAME-pgweb
     type: ClusterIP
 should render with HPA:
   1: |
     selector:
       matchLabels:
-        component: pgweb
+        component: RELEASE-NAME-pgweb
     template:
       metadata:
         labels:
           app.kubernetes.io/instance: RELEASE-NAME
           app.kubernetes.io/name: pgweb
-          component: pgweb
+          component: RELEASE-NAME-pgweb
       spec:
         containers:
           - image: sosedoff/pgweb:0.14.1
@@ -77,7 +77,7 @@ should render with HPA:
         port: 80
         targetPort: 8081
     selector:
-      component: pgweb
+      component: RELEASE-NAME-pgweb
     type: ClusterIP
   3: |
     maxReplicas: 100
@@ -106,7 +106,7 @@ should render with ingress:
           paths:
             - backend:
                 service:
-                  name: pgweb
+                  name: RELEASE-NAME-pgweb
                   port:
                     name: http
               path: /
