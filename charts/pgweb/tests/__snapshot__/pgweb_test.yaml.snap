@@ -30,7 +30,7 @@ should render default:
             resources: {}
             securityContext: {}
         securityContext: {}
-        serviceAccountName: RELEASE-NAME-pgweb
+        serviceAccountName: default
   2: |
     ports:
       - name: http
@@ -39,10 +39,6 @@ should render default:
     selector:
       component: pgweb
     type: ClusterIP
-  3: |
-    RELEASE-NAME-pgweb
-  4: |
-    ServiceAccount
 should render with HPA:
   1: |
     selector:
@@ -74,7 +70,7 @@ should render with HPA:
             resources: {}
             securityContext: {}
         securityContext: {}
-        serviceAccountName: RELEASE-NAME-pgweb
+        serviceAccountName: default
   2: |
     ports:
       - name: http
@@ -95,10 +91,13 @@ should render with HPA:
       apiVersion: apps/v1
       kind: Deployment
       name: pgweb
-  4: |
-    RELEASE-NAME-pgweb
-  5: |
-    ServiceAccount
+should render with env:
+  1: |
+    - name: hello
+      value: world
+  2: |
+    - secretRef:
+        name: some-secret
 should render with ingress:
   1: |
     rules:

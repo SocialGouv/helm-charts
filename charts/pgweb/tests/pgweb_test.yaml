@@ -16,11 +16,8 @@ tests:
         hasDocuments:
           count: 0
       - template: "serviceaccount.yaml"
-        matchSnapshot:
-          path: metadata.name
-      - template: "serviceaccount.yaml"
-        matchSnapshot:
-          path: kind
+        hasDocuments:
+          count: 0
   - it: should render with HPA
     values:
       - values-hpa.yaml
@@ -41,11 +38,8 @@ tests:
         matchSnapshot:
           path: spec
       - template: "serviceaccount.yaml"
-        matchSnapshot:
-          path: metadata.name
-      - template: "serviceaccount.yaml"
-        matchSnapshot:
-          path: kind
+        hasDocuments:
+          count: 0
   - it: should render with ingress
     values:
       - values-ingress.yaml
@@ -56,3 +50,13 @@ tests:
       - template: "ingress.yaml"
         hasDocuments:
           count: 1
+  - it: should render with env
+    values:
+      - values-env.yaml
+    asserts:
+      - template: "deployment.yaml"
+        matchSnapshot:
+          path: spec.template.spec.containers[0].env
+      - template: "deployment.yaml"
+        matchSnapshot:
+          path: spec.template.spec.containers[0].envFrom
