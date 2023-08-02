@@ -5,6 +5,52 @@ cluster with custom pgparams:
       work_mem: 512MB
 cluster with enabled backup and recovery:
   1: |
+    concurrencyPolicy: Forbid
+    jobTemplate:
+      spec:
+        backoffLimit: 0
+        template:
+          metadata:
+            labels:
+              app: cnpg-backup-s3-client
+            name: backup-cron
+          spec:
+            containers:
+              - env:
+                  - name: AWS_ACCESS_KEY_ID
+                    valueFrom:
+                      secretKeyRef:
+                        key: bucket_access_key
+                        name: minio
+                  - name: AWS_SECRET_ACCESS_KEY
+                    valueFrom:
+                      secretKeyRef:
+                        key: bucket_secret_key
+                        name: minio
+                  - name: AWS_DEFAULT_REGION
+                    valueFrom:
+                      secretKeyRef:
+                        key: bucket_region
+                        name: minio
+                  - name: AWS_ENDPOINT_URL
+                    value: http://minio:9000
+                  - name: DESTINATION_PATH
+                    value: s3://backups/dumps
+                envFrom:
+                  - secretRef:
+                      name: pg-user-app
+                image: ghcr.io/socialgouv/docker/s3-client:1
+                imagePullPolicy: IfNotPresent
+                name: s3-client
+                securityContext:
+                  allowPrivilegeEscalation: false
+            restartPolicy: Never
+            securityContext:
+              fsGroup: 1001
+              runAsGroup: 1001
+              runAsUser: 1001
+    schedule: 4 5 * * 0
+  2: |
     backup:
       barmanObjectStore:
         destinationPath: s3://backups/
@@ -13,14 +59,18 @@ cluster with enabled backup and recovery:
           accessKeyId:
             key: ACCESS_KEY_ID
             name: minio
+          region:
+            key: DEFAULT_REGION
+            name: minio
           secretAccessKey:
             key: ACCESS_SECRET_KEY
             name: minio
-        serverName: some-cluster
       retentionPolicy: 30d
     bootstrap:
       recovery:
-        source: my-cluster-name-backup
+        recoveryTarget:
+          targetTime: 2020-11-26 15:22:00.00000+00
+        source: recovery-cluster
     externalClusters:
       - barmanObjectStore:
           destinationPath: s3://backups/
@@ -32,8 +82,8 @@ cluster with enabled backup and recovery:
             secretAccessKey:
               key: ACCESS_SECRET_KEY
               name: minio
-          serverName: some-cluster-to-recover
-        name: my-cluster-name-backup
+          serverName: my-cluster-to-restore
+        name: recovery-cluster
     imageName: ghcr.io/cloudnative-pg/postgis:15
     imagePullPolicy: IfNotPresent
     instances: 1
@@ -45,18 +95,18 @@ cluster with enabled backup and recovery:
       parameters: null
     storage:
       size: 8Gi
-  2: |
+  3: |
     backupOwnerReference: self
     cluster:
       name: RELEASE-NAME-cnpg-cluster
-    schedule: 0 0 0 * * 0
+    schedule: 1 2 3 * * 0
 cluster with recovery enabled:
   1: |
     bootstrap:
       recovery:
         recoveryTarget:
           targetTime: 2020-11-26 15:22:00.00000+00
-        source: my-cluster-name-backup
+        source: recovery-cluster
     externalClusters:
       - barmanObjectStore:
           destinationPath: s3://backups/
@@ -68,8 +118,8 @@ cluster with recovery enabled:
             secretAccessKey:
               key: ACCESS_SECRET_KEY
               name: minio
-          serverName: recoveredCluster
-        name: my-cluster-name-backup
+          serverName: my-cluster-to-restore
+        name: recovery-cluster
     imageName: ghcr.io/cloudnative-pg/postgis:15
     imagePullPolicy: IfNotPresent
     instances: 1
@@ -91,10 +141,12 @@ cluster with scheduled backup enabled:
           accessKeyId:
             key: ACCESS_KEY_ID
             name: minio
+          region:
+            key: DEFAULT_REGION
+            name: minio
           secretAccessKey:
             key: ACCESS_SECRET_KEY
             name: minio
-        serverName: some-cluster
       retentionPolicy: 30d
     bootstrap:
       initdb:

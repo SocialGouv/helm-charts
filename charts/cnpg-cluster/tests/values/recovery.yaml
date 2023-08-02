@@ -1,10 +1,10 @@
-backup:
+recovery:
   enabled: true
-  schedule: "1 2 3 * * 0"
+  targetTime: "2020-11-26 15:22:00.00000+00"
   barmanObjectStore:
     destinationPath: s3://backups/
     endpointURL: http://minio:9000
-    serverName: "some-cluster"
+    serverName: my-cluster-to-restore
     s3Credentials:
       accessKeyId:
         name: minio
