@@ -75,6 +75,12 @@ backup:
   # this cron format has the seconds on the left
   schedule: "0 0 0 * * 0"
 
+  # -- Schedule the SQL dump backups, for instance every Sunday
+  sqlDumpSchedule: "0 0 * * 0"
+
+  # -- Secret where pg_dump will look for DB credentials
+  sqlDumpPgSecret:
+
   # -- RetentionPolicy is the retention policy to be used for backups and WALs (i.e. '60d').
   # The retention policy is expressed in the form of XXu where XX is a positive integer and
   # u is in [dwm] - days, weeks, months.
@@ -134,12 +140,12 @@ monitoring:
   enablePodMonitor: false
 
 superuserSecretName:
+dbSecretName:
 
 recovery:
   enabled: false
 
   # -- Name of the source cluster in the backups
-  externalClusterName:
 
   # -- Time to restore from, in RFC3339 format https://datatracker.ietf.org/doc/html/rfc3339
   # targetTime: "2020-11-26 15:22:00.00000+00"
@@ -149,6 +155,8 @@ recovery:
   barmanObjectStore:
     # destinationPath:
     # endpointURL:
+    # name of the recovery server on the s3 backups
+    # serverName:
     # s3Credentials:
     #   accessKeyId:
     #     name:

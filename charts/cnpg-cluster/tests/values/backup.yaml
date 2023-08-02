@@ -1,11 +1,11 @@
-recovery:
+backup:
   enabled: true
-  externalClusterName: my-cluster-name-backup
-  targetTime: "2020-11-26 15:22:00.00000+00"
+  schedule: "1 2 3 * * 0"
+  sqlDumpSchedule: "4 5 * * 0"
+  sqlDumpPgSecret: pg-user-app
   barmanObjectStore:
     destinationPath: s3://backups/
     endpointURL: http://minio:9000
-    serverName: "recoveredCluster"
     s3Credentials:
       accessKeyId:
         name: minio
@@ -13,4 +13,7 @@ recovery:
       secretAccessKey:
         name: minio
         key: ACCESS_SECRET_KEY
+      region:
+        name: minio
+        key: DEFAULT_REGION
   retentionPolicy: "30d"

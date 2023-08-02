@@ -4,7 +4,7 @@ metadata:
   labels:
     component: {{ (or .Values.component .Chart.Name) | lower }}
     application: {{ .Values.repositoryName }}
-  name: {{ (or .Values.component .Chart.Name) | lower }}
+  name: {{ include "pgweb.fullname" . }}
   namespace: {{ .Values.namespace }}
   annotations: {}
 spec:
@@ -13,6 +13,6 @@ spec:
       port: 80
       targetPort: 8081
   selector:
-    component: {{ (or .Values.component .Chart.Name) | lower }}
+    component: {{ include "pgweb.fullname" . }}
   type: ClusterIP
   

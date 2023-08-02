@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.9.11 (2023-08-02)
+
+
+### Bug Fixes
+
+* **maildev:** add ingress.enabled ([#27](https://github.com/SocialGouv/helm-charts/issues/27)) ([f53bc06](https://github.com/SocialGouv/helm-charts/commit/f53bc0615f1cb38a8437c57728a5d7e55ece13f3))
+
+## 1.9.10 (2023-08-02)
+
+
+### Bug Fixes
+
+* pgweb ([4f50363](https://github.com/SocialGouv/helm-charts/commit/4f503634e986b52160f4469caba672b314e17e6e))
+
+## 1.9.9 (2023-08-02)
+
+
+### Bug Fixes
+
+* **pgweb:** serviceaccount.create=false ([#31](https://github.com/SocialGouv/helm-charts/issues/31)) ([bb41e20](https://github.com/SocialGouv/helm-charts/commit/bb41e20bf911dbb551cd2f934105bd7e825a8afd))
+
+## 1.9.8 (2023-08-02)
+
+
+### Bug Fixes
+
+* **cnpg:** enable multiple-crons ([#30](https://github.com/SocialGouv/helm-charts/issues/30)) ([4e1ef6f](https://github.com/SocialGouv/helm-charts/commit/4e1ef6fc48810aa918b67b633efdc0df5d5cc57a))
+
+## 1.9.7 (2023-08-02)
+
+
+### Bug Fixes
+
+* enable pg_dump cron ([#22](https://github.com/SocialGouv/helm-charts/issues/22)) ([61f4300](https://github.com/SocialGouv/helm-charts/commit/61f43006dbf4b09b359dcd7e4df0de308d8c5dec))
+
+## 1.9.6 (2023-08-02)
+
+
+### Bug Fixes
+
+* do not snapshot metadata ([#29](https://github.com/SocialGouv/helm-charts/issues/29)) ([e1fc13e](https://github.com/SocialGouv/helm-charts/commit/e1fc13e66b483b08d97e48e2278dbefd924000dc))
+
 ## 1.9.5 (2023-08-02)
 
 

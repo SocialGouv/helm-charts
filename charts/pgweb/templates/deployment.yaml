@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ (or .Values.component .Chart.Name) | lower }}
+  name: {{ include "pgweb.fullname" . }}
   labels:
     {{- include "pgweb.labels" . | nindent 4 }}
 spec:
@@ -10,7 +10,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      component: {{ (or .Values.component .Chart.Name) | lower }}
+      component: {{ include "pgweb.fullname" . }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        component: {{ (or .Values.component .Chart.Name) | lower }}
+        component: {{ include "pgweb.fullname" . }}
         {{- include "pgweb.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
@@ -53,7 +53,7 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.envFrom }}
-          env:
+          envFrom:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.extraArgs }}

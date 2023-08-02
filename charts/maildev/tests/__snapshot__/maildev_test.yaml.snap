@@ -88,6 +88,23 @@ cron enabled:
                   claimName: maildev
     schedule: 0 1 * * *
     startingDeadlineSeconds: 100
+custom host:
+  1: |
+    rules:
+      - host: maildev.com
+        http:
+          paths:
+            - backend:
+                service:
+                  name: maildev
+                  port:
+                    name: http
+              path: /
+              pathType: Prefix
+    tls:
+      - hosts:
+          - maildev.com
+        secretName: some-cert-secret
 custom resources:
   1: |
     replicas: 1
@@ -280,3 +297,20 @@ persistence enabled:
     resources:
       requests:
         storage: 1024M
+should render:
+  1: |
+    rules:
+      - host: null
+        http:
+          paths:
+            - backend:
+                service:
+                  name: maildev
+                  port:
+                    name: http
+              path: /
+              pathType: Prefix
+    tls:
+      - hosts:
+          - null
+        secretName: maildev-crt
