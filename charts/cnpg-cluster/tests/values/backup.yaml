@@ -1,10 +1,10 @@
 backup:
   enabled: true
   schedule: "1 2 3 * * 0"
+  sqlDumpSchedule: "4 5 * * 0"
   barmanObjectStore:
     destinationPath: s3://backups/
     endpointURL: http://minio:9000
-    serverName: "some-cluster"
     s3Credentials:
       accessKeyId:
         name: minio
