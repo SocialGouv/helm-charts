@@ -1,0 +1,3 @@
+host: maildev.com
+ingress:
+  enabled: false

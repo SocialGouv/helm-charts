@@ -9,6 +9,9 @@ tests:
       - template: deployment.yaml
         hasDocuments:
           count: 1
+      - template: ingress.yaml
+        hasDocuments:
+          count: 1
   - it: default manifest
     asserts:
       - template: deployment.yaml
@@ -20,6 +23,9 @@ tests:
       - template: cron.yaml
         hasDocuments:
           count: 0
+      - template: ingress.yaml
+        hasDocuments:
+          count: 1
   - it: custom resources
     values:
       - values-resources.yaml
@@ -69,3 +75,10 @@ tests:
       - template: cron.yaml
         matchSnapshot:
           path: spec
+  - it: ingress disabled
+    values:
+      - values-ingress-disabled.yaml
+    asserts:
+      - template: ingress.yaml
+        hasDocuments:
+          count: 0
