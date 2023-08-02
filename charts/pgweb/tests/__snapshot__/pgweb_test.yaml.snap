@@ -34,11 +34,8 @@ should render default:
   2: |
     ports:
       - name: http
-        port: 1080
-        targetPort: 1080
-      - name: smtp
-        port: 8081
-        targetPort: 1025
+        port: 80
+        targetPort: 8081
     selector:
       component: pgweb
     type: ClusterIP
@@ -84,11 +81,8 @@ should render with HPA:
   2: |
     ports:
       - name: http
-        port: 1080
-        targetPort: 1080
-      - name: smtp
-        port: 8081
-        targetPort: 1025
+        port: 80
+        targetPort: 8081
     selector:
       component: pgweb
     type: ClusterIP
