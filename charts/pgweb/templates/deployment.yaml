@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ (or .Values.component .Chart.Name) | lower }}
+  name: {{ include "pgweb.fullname" . }}
   labels:
     {{- include "pgweb.labels" . | nindent 4 }}
 spec:
