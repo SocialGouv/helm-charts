@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.9.9 (2023-08-02)
+
+
+### Bug Fixes
+
+* **pgweb:** serviceaccount.create=false ([#31](https://github.com/SocialGouv/helm-charts/issues/31)) ([bb41e20](https://github.com/SocialGouv/helm-charts/commit/bb41e20bf911dbb551cd2f934105bd7e825a8afd))
+
 ## 1.9.8 (2023-08-02)
 
 
