@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.9.8 (2023-08-02)
+
+
+### Bug Fixes
+
+* **cnpg:** enable multiple-crons ([#30](https://github.com/SocialGouv/helm-charts/issues/30)) ([4e1ef6f](https://github.com/SocialGouv/helm-charts/commit/4e1ef6fc48810aa918b67b633efdc0df5d5cc57a))
+
 ## 1.9.7 (2023-08-02)
 
 
