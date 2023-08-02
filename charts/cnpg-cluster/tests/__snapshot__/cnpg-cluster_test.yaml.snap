@@ -38,7 +38,7 @@ cluster with enabled backup and recovery:
                     value: s3://backups/dumps
                 envFrom:
                   - secretRef:
-                      name: pg-hasura-app
+                      name: pg-user-app
                 image: ghcr.io/socialgouv/docker/s3-client:1
                 imagePullPolicy: IfNotPresent
                 name: s3-client

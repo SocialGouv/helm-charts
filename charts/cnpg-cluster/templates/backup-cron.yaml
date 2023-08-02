@@ -50,5 +50,5 @@ spec:
                   value: {{ trimSuffix "/" .Values.backup.barmanObjectStore.destinationPath }}/dumps
               envFrom:
                 - secretRef:
-                    name: pg-hasura-app
+                    name: {{ .Values.backup.sqlDumpPgSecret }}
 {{- end}}

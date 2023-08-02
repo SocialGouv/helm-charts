@@ -2,6 +2,7 @@ backup:
   enabled: true
   schedule: "1 2 3 * * 0"
   sqlDumpSchedule: "4 5 * * 0"
+  sqlDumpPgSecret: pg-user-app
   barmanObjectStore:
     destinationPath: s3://backups/
     endpointURL: http://minio:9000

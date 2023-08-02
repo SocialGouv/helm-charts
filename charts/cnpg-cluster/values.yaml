@@ -78,6 +78,9 @@ backup:
   # -- Schedule the SQL dump backups, for instance every Sunday
   sqlDumpSchedule: "0 0 * * 0"
 
+  # -- Secret where pg_dump will look for DB credentials
+  sqlDumpPgSecret:
+
   # -- RetentionPolicy is the retention policy to be used for backups and WALs (i.e. '60d').
   # The retention policy is expressed in the form of XXu where XX is a positive integer and
   # u is in [dwm] - days, weeks, months.
@@ -137,6 +140,7 @@ monitoring:
   enablePodMonitor: false
 
 superuserSecretName:
+dbSecretName:
 
 recovery:
   enabled: false
