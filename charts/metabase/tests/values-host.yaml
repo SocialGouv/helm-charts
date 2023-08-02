@@ -1,0 +1,2 @@
+host: metabase.com
+certSecretName: some-cert-secret
