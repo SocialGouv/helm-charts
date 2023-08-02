@@ -1,0 +1,2 @@
+host: maildev.com
+certSecretName: some-cert-secret
