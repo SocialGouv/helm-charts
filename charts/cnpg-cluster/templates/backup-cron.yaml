@@ -58,9 +58,9 @@ spec:
                     secretKeyRef:
                       name: {{ include "cnpg-cluster.fullname" $ }}-superuser
                       key: username
+                - name: PGDATABASE
+                  value: {{ .Values.dbName }}
                 - name: PGHOST
                   value: {{ include "cnpg-cluster.fullname" $ }}-r
-              envFrom:
-                - secretRef:
-                    name: {{ .Values.backup.sqlDumpPgSecret }}
+
 {{- end}}
