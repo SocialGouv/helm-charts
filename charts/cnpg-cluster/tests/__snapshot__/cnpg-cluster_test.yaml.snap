@@ -35,7 +35,19 @@ cluster with enabled backup and recovery:
                   - name: AWS_ENDPOINT_URL
                     value: http://minio:9000
                   - name: DESTINATION_PATH
-                    value: s3://backups/dumps
+                    value: s3://backups/RELEASE-NAME-cnpg-cluster/dumps
+                  - name: PGPASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        key: password
+                        name: RELEASE-NAME-cnpg-cluster-superuser
+                  - name: PGUSER
+                    valueFrom:
+                      secretKeyRef:
+                        key: username
+                        name: RELEASE-NAME-cnpg-cluster-superuser
+                  - name: PGHOST
+                    value: RELEASE-NAME-cnpg-cluster-r
                 envFrom:
                   - secretRef:
                       name: pg-user-app
