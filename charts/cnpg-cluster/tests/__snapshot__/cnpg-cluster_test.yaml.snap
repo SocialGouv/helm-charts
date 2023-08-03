@@ -35,10 +35,21 @@ cluster with enabled backup and recovery:
                   - name: AWS_ENDPOINT_URL
                     value: http://minio:9000
                   - name: DESTINATION_PATH
-                    value: s3://backups/dumps
-                envFrom:
-                  - secretRef:
-                      name: pg-user-app
+                    value: s3://backups/RELEASE-NAME-cnpg-cluster/dumps
+                  - name: PGPASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        key: password
+                        name: RELEASE-NAME-cnpg-cluster-superuser
+                  - name: PGUSER
+                    valueFrom:
+                      secretKeyRef:
+                        key: username
+                        name: RELEASE-NAME-cnpg-cluster-superuser
+                  - name: PGDATABASE
+                    value: app
+                  - name: PGHOST
+                    value: RELEASE-NAME-cnpg-cluster-r
                 image: ghcr.io/socialgouv/docker/s3-client:1
                 imagePullPolicy: IfNotPresent
                 name: s3-client

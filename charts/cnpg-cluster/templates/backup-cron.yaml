@@ -47,8 +47,20 @@ spec:
                 - name: AWS_ENDPOINT_URL
                   value: {{ .Values.backup.barmanObjectStore.endpointURL }}
                 - name: DESTINATION_PATH
-                  value: {{ trimSuffix "/" .Values.backup.barmanObjectStore.destinationPath }}/dumps
-              envFrom:
-                - secretRef:
-                    name: {{ .Values.backup.sqlDumpPgSecret }}
+                  value: {{ trimSuffix "/" .Values.backup.barmanObjectStore.destinationPath }}/{{ include "cnpg-cluster.fullname" . }}/dumps
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "cnpg-cluster.fullname" $ }}-superuser
+                      key: password
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "cnpg-cluster.fullname" $ }}-superuser
+                      key: username
+                - name: PGDATABASE
+                  value: {{ .Values.dbName }}
+                - name: PGHOST
+                  value: {{ include "cnpg-cluster.fullname" $ }}-r
+
 {{- end}}
