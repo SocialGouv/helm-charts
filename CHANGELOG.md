@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.9.12 (2023-08-03)
+
+
+### Bug Fixes
+
+* **cnpg:** use superuser secret for backups ([#32](https://github.com/SocialGouv/helm-charts/issues/32)) ([510f603](https://github.com/SocialGouv/helm-charts/commit/510f603cfce6e6b0330299d4ee44202dbc7fb673))
+
 ## 1.9.11 (2023-08-02)
 
 
