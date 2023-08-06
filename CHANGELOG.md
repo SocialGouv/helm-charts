@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.9.13 (2023-08-06)
+
+
+### Bug Fixes
+
+* **daily:** daily cron backups ([#33](https://github.com/SocialGouv/helm-charts/issues/33)) ([d561ffb](https://github.com/SocialGouv/helm-charts/commit/d561ffbc1406713cd3e39ebc2f56d9173468b699))
+
 ## 1.9.12 (2023-08-03)
 
 
