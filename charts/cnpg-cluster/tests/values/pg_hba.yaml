@@ -1,0 +1,3 @@
+postgresql:
+pg_hba:
+  - host replication postgres all scram-sha-256

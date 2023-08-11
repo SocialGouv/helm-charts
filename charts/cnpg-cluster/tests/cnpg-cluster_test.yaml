@@ -83,3 +83,23 @@ tests:
       - template: cluster.cnpg.yaml
         matchSnapshot:
           path: spec.postgresql
+  - it: cluster with custom pg_hba
+    values:
+      - ./values/pg_hba.yaml
+    asserts:
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.postgresql
+  - it: cluster with replication
+    values:
+      - ./values/replication.yaml
+    asserts:
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.externalClusters
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.bootstrap
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.replica
