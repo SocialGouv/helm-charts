@@ -126,7 +126,16 @@ poolers: {}
 minSyncReplicas: 0
 maxSyncReplicas: 0
 
+# https://www.postgresql.org/docs/9.3/auth-pg-hba-conf.html
+pg_hba: []
+
 postgresqlParameters: {}
+
+# https://cloudnative-pg.io/documentation/1.19/api_reference/#externalcluster
+externalClusters: []
+
+replica:
+  enabled: false
 
 extensions: []
 

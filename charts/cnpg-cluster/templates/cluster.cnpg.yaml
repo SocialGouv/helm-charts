@@ -64,6 +64,10 @@ spec:
   minSyncReplicas: {{ .Values.minSyncReplicas }}
   maxSyncReplicas: {{ .Values.maxSyncReplicas }}
   postgresql:
+    pg_hba:
+      {{- with .Values.pg_hba }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     parameters:
       {{- with .Values.postgresqlParameters }}
         {{- toYaml . | nindent 8 }}
@@ -77,6 +81,12 @@ spec:
     name: {{ .Values.superuserSecretName }}
   {{ end}}
 
+  {{- if .Values.replica.enabled }}
+  replica:
+    enabled: true
+    source: {{ .Values.replica.source }}
+  {{- end }}
+
   bootstrap:
     {{- if .Values.recovery.enabled }}
     recovery:
@@ -85,6 +95,9 @@ spec:
       recoveryTarget:
         targetTime: "{{ .Values.recovery.targetTime }}"
       {{- end }}
+    {{- else if (and .Values.replica.enabled .Values.replica.source) }}
+    pg_basebackup:
+      source: {{ .Values.replica.source }}
     {{- else }}
     initdb:
       database: {{ .Values.dbName }}
@@ -108,11 +121,14 @@ spec:
       {{ end }}
     {{- end }}
 
-  {{- if .Values.recovery.enabled }}
   externalClusters:
+  {{- if .Values.recovery.enabled }}
     - name: "recovery-cluster"
       barmanObjectStore:
         {{- toYaml .Values.recovery.barmanObjectStore | nindent 8 }}
+  {{- end }}
+  {{- if .Values.externalClusters }}
+    {{- toYaml .Values.externalClusters | nindent 4 }}
   {{- end }}
 
 {{- with .Values.clusterExtraSpec }}

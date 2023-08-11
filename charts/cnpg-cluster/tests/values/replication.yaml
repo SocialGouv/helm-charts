@@ -1,0 +1,15 @@
+imageName: ghcr.io/cloudnative-pg/postgis:14
+
+replica:
+  enabled: true
+  source: source-cluster
+
+externalClusters:
+  - name: source-cluster
+    connectionParameters:
+      host: some-host-to-replicate-from
+      user: postgres
+      dbname: app
+    password:
+      name: source-secret-for-source-replication
+      key: password

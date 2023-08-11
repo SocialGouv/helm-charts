@@ -1,8 +1,14 @@
+cluster with custom pg_hba:
+  1: |
+    parameters: null
+    pg_hba:
+      - host replication postgres all scram-sha-256
 cluster with custom pgparams:
   1: |
     parameters:
       timezone: Europe/Paris
       work_mem: 512MB
+    pg_hba: null
 cluster with enabled backup and recovery:
   1: |
     concurrencyPolicy: Forbid
@@ -104,6 +110,7 @@ cluster with enabled backup and recovery:
       enablePodMonitor: false
     postgresql:
       parameters: null
+      pg_hba: null
     storage:
       size: 8Gi
   3: |
@@ -140,8 +147,25 @@ cluster with recovery enabled:
       enablePodMonitor: false
     postgresql:
       parameters: null
+      pg_hba: null
     storage:
       size: 8Gi
+cluster with replication:
+  1: |
+    - connectionParameters:
+        dbname: app
+        host: some-host-to-replicate-from
+        user: postgres
+      name: source-cluster
+      password:
+        key: password
+        name: source-secret-for-source-replication
+  2: |
+    pg_basebackup:
+      source: source-cluster
+  3: |
+    enabled: true
+    source: source-cluster
 cluster with scheduled backup enabled:
   1: |
     backup:
@@ -164,6 +188,7 @@ cluster with scheduled backup enabled:
         database: app
         owner: app
         postInitTemplateSQL: null
+    externalClusters: null
     imageName: ghcr.io/cloudnative-pg/postgis:15
     imagePullPolicy: IfNotPresent
     instances: 1
@@ -173,5 +198,6 @@ cluster with scheduled backup enabled:
       enablePodMonitor: false
     postgresql:
       parameters: null
+      pg_hba: null
     storage:
       size: 8Gi
