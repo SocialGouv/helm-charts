@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.10.0 (2023-08-11)
+
+
+### Features
+
+* **cnpg-cluster:** add replication values ([#34](https://github.com/SocialGouv/helm-charts/issues/34)) ([3930869](https://github.com/SocialGouv/helm-charts/commit/393086979a4190322519826549934dc790551768))
+
 ## 1.9.13 (2023-08-06)
 
 
