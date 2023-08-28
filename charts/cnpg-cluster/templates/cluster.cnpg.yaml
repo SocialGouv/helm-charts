@@ -98,6 +98,9 @@ spec:
     {{- else if (and .Values.replica.enabled .Values.replica.source) }}
     pg_basebackup:
       source: {{ .Values.replica.source }}
+    {{- else if (and .Values.pg_basebackup.enabled .Values.pg_basebackup.source) }}
+    pg_basebackup:
+      source: {{ .Values.pg_basebackup.source }}
     {{- else }}
     initdb:
       database: {{ .Values.dbName }}

@@ -103,3 +103,13 @@ tests:
       - template: cluster.cnpg.yaml
         matchSnapshot:
           path: spec.replica
+  - it: cluster with pg_basebackup
+    values:
+      - ./values/pg_basebackup.yaml
+    asserts:
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.externalClusters
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.bootstrap

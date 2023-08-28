@@ -185,3 +185,8 @@ postInitApplicationSQLRefs:
   # secretRefs:
   # - name: post-init-sql-secret
   #   key: secret.sql
+
+#
+pg_basebackup:
+  enabled: false
+  source:
