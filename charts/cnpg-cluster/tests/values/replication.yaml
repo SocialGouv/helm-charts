@@ -4,6 +4,10 @@ replica:
   enabled: true
   source: source-cluster
 
+pg_basebackup:
+  enabled: true
+  source: source-cluster
+
 externalClusters:
   - name: source-cluster
     connectionParameters:
