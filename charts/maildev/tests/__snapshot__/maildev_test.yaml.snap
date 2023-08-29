@@ -31,13 +31,7 @@ cron enabled:
               httpGet:
                 path: /healthz
                 port: http
-            resources:
-              limits:
-                cpu: null
-                memory: null
-              requests:
-                cpu: null
-                memory: null
+            resources: {}
             volumeMounts:
               - mountPath: /home/node/maildev-data
                 name: data
@@ -184,13 +178,7 @@ default manifest:
               httpGet:
                 path: /healthz
                 port: http
-            resources:
-              limits:
-                cpu: null
-                memory: null
-              requests:
-                cpu: null
-                memory: null
+            resources: {}
             volumeMounts:
               - mountPath: /home/node/maildev-data
                 name: data
@@ -230,13 +218,7 @@ persistence and existingClaim enabled:
               httpGet:
                 path: /healthz
                 port: http
-            resources:
-              limits:
-                cpu: null
-                memory: null
-              requests:
-                cpu: null
-                memory: null
+            resources: {}
             volumeMounts:
               - mountPath: /home/node/maildev-data
                 name: data
@@ -277,13 +259,7 @@ persistence enabled:
               httpGet:
                 path: /healthz
                 port: http
-            resources:
-              limits:
-                cpu: null
-                memory: null
-              requests:
-                cpu: null
-                memory: null
+            resources: {}
             volumeMounts:
               - mountPath: /home/node/maildev-data
                 name: data

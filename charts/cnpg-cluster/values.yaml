@@ -1,24 +1,28 @@
+# yaml-language-server: $schema=./values.schema.json
+
 # Default values for cnpg-cluster.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# -- Number of Postgres instances in the cluster
+# @param {number} [instances] Number of Postgres instances in the cluster
 instances: 1
 
+# @param {object} [annotations] CNPG cluster annotations
 annotations: {}
 
+# @param {object} [image] Docker image for the PG instances
 image:
-  # -- Postgres image repository. Keep empty to use operator's default image. See: https://cloudnative-pg.io/documentation/1.17/operator_capability_levels/#override-of-operand-images-through-the-crd
-  # repository: "ghcr.io/cloudnative-pg/postgresql"
+  # @param {string} [repository] CNPG compatible Postgres image. see https://github.com/cloudnative-pg/postgres-containers
   repository: "ghcr.io/cloudnative-pg/postgis"
-  # -- Postgres image pull policy
+  # @param {string} [pullPolicy] Docker image pull policy. see https://kubernetes.io/docs/concepts/containers/images#updating-images
   pullPolicy: IfNotPresent
-  # -- Override the Postgres image tag
+  # @param {string} [tag] Docker image tag
   tag: "15"
 
-# -- Docker-registry secret names as an array
+# @param {array} [imagePullSecrets] docker image pull secrets. see https://kubernetes.io/fr/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
-# -- Create a docker-registry secret and use it as imagePullSecrets
+
+# @param {object,null} [registryCredentials]
 registryCredentials:
 # Eg:
 #   mygitlab:
@@ -26,18 +30,20 @@ registryCredentials:
 #     email: foo@example.org
 #     username: foobar
 #     password: secret
-# -- String to partially override cnpg-cluster.fullname template with a string (will prepend the release name)
+
+# @param {string} [nameOverride] String to partially override cnpg-cluster.fullname template with a string (will prepend the release name)
 nameOverride: ""
-# --  String to fully override cnpg-cluster.fullname template with a string
+
+# @param {string} [fullnameOverride] String to fully override cnpg-cluster.fullname template with a string
 fullnameOverride: ""
 
-# -- CPU/Memory resource requests/limits
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+# @param {https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements} [resources] CPU/Memory resource requests/limits
 resources:
   {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
@@ -45,46 +51,47 @@ resources:
   #   cpu: 100m
   #   memory: 128Mi
 
-# -- Postgres instances labels for pod assignment
+# @param {object} [nodeSelector] Postgres instances labels for pod assignment
 nodeSelector: {}
 
-# -- Postgres instances labels for tolerations pod assignment
+# @param {array} [tolerations] Postgres instances labels for tolerations pod assignment
 tolerations: []
 
-# -- Extra configuration for Cluster's affinity resource,
-# see: https://cloudnative-pg.io/documentation/1.17/api_reference/#AffinityConfiguration
+# @param {object} [extraAffinity] Extra configuration for Cluster's affinity resource, see: https://cloudnative-pg.io/documentation/1.17/api_reference/#AffinityConfiguration
 extraAffinity: {}
 
+# @param {object} [persistence] Data persistence configuration
 persistence:
-  # -- Size of each instance storage volume
+  # @param {string} [size] Size of each instance storage volume
   size: 8Gi
-  # -- Resize existent PVCs, defaults to true
+  # @param {boolean,null} [resizeInUseVolumes] Resize existent PVCs, defaults to true
   resizeInUseVolumes:
-  # persistence.storageClass -- StorageClass to use for database data,
   # Applied after evaluating the PVC template, if available.
   # If not specified, generated PVCs will be satisfied by the default storage class
+  # @param {string} [storageClass] StorageClass to use for database data,
   storageClass: ""
-  # persistence.pvcTemplate -- Template to be used to generate the Persistent Volume Claim
+  # @param {object} [pvcTemplate] Template to be used to generate the Persistent Volume Claim
   pvcTemplate: {}
 
+# @param {object} [backup] Backup configuration
 backup:
-  # -- Enable backups
+  # @param {boolean} [enabled] Enable backups
   enabled: false
 
-  # -- Schedule the backups, for instance every day at midnight
   # this cron format has the seconds on the left
+  # @param {string} [schedule] Schedule the backups, for instance every day at midnight
   schedule: "0 0 0 * * 0"
 
-  # -- Schedule the SQL dump backups, for instance every day at midnight
+  # @param {string} [sqlDumpSchedule] Schedule the SQL dump backups, for instance every day at midnight
   sqlDumpSchedule: "0 0 * * *"
 
-  # -- RetentionPolicy is the retention policy to be used for backups and WALs (i.e. '60d').
   # The retention policy is expressed in the form of XXu where XX is a positive integer and
   # u is in [dwm] - days, weeks, months.
+  # @param {string} [retentionPolicy] RetentionPolicy is the retention policy to be used for backups and WALs (i.e. '60d').
   retentionPolicy: 30d
 
-  # -- Object store credentials and access config
   # See: https://cloudnative-pg.io/documentation/1.20/backup_recovery/
+  # @param {object,null} [barmanObjectStore] Object store credentials and access config
   barmanObjectStore:
     # destinationPath:
     # endpointURL:
@@ -99,19 +106,16 @@ backup:
     #     name:
     #     key:
 
-# -- Extra configuration for Cluster resource.
-# See: https://cloudnative-pg.io/documentation/1.17/api_reference/#clusterspec
+# @param {object} [clusterExtraSpec] Extra configuration for Cluster resource. See: https://cloudnative-pg.io/documentation/1.17/api_reference/#clusterspec
 clusterExtraSpec: {}
 
-# -- ScheduledBackup resources to create for this Cluster resource
-# See: https://cloudnative-pg.io/documentation/1.17/api_reference/#ScheduledBackupSpec
+# @param {object} [scheduledBackups] ScheduledBackup resources to create for this Cluster resource. See: https://cloudnative-pg.io/documentation/1.17/api_reference/#ScheduledBackupSpec
 scheduledBackups: {}
 # Eg:
 #   daily:
 #     schedule: "0 0 0 * * *"
 
-# -- Poller resources to create for this Cluster resource
-# See: https://cloudnative-pg.io/documentation/1.17/api_reference/#PoolerSpec
+# @param {object} [poolers] Pooler resources to create for this Cluster resource. See: https://cloudnative-pg.io/documentation/1.17/api_reference/#PoolerSpec
 poolers: {}
 # Eg:
 #   rw:
@@ -123,41 +127,61 @@ poolers: {}
 #         max_client_conn: "1000"
 #         default_pool_size: "10"
 
+# @param {number} [minSyncReplicas] Minimum of syncrhronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication
 minSyncReplicas: 0
+# @param {number} [maxSyncReplicas] Maximum of syncrhronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication
 maxSyncReplicas: 0
 
-# https://www.postgresql.org/docs/9.3/auth-pg-hba-conf.html
+# @param {array} [pg_hba] pg_hba entries. See https://www.postgresql.org/docs/9.3/auth-pg-hba-conf.html
 pg_hba: []
 
+# Define your parameters on https://pgtune.leopard.in.ua
+# @param {https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/parameters.json} [postgresqlParameters] PostgreSQL parameters. See https://www.postgresql.org/docs/9.3/auth-pg-hba-conf.html
 postgresqlParameters: {}
 
-# https://cloudnative-pg.io/documentation/1.19/api_reference/#externalcluster
+# @param {array} [externalClusters] define external clusters for recovery/replication see https://cloudnative-pg.io/documentation/current/api_reference/#externalcluster
 externalClusters: []
 
+# @param {object} [replica] Replica mode
 replica:
+  # @param {boolean} [enabled] Enable replica mode
   enabled: false
 
+# @param {object} [pg_basebackup] Enable pg_basebackup on bootstrap, see https://cloudnative-pg.io/documentation/current/bootstrap/#bootstrap-from-a-live-cluster-pg_basebackup
+pg_basebackup:
+  # @param {boolean} [enabled] Enable pg_basebackup bootstrap, see https://cloudnative-pg.io/documentation/current/bootstrap/#bootstrap-from-a-live-cluster-pg_basebackup
+  enabled: false
+  # @param {string,null} [source] externalCluster cluster name for the pg_basebackup
+  source:
+
+# @param {https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/extensions.json} [extensions] list of PG extensions to load
 extensions: []
 
+# @param {string} [dbName] Name of the default database to create
 dbName: app
+# @param {string} [dbName] Name of the default user to create
 dbOwner: app
 
+# @param {object} [monitoring] Monitoring. see https://cloudnative-pg.io/documentation/current/monitoring/
 monitoring:
+  # @param {boolean} [enablePodMonitor] Enable metrics monitoring. see https://cloudnative-pg.io/documentation/current/monitoring/
   enablePodMonitor: false
 
+# @param {string,null} [superuserSecretName] To force the super user secret name
 superuserSecretName:
+# @param {string,null} [dbSecretName] To force the DB secret name
 dbSecretName:
 
+# @param {object} [recovery] Recovery. see https://cloudnative-pg.io/documentation/current/backup_recovery/#recovery
 recovery:
+  # @param {boolean} [enabled] Enable recovery
   enabled: false
 
-  # -- Name of the source cluster in the backups
+  # @param {string} [targetTime] Time to restore from, in RFC3339 format https://datatracker.ietf.org/doc/html/rfc3339
+  targetTime: "2020-11-26 15:22:00.00000+00"
 
-  # -- Time to restore from, in RFC3339 format https://datatracker.ietf.org/doc/html/rfc3339
-  # targetTime: "2020-11-26 15:22:00.00000+00"
-
-  # -- Object store credentials and access config
-  # See: https://cloudnative-pg.io/documentation/1.20/backup_recovery/
+  # See: https://cloudnative-pg.io/documentation/current/backup_recovery/
+  # @param {object,null} [barmanObjectStore] Object store credentials and access config
   barmanObjectStore:
     # destinationPath:
     # endpointURL:
@@ -174,10 +198,12 @@ recovery:
     #     name:
     #     key:
 
-# List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)
+# @param {string} [postInitApplicationSQL] List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)
 postInitApplicationSQL: ""
 
-# PostInitApplicationSQLRefs points references to ConfigMaps or Secrets which contain SQL files, the general implementation order to these references is from all Secrets to all ConfigMaps, and inside Secrets or ConfigMaps, the implementation order is same as the order of each array (by default empty)
+# Points references to ConfigMaps or Secrets which contain SQL files, the general implementation order to these references is from all Secrets to all ConfigMaps, and inside Secrets or ConfigMaps, the implementation order is same as the order of each array (by default empty
+# See https://cloudnative-pg.io/documentation/current/api_reference/#postinitapplicationsqlrefs
+# @param {object,null} [postInitApplicationSQLRefs]
 postInitApplicationSQLRefs:
   # configMapRefs:
   # - name: post-init-sql-configmap
@@ -185,8 +211,3 @@ postInitApplicationSQLRefs:
   # secretRefs:
   # - name: post-init-sql-secret
   #   key: secret.sql
-
-#
-pg_basebackup:
-  enabled: false
-  source:
