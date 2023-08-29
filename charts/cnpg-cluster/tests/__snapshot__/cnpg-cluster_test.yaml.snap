@@ -118,6 +118,19 @@ cluster with enabled backup and recovery:
     cluster:
       name: RELEASE-NAME-cnpg-cluster
     schedule: 1 2 3 * * 0
+cluster with pg_basebackup:
+  1: |
+    - connectionParameters:
+        dbname: app
+        host: some-host-to-replicate-from
+        user: postgres
+      name: source-cluster
+      password:
+        key: password
+        name: source-secret-for-source-replication
+  2: |
+    pg_basebackup:
+      source: source-cluster
 cluster with recovery enabled:
   1: |
     bootstrap:
