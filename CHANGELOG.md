@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.11.0 (2023-08-29)
+
+
+### Features
+
+* allow simple pg_basebackup ([#35](https://github.com/SocialGouv/helm-charts/issues/35)) ([445ce56](https://github.com/SocialGouv/helm-charts/commit/445ce5678020e6526efd7519d6ec3f01e121a054))
+
 ## 1.10.0 (2023-08-11)
 
 
