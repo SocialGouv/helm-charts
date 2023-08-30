@@ -192,7 +192,6 @@
       }
     },
     "extensions": {
-      "title": "list of PG extensions to load",
       "$ref": "https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/extensions.json"
     },
     "dbName": {
