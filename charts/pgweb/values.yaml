@@ -106,7 +106,6 @@ autoscaling:
   # @param {number} [targetCPUUtilizationPercentage] targetCPUUtilizationPercentage
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-  #targetMemoryUtilizationPercentage: 80
 
 # @param {object} [nodeSelector]
 nodeSelector: {}
