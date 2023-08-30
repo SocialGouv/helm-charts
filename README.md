@@ -1,6 +1,8 @@
 # SocialGouv Helm Charts Registry ☸️
 
-This repo manage some of our shared [Helm](https://helm.sh) Charts
+This repo manage some of our shared [Helm](https://helm.sh) Charts.
+
+See on [GitHub](https://github.com/SocialGouv/helm-charts).
 
 ## Helm charts
 
