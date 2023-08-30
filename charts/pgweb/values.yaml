@@ -2,49 +2,76 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# -- number of replicas in the pgweb deployment
+# @param {number} [replicaCount] Number of replicas
 replicaCount: 1
 
-enabled:
-
+# @param {string,null} [namespace] destination namespace
 namespace:
+
+# @param {string,null} [repositoryName] helm repositoryName
 repositoryName:
+
+# @param {string,null} [host] default hostname
 host:
+
+# @param {number} [targetPort] target port
 targetPort: 8081
+
+# @param {number} [servicePort] service port
 servicePort: 8081
+
+# @param {string,null} [certSecretName] ingress SSL cert name
 certSecretName:
+
+# @param {https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0/_definitions.json#/definitions/io.k8s.api.core.v1.Container/properties/env} [env]
 env: []
+
+# @param {https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0/_definitions.json#/definitions/io.k8s.api.core.v1.Container/properties/envFrom} [envFrom]
 envFrom: []
 
+# @param {object} [ingress]
 ingress:
+  # @param {boolean} [enabled] enable ingress
   enabled: false
+  # @param {object} [annotations] ingress annotation
   annotations: {}
 
+# @param {object} [image] Docker image
 image:
+  # @param {string} [repository] image repository
   repository: sosedoff/pgweb
+  # @param {string} [pullPolicy] Docker image pull policy. see https://kubernetes.io/docs/concepts/containers/images#updating-images
   pullPolicy: IfNotPresent
+  # @param {string} [tag] Docker image tag
   tag: "0.14.1"
 
+# @param {array} [imagePullSecrets] docker image pull secrets. see https://kubernetes.io/fr/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
+
+# @param {string} [nameOverride] String to partially override cnpg-cluster.fullname template with a string (will prepend the release name)
 nameOverride: ""
+
+# @param {string} [fullnameOverride] String to fully override cnpg-cluster.fullname template with a string
 fullnameOverride: ""
 
+# @param {object} [serviceAccount] serviceAccount
 serviceAccount:
-  # -- Specifies whether a service account should be created
+  # @param {boolean} [create] Specifies whether a service account should be created
   create: false
-  # -- Annotations to add to the service account
+  # @param {object} [annotations] service account annotations
   annotations: {}
-
-  # -- The name of the service account to use.
-  # -- If not set and create is true, a name is generated using the fullname template
+  # @param {string} [name] The name of the service account to use. If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# @param {object} [podAnnotations] pgweb pod annotations
 podAnnotations: {}
 
+# @param {object} [podSecurityContext] pgweb pod securityContext
 podSecurityContext:
   {}
   # fsGroup: 2000
 
+# @param {object} [securityContext] pgweb container securityContext
 securityContext:
   {}
   # capabilities:
@@ -54,7 +81,7 @@ securityContext:
   # runAsNonRoot: true
   # runAsUser: 1000
 
-# -- custom resources
+# @param {https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements} [resources] CPU/Memory resource requests/limits
 resources:
   {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -68,18 +95,26 @@ resources:
   #   cpu: 100m
   #   memory: 128Mi
 
-# -- Horizontal Pod autoscaler
+# @param {object} [securityContext] Horizontal Pod autoscaler
 autoscaling:
+  # @param {boolean} [create] Enable HPA
   enabled: false
+  # @param {number} [minReplicas] minReplicas
   minReplicas: 1
+  # @param {number} [minReplicas] maxReplicas
   maxReplicas: 100
+  # @param {number} [targetCPUUtilizationPercentage] targetCPUUtilizationPercentage
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# @param {object} [nodeSelector]
 nodeSelector: {}
 
+# @param {array} [tolerations]
 tolerations: []
 
+# @param {object} [affinity]
 affinity: {}
 
+# @param {array} [extraArgs]
 extraArgs: []
