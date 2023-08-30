@@ -73,12 +73,10 @@
           "default": "1024M"
         },
         "storageClass": {
-          "type": ["string"],
-          "default": ""
+          "type": ["string"]
         },
         "existingClaim": {
-          "type": ["string"],
-          "default": ""
+          "type": ["string"]
         },
         "mountPath": {
           "type": ["string"],

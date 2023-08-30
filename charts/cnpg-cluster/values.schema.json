@@ -43,13 +43,11 @@
     },
     "nameOverride": {
       "type": ["string"],
-      "title": "String to partially override cnpg-cluster.fullname template with a string (will prepend the release name)",
-      "default": ""
+      "title": "String to partially override cnpg-cluster.fullname template with a string (will prepend the release name)"
     },
     "fullnameOverride": {
       "type": ["string"],
-      "title": "String to fully override cnpg-cluster.fullname template with a string",
-      "default": ""
+      "title": "String to fully override cnpg-cluster.fullname template with a string"
     },
     "resources": {
       "title": "CPU/Memory resource requests/limits",
@@ -85,8 +83,7 @@
         "storageClass": {
           "type": ["string"],
           "title": "StorageClass to use for database data,",
-          "description": "Applied after evaluating the PVC template, if available.\nIf not specified, generated PVCs will be satisfied by the default storage class",
-          "default": ""
+          "description": "Applied after evaluating the PVC template, if available.\nIf not specified, generated PVCs will be satisfied by the default storage class"
         },
         "pvcTemplate": {
           "type": ["object"],
@@ -248,8 +245,7 @@
     },
     "postInitApplicationSQL": {
       "type": ["string"],
-      "title": "List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)",
-      "default": ""
+      "title": "List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)"
     },
     "postInitApplicationSQLRefs": {
       "type": ["object", "null"],
