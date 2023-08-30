@@ -154,7 +154,7 @@ pg_basebackup:
   # @param {string,null} [source] externalCluster cluster name for the pg_basebackup
   source:
 
-# @param {https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/extensions.json} [extensions] list of PG extensions to load
+# @param {https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/extensions.json} [extensions]
 extensions: []
 
 # @param {string} [dbName] Name of the default database to create
