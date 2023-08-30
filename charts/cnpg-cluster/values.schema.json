@@ -1,0 +1,259 @@
+{
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "required": [],
+  "properties": {
+    "instances": {
+      "type": ["number"],
+      "title": "Number of Postgres instances in the cluster",
+      "default": "1"
+    },
+    "annotations": {
+      "type": ["object"],
+      "title": "CNPG cluster annotations"
+    },
+    "image": {
+      "type": "object",
+      "title": "Docker image for the PG instances",
+      "required": [],
+      "properties": {
+        "repository": {
+          "type": ["string"],
+          "title": "CNPG compatible Postgres image. see https://github.com/cloudnative-pg/postgres-containers",
+          "default": "\"ghcr.io/cloudnative-pg/postgis\""
+        },
+        "pullPolicy": {
+          "type": ["string"],
+          "title": "Docker image pull policy. see https://kubernetes.io/docs/concepts/containers/images#updating-images",
+          "default": "IfNotPresent"
+        },
+        "tag": {
+          "type": ["string"],
+          "title": "Docker image tag",
+          "default": "\"15\""
+        }
+      }
+    },
+    "imagePullSecrets": {
+      "type": ["array"],
+      "title": "docker image pull secrets. see https://kubernetes.io/fr/docs/tasks/configure-pod-container/pull-image-private-registry/"
+    },
+    "registryCredentials": {
+      "type": ["object", "null"]
+    },
+    "nameOverride": {
+      "type": ["string"],
+      "title": "String to partially override cnpg-cluster.fullname template with a string (will prepend the release name)",
+      "default": ""
+    },
+    "fullnameOverride": {
+      "type": ["string"],
+      "title": "String to fully override cnpg-cluster.fullname template with a string",
+      "default": ""
+    },
+    "resources": {
+      "title": "CPU/Memory resource requests/limits",
+      "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements",
+      "description": "We usually recommend not to specify default resources and to leave this as a conscious\nchoice for the user. This also increases chances charts run on environments with little\nresources, such as Minikube. If you do want to specify resources, uncomment the following\nlines, adjust them as necessary, and remove the curly braces after 'resources:'."
+    },
+    "nodeSelector": {
+      "type": ["object"],
+      "title": "Postgres instances labels for pod assignment"
+    },
+    "tolerations": {
+      "type": ["array"],
+      "title": "Postgres instances labels for tolerations pod assignment"
+    },
+    "extraAffinity": {
+      "type": ["object"],
+      "title": "Extra configuration for Cluster's affinity resource, see: https://cloudnative-pg.io/documentation/1.17/api_reference/#AffinityConfiguration"
+    },
+    "persistence": {
+      "type": "object",
+      "title": "Data persistence configuration",
+      "required": [],
+      "properties": {
+        "size": {
+          "type": ["string"],
+          "title": "Size of each instance storage volume",
+          "default": "8Gi"
+        },
+        "resizeInUseVolumes": {
+          "type": ["boolean", "null"],
+          "title": "Resize existent PVCs, defaults to true"
+        },
+        "storageClass": {
+          "type": ["string"],
+          "title": "StorageClass to use for database data,",
+          "description": "Applied after evaluating the PVC template, if available.\nIf not specified, generated PVCs will be satisfied by the default storage class",
+          "default": ""
+        },
+        "pvcTemplate": {
+          "type": ["object"],
+          "title": "Template to be used to generate the Persistent Volume Claim"
+        }
+      }
+    },
+    "backup": {
+      "type": "object",
+      "title": "Backup configuration",
+      "required": [],
+      "properties": {
+        "enabled": {
+          "type": ["boolean"],
+          "title": "Enable backups",
+          "default": "false"
+        },
+        "schedule": {
+          "type": ["string"],
+          "title": "Schedule the backups, for instance every day at midnight",
+          "description": "this cron format has the seconds on the left",
+          "default": "\"0 0 0 * * 0\""
+        },
+        "sqlDumpSchedule": {
+          "type": ["string"],
+          "title": "Schedule the SQL dump backups, for instance every day at midnight",
+          "default": "\"0 0 * * *\""
+        },
+        "retentionPolicy": {
+          "type": ["string"],
+          "title": "RetentionPolicy is the retention policy to be used for backups and WALs (i.e. '60d').",
+          "description": "The retention policy is expressed in the form of XXu where XX is a positive integer and\nu is in [dwm] - days, weeks, months.",
+          "default": "30d"
+        },
+        "barmanObjectStore": {
+          "type": ["object", "null"],
+          "title": "Object store credentials and access config",
+          "description": "See: https://cloudnative-pg.io/documentation/1.20/backup_recovery/"
+        }
+      }
+    },
+    "clusterExtraSpec": {
+      "type": ["object"],
+      "title": "Extra configuration for Cluster resource. See: https://cloudnative-pg.io/documentation/1.17/api_reference/#clusterspec"
+    },
+    "scheduledBackups": {
+      "type": ["object"],
+      "title": "ScheduledBackup resources to create for this Cluster resource. See: https://cloudnative-pg.io/documentation/1.17/api_reference/#ScheduledBackupSpec"
+    },
+    "poolers": {
+      "type": ["object"],
+      "title": "Pooler resources to create for this Cluster resource. See: https://cloudnative-pg.io/documentation/1.17/api_reference/#PoolerSpec"
+    },
+    "minSyncReplicas": {
+      "type": ["number"],
+      "title": "Minimum of syncrhronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication",
+      "default": "0"
+    },
+    "maxSyncReplicas": {
+      "type": ["number"],
+      "title": "Maximum of syncrhronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication",
+      "default": "0"
+    },
+    "pg_hba": {
+      "type": ["array"],
+      "title": "pg_hba entries. See https://www.postgresql.org/docs/9.3/auth-pg-hba-conf.html"
+    },
+    "postgresqlParameters": {
+      "title": "PostgreSQL parameters. See https://www.postgresql.org/docs/9.3/auth-pg-hba-conf.html",
+      "$ref": "https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/parameters.json",
+      "description": "Define your parameters on https://pgtune.leopard.in.ua"
+    },
+    "externalClusters": {
+      "type": ["array"],
+      "title": "define external clusters for recovery/replication see https://cloudnative-pg.io/documentation/current/api_reference/#externalcluster"
+    },
+    "replica": {
+      "type": "object",
+      "title": "Replica mode",
+      "required": [],
+      "properties": {
+        "enabled": {
+          "type": ["boolean"],
+          "title": "Enable replica mode",
+          "default": "false"
+        }
+      }
+    },
+    "pg_basebackup": {
+      "type": "object",
+      "title": "Enable pg_basebackup on bootstrap, see https://cloudnative-pg.io/documentation/current/bootstrap/#bootstrap-from-a-live-cluster-pg_basebackup",
+      "required": [],
+      "properties": {
+        "enabled": {
+          "type": ["boolean"],
+          "title": "Enable pg_basebackup bootstrap, see https://cloudnative-pg.io/documentation/current/bootstrap/#bootstrap-from-a-live-cluster-pg_basebackup",
+          "default": "false"
+        },
+        "source": {
+          "type": ["string", "null"],
+          "title": "externalCluster cluster name for the pg_basebackup"
+        }
+      }
+    },
+    "extensions": {
+      "$ref": "https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/extensions.json"
+    },
+    "dbName": {
+      "type": ["string"],
+      "title": "Name of the default database to create",
+      "default": "app"
+    },
+    "dbOwner": {
+      "type": ["string"],
+      "title": "Name of the default user to create",
+      "default": "app"
+    },
+    "monitoring": {
+      "type": "object",
+      "title": "Monitoring. see https://cloudnative-pg.io/documentation/current/monitoring/",
+      "required": [],
+      "properties": {
+        "enablePodMonitor": {
+          "type": ["boolean"],
+          "title": "Enable metrics monitoring. see https://cloudnative-pg.io/documentation/current/monitoring/",
+          "default": "false"
+        }
+      }
+    },
+    "superuserSecretName": {
+      "type": ["string", "null"],
+      "title": "To force the super user secret name"
+    },
+    "dbSecretName": {
+      "type": ["string", "null"],
+      "title": "To force the DB secret name"
+    },
+    "recovery": {
+      "type": "object",
+      "title": "Recovery. see https://cloudnative-pg.io/documentation/current/backup_recovery/#recovery",
+      "required": [],
+      "properties": {
+        "enabled": {
+          "type": ["boolean"],
+          "title": "Enable recovery",
+          "default": "false"
+        },
+        "targetTime": {
+          "type": ["string"],
+          "title": "Time to restore from, in RFC3339 format https://datatracker.ietf.org/doc/html/rfc3339",
+          "default": "\"2020-11-26 15:22:00.00000+00\""
+        },
+        "barmanObjectStore": {
+          "type": ["object", "null"],
+          "title": "Object store credentials and access config",
+          "description": "See: https://cloudnative-pg.io/documentation/current/backup_recovery/"
+        }
+      }
+    },
+    "postInitApplicationSQL": {
+      "type": ["string"],
+      "title": "List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)",
+      "default": ""
+    },
+    "postInitApplicationSQLRefs": {
+      "type": ["object", "null"],
+      "description": "Points references to ConfigMaps or Secrets which contain SQL files, the general implementation order to these references is from all Secrets to all ConfigMaps, and inside Secrets or ConfigMaps, the implementation order is same as the order of each array (by default empty\nSee https://cloudnative-pg.io/documentation/current/api_reference/#postinitapplicationsqlrefs"
+    }
+  }
+}

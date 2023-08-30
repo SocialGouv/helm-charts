@@ -6,7 +6,7 @@ cluster with custom pg_hba:
 cluster with custom pgparams:
   1: |
     parameters:
-      timezone: Europe/Paris
+      TimeZone: Europe/Paris
       work_mem: 512MB
     pg_hba: null
 cluster with enabled backup and recovery:

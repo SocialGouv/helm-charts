@@ -1,0 +1,153 @@
+{
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "required": [],
+  "properties": {
+    "namespace": {
+      "type": ["string", "null"],
+      "title": "destination namespace"
+    },
+    "host": {
+      "type": ["string", "null"],
+      "title": "default hostname"
+    },
+    "servicePort": {
+      "type": ["number"],
+      "title": "service port",
+      "default": "1025"
+    },
+    "certSecretName": {
+      "type": ["string", "null"],
+      "title": "ingress SSL cert name"
+    },
+    "repositoryName": {
+      "type": ["string", "null"],
+      "title": "helm repositoryName"
+    },
+    "replicaCount": {
+      "type": ["number"],
+      "title": "Number of replicas",
+      "default": "1"
+    },
+    "image": {
+      "type": "object",
+      "title": "Docker image",
+      "required": [],
+      "properties": {
+        "repository": {
+          "type": ["string"],
+          "title": "image repository",
+          "default": "maildev/maildev"
+        },
+        "pullPolicy": {
+          "type": ["string"],
+          "title": "Docker image pull policy. see https://kubernetes.io/docs/concepts/containers/images#updating-images",
+          "default": "IfNotPresent"
+        },
+        "tag": {
+          "type": ["string"],
+          "title": "Docker image tag",
+          "default": "\"2.1.0\""
+        }
+      }
+    },
+    "extraArgs": {
+      "type": ["array"],
+      "title": "Extra startup arguments."
+    },
+    "persistence": {
+      "type": "object",
+      "title": "persistence config",
+      "required": [],
+      "properties": {
+        "enabled": {
+          "type": ["boolean", "null"],
+          "title": "enable persistence"
+        },
+        "accessMode": {
+          "type": ["string"],
+          "default": "ReadWriteMany"
+        },
+        "size": {
+          "type": ["string"],
+          "default": "1024M"
+        },
+        "storageClass": {
+          "type": ["string"],
+          "default": ""
+        },
+        "existingClaim": {
+          "type": ["string"],
+          "default": ""
+        },
+        "mountPath": {
+          "type": ["string"],
+          "default": "/home/node/maildev-data"
+        }
+      }
+    },
+    "cron": {
+      "type": "object",
+      "description": "To clean some old mails when persistence is enabled",
+      "required": [],
+      "properties": {
+        "enabled": {
+          "type": ["boolean", "null"],
+          "title": "enable cron cleanups",
+          "description": "To clean some old mails when persistence is enabled"
+        },
+        "image": {
+          "type": "object",
+          "title": "Docker image",
+          "required": [],
+          "properties": {
+            "repository": {
+              "type": ["string"],
+              "title": "image repository",
+              "default": "busybox"
+            },
+            "pullPolicy": {
+              "type": ["string"],
+              "title": "Docker image pull policy. see https://kubernetes.io/docs/concepts/containers/images#updating-images",
+              "default": "IfNotPresent"
+            },
+            "tag": {
+              "type": ["string"],
+              "title": "Docker image tag",
+              "default": "latest"
+            }
+          }
+        },
+        "schedule": {
+          "type": ["string"],
+          "title": "Cleanup schedule",
+          "default": "\"0 1 * * *\""
+        },
+        "daysToKeep": {
+          "type": ["number"],
+          "title": "Retention",
+          "default": "15"
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "enabled": {
+          "type": ["boolean"],
+          "title": "enable ingress",
+          "default": "true"
+        },
+        "annotations": {
+          "type": ["object"],
+          "title": "ingress annotation"
+        }
+      }
+    },
+    "resources": {
+      "title": "CPU/Memory resource requests/limits",
+      "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements"
+    }
+  }
+}
