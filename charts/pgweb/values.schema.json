@@ -1,0 +1,168 @@
+{
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "required": [],
+  "properties": {
+    "replicaCount": {
+      "type": ["number"],
+      "title": "Number of replicas",
+      "default": "1"
+    },
+    "namespace": {
+      "type": ["string", "null"],
+      "title": "destination namespace"
+    },
+    "repositoryName": {
+      "type": ["string", "null"],
+      "title": "helm repositoryName"
+    },
+    "host": {
+      "type": ["string", "null"],
+      "title": "default hostname"
+    },
+    "targetPort": {
+      "type": ["number"],
+      "title": "target port",
+      "default": "8081"
+    },
+    "servicePort": {
+      "type": ["number"],
+      "title": "service port",
+      "default": "8081"
+    },
+    "certSecretName": {
+      "type": ["string", "null"],
+      "title": "ingress SSL cert name"
+    },
+    "env": {
+      "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0/_definitions.json#/definitions/io.k8s.api.core.v1.Container/properties/env"
+    },
+    "envFrom": {
+      "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0/_definitions.json#/definitions/io.k8s.api.core.v1.Container/properties/envFrom"
+    },
+    "ingress": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "enabled": {
+          "type": ["boolean"],
+          "title": "enable ingress",
+          "default": "true"
+        },
+        "annotations": {
+          "type": ["object"],
+          "title": "ingress annotation"
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "title": "Docker image",
+      "required": [],
+      "properties": {
+        "repository": {
+          "type": ["string"],
+          "title": "image repository",
+          "default": "sosedoff/pgweb"
+        },
+        "pullPolicy": {
+          "type": ["string"],
+          "title": "Docker image pull policy. see https://kubernetes.io/docs/concepts/containers/images#updating-images",
+          "default": "IfNotPresent"
+        },
+        "tag": {
+          "type": ["string"],
+          "title": "Docker image tag",
+          "default": "\"0.14.1\""
+        }
+      }
+    },
+    "imagePullSecrets": {
+      "type": ["array"],
+      "title": "docker image pull secrets. see https://kubernetes.io/fr/docs/tasks/configure-pod-container/pull-image-private-registry/"
+    },
+    "nameOverride": {
+      "type": ["string"],
+      "title": "String to partially override cnpg-cluster.fullname template with a string (will prepend the release name)"
+    },
+    "fullnameOverride": {
+      "type": ["string"],
+      "title": "String to fully override cnpg-cluster.fullname template with a string"
+    },
+    "serviceAccount": {
+      "type": "object",
+      "title": "serviceAccount",
+      "required": [],
+      "properties": {
+        "create": {
+          "type": ["boolean"],
+          "title": "Specifies whether a service account should be created",
+          "default": "false"
+        },
+        "annotations": {
+          "type": ["object"],
+          "title": "service account annotations"
+        },
+        "name": {
+          "type": ["string"],
+          "title": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template"
+        }
+      }
+    },
+    "podAnnotations": {
+      "type": ["object"],
+      "title": "pgweb pod annotations"
+    },
+    "podSecurityContext": {
+      "type": ["object"],
+      "title": "pgweb pod securityContext"
+    },
+    "securityContext": {
+      "type": ["object"],
+      "title": "pgweb container securityContext"
+    },
+    "resources": {
+      "title": "CPU/Memory resource requests/limits",
+      "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.24.0/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements"
+    },
+    "autoscaling": {
+      "type": "object",
+      "title": "Horizontal Pod autoscaler",
+      "required": [],
+      "properties": {
+        "enabled": {
+          "type": ["boolean"],
+          "title": "Enable HPA",
+          "default": "false"
+        },
+        "minReplicas": {
+          "type": ["number"],
+          "title": "minReplicas",
+          "default": "1"
+        },
+        "maxReplicas": {
+          "type": ["number"],
+          "title": "maxReplicas",
+          "default": "100"
+        },
+        "targetCPUUtilizationPercentage": {
+          "type": ["number"],
+          "title": "targetCPUUtilizationPercentage",
+          "default": "80"
+        }
+      }
+    },
+    "nodeSelector": {
+      "type": ["object"]
+    },
+    "tolerations": {
+      "type": ["array"]
+    },
+    "affinity": {
+      "type": ["object"]
+    },
+    "extraArgs": {
+      "type": ["array"]
+    }
+  }
+}
