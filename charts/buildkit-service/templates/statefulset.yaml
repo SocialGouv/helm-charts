@@ -34,7 +34,7 @@ spec:
           command:
             - sh
             - -c
-            - (chown -R 1000:1000 /buildkit-cache; chmod -R 0755 /buildkit-cache;)
+            - (chown 1000:1000 /buildkit-cache; chmod 0755 /buildkit-cache;)
 
       containers:
         - name: {{ .Chart.Name }}
