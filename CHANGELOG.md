@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.11.4 (2023-09-01)
+
+
+### Bug Fixes
+
+* **buildkit-service:** dont recurse chown/chmod on init ([#38](https://github.com/SocialGouv/helm-charts/issues/38)) ([0d6ef05](https://github.com/SocialGouv/helm-charts/commit/0d6ef051473eaf0f0cd460608706a18110a1fbd0))
+
 ## 1.11.3 (2023-08-30)
 
 ## 1.11.2 (2023-08-30)
