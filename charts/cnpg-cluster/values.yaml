@@ -127,9 +127,9 @@ poolers: {}
 #         max_client_conn: "1000"
 #         default_pool_size: "10"
 
-# @param {number} [minSyncReplicas] Minimum of syncrhronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication
+# @param {number} [minSyncReplicas] Minimum of synchrronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication
 minSyncReplicas: 0
-# @param {number} [maxSyncReplicas] Maximum of syncrhronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication
+# @param {number} [maxSyncReplicas] Maximum of synchrronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication
 maxSyncReplicas: 0
 
 # @param {array} [pg_hba] pg_hba entries. See https://www.postgresql.org/docs/9.3/auth-pg-hba-conf.html
