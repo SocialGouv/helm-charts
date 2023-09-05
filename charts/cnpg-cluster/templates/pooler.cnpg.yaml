@@ -5,6 +5,7 @@ metadata:
   name: {{ include "cnpg-cluster.fullname" $ }}-{{ $name }}
   labels:
     {{- include "cnpg-cluster.labels" $ | nindent 4 }}
+    cnpg.io/poolerName: {{ include "cnpg-cluster.fullname" $ }}-{{ $name }}
 spec:
   cluster:
     name: {{ include "cnpg-cluster.fullname" $ }}
