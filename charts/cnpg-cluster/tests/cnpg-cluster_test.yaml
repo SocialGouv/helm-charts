@@ -76,6 +76,12 @@ tests:
         matchSnapshot:
           path: spec
       - template: backup-cron.yaml
+        matchSnapshot:
+          path: spec
+      - template: scheduledbackup.cnpg.yaml
+        matchSnapshot:
+          path: spec
+      - template: backup-cron.yaml
         hasDocuments:
           count: 1
   - it: cluster with custom pgparams

@@ -56,6 +56,68 @@ cluster with enabled backup and recovery:
       pg_hba: null
     storage:
       size: 8Gi
+  2: |
+    concurrencyPolicy: Forbid
+    jobTemplate:
+      spec:
+        backoffLimit: 0
+        template:
+          metadata:
+            labels:
+              app: cnpg-backup-s3-client
+            name: backup-cron
+          spec:
+            containers:
+              - env:
+                  - name: AWS_ACCESS_KEY_ID
+                    valueFrom:
+                      secretKeyRef:
+                        key: bucket_access_key
+                        name: minio
+                  - name: AWS_SECRET_ACCESS_KEY
+                    valueFrom:
+                      secretKeyRef:
+                        key: bucket_secret_key
+                        name: minio
+                  - name: AWS_DEFAULT_REGION
+                    valueFrom:
+                      secretKeyRef:
+                        key: bucket_region
+                        name: minio
+                  - name: AWS_ENDPOINT_URL
+                    value: http://minio:9000
+                  - name: DESTINATION_PATH
+                    value: s3://backups/RELEASE-NAME-cnpg-cluster/dumps
+                  - name: PGPASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        key: password
+                        name: RELEASE-NAME-cnpg-cluster-superuser
+                  - name: PGUSER
+                    valueFrom:
+                      secretKeyRef:
+                        key: username
+                        name: RELEASE-NAME-cnpg-cluster-superuser
+                  - name: PGDATABASE
+                    value: app
+                  - name: PGHOST
+                    value: RELEASE-NAME-cnpg-cluster-r
+                image: ghcr.io/socialgouv/docker/s3-client:1
+                imagePullPolicy: IfNotPresent
+                name: s3-client
+                securityContext:
+                  allowPrivilegeEscalation: false
+            restartPolicy: Never
+            securityContext:
+              fsGroup: 1001
+              runAsGroup: 1001
+              runAsUser: 1001
+    schedule: 4 5 * * 0
+  3: |
+    backupOwnerReference: self
+    cluster:
+      name: RELEASE-NAME-cnpg-cluster
+    schedule: 1 2 3 * * 0
 cluster with monitoring:
   1: |
     apiVersion: postgresql.cnpg.io/v1
