@@ -1,6 +1,7 @@
 suite: test cnpg-cluster
 templates:
   - cluster.cnpg.yaml
+  - pooler.cnpg.yaml
   - backup-cron.yaml
   - scheduledbackup.cnpg.yaml
 tests:
@@ -71,7 +72,14 @@ tests:
       - ./values/recovery.yaml
       - ./values/backup.yaml
     asserts:
-      - matchSnapshot:
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec
+      - template: backup-cron.yaml
+        matchSnapshot:
+          path: spec
+      - template: scheduledbackup.cnpg.yaml
+        matchSnapshot:
           path: spec
       - template: backup-cron.yaml
         hasDocuments:
@@ -113,3 +121,9 @@ tests:
       - template: cluster.cnpg.yaml
         matchSnapshot:
           path: spec.bootstrap
+  - it: cluster with monitoring
+    values:
+      - ./values/monitor.yaml
+    asserts:
+      - template: pooler.cnpg.yaml
+        matchSnapshot: {}

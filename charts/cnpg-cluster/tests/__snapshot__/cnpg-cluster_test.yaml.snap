@@ -11,6 +11,52 @@ cluster with custom pgparams:
     pg_hba: null
 cluster with enabled backup and recovery:
   1: |
+    backup:
+      barmanObjectStore:
+        destinationPath: s3://backups/
+        endpointURL: http://minio:9000
+        s3Credentials:
+          accessKeyId:
+            key: ACCESS_KEY_ID
+            name: minio
+          region:
+            key: DEFAULT_REGION
+            name: minio
+          secretAccessKey:
+            key: ACCESS_SECRET_KEY
+            name: minio
+      retentionPolicy: 30d
+    bootstrap:
+      recovery:
+        recoveryTarget:
+          targetTime: 2020-11-26 15:22:00.00000+00
+        source: recovery-cluster
+    externalClusters:
+      - barmanObjectStore:
+          destinationPath: s3://backups/
+          endpointURL: http://minio:9000
+          s3Credentials:
+            accessKeyId:
+              key: ACCESS_KEY_ID
+              name: minio
+            secretAccessKey:
+              key: ACCESS_SECRET_KEY
+              name: minio
+          serverName: my-cluster-to-restore
+        name: recovery-cluster
+    imageName: ghcr.io/cloudnative-pg/postgis:15
+    imagePullPolicy: IfNotPresent
+    instances: 1
+    maxSyncReplicas: 0
+    minSyncReplicas: 0
+    monitoring:
+      enablePodMonitor: false
+    postgresql:
+      parameters: null
+      pg_hba: null
+    storage:
+      size: 8Gi
+  2: |
     concurrencyPolicy: Forbid
     jobTemplate:
       spec:
@@ -67,57 +113,39 @@ cluster with enabled backup and recovery:
               runAsGroup: 1001
               runAsUser: 1001
     schedule: 4 5 * * 0
-  2: |
-    backup:
-      barmanObjectStore:
-        destinationPath: s3://backups/
-        endpointURL: http://minio:9000
-        s3Credentials:
-          accessKeyId:
-            key: ACCESS_KEY_ID
-            name: minio
-          region:
-            key: DEFAULT_REGION
-            name: minio
-          secretAccessKey:
-            key: ACCESS_SECRET_KEY
-            name: minio
-      retentionPolicy: 30d
-    bootstrap:
-      recovery:
-        recoveryTarget:
-          targetTime: 2020-11-26 15:22:00.00000+00
-        source: recovery-cluster
-    externalClusters:
-      - barmanObjectStore:
-          destinationPath: s3://backups/
-          endpointURL: http://minio:9000
-          s3Credentials:
-            accessKeyId:
-              key: ACCESS_KEY_ID
-              name: minio
-            secretAccessKey:
-              key: ACCESS_SECRET_KEY
-              name: minio
-          serverName: my-cluster-to-restore
-        name: recovery-cluster
-    imageName: ghcr.io/cloudnative-pg/postgis:15
-    imagePullPolicy: IfNotPresent
-    instances: 1
-    maxSyncReplicas: 0
-    minSyncReplicas: 0
-    monitoring:
-      enablePodMonitor: false
-    postgresql:
-      parameters: null
-      pg_hba: null
-    storage:
-      size: 8Gi
   3: |
     backupOwnerReference: self
     cluster:
       name: RELEASE-NAME-cnpg-cluster
     schedule: 1 2 3 * * 0
+cluster with monitoring:
+  1: |
+    apiVersion: postgresql.cnpg.io/v1
+    kind: Pooler
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: cnpg-cluster
+        app.kubernetes.io/version: "15"
+        cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
+        helm.sh/chart: cnpg-cluster-1.11.5
+      name: RELEASE-NAME-cnpg-cluster-rw
+    spec:
+      cluster:
+        name: RELEASE-NAME-cnpg-cluster
+      instances: 3
+  2: |
+    apiVersion: monitoring.coreos.com/v1
+    kind: PodMonitor
+    metadata:
+      name: RELEASE-NAME-cnpg-cluster-rw
+    spec:
+      podMetricsEndpoints:
+        - port: metrics
+      selector:
+        matchLabels:
+          cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
 cluster with pg_basebackup:
   1: |
     - connectionParameters:

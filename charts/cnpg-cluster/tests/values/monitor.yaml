@@ -1,0 +1,6 @@
+monitoring:
+  enablePodMonitor: true
+
+poolers:
+  rw:
+    instances: 3
