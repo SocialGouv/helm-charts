@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.12.1 (2023-09-06)
+
+
+### Bug Fixes
+
+* **cnpg-cluster:** add pooler.monitoring.enabledPodMonitor ([#42](https://github.com/SocialGouv/helm-charts/issues/42)) ([e412ac5](https://github.com/SocialGouv/helm-charts/commit/e412ac5ca8955d1e92079a508acc0172f12a6ead))
+
 ## 1.12.0 (2023-09-06)
 
 
