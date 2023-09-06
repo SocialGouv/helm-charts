@@ -129,23 +129,14 @@ cluster with monitoring:
         app.kubernetes.io/name: cnpg-cluster
         app.kubernetes.io/version: "15"
         cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
-        helm.sh/chart: cnpg-cluster-1.11.6
+        helm.sh/chart: cnpg-cluster-1.12.0
       name: RELEASE-NAME-cnpg-cluster-rw
     spec:
       cluster:
         name: RELEASE-NAME-cnpg-cluster
       instances: 3
-  2: |
-    apiVersion: monitoring.coreos.com/v1
-    kind: PodMonitor
-    metadata:
-      name: RELEASE-NAME-cnpg-cluster-rw
-    spec:
-      podMetricsEndpoints:
-        - port: metrics
-      selector:
-        matchLabels:
-          cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
+      monitoring:
+        enablePodMonitor: true
 cluster with pg_basebackup:
   1: |
     - connectionParameters:
