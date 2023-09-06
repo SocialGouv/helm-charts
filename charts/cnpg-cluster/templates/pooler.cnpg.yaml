@@ -10,19 +10,6 @@ spec:
   cluster:
     name: {{ include "cnpg-cluster.fullname" $ }}
   {{- toYaml $spec | nindent 2 }}
----
-{{- if $.Values.monitoring.enablePodMonitor }}
-apiVersion: monitoring.coreos.com/v1
-kind: PodMonitor
-metadata:
-  name: {{ include "cnpg-cluster.fullname" $ }}-{{ $name }}
-spec:
-  selector:
-    matchLabels:
-      cnpg.io/poolerName: {{ include "cnpg-cluster.fullname" $ }}-{{ $name }}
-  podMetricsEndpoints:
-  - port: metrics
----
-{{- end }}
-
+  monitoring:
+    enablePodMonitor: {{ $.Values.monitoring.enablePodMonitor }}
 {{- end }}
