@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.12.0 (2023-09-06)
+
+
+### Features
+
+* update pg_dump for pg 15 ([#41](https://github.com/SocialGouv/helm-charts/issues/41)) ([862ba82](https://github.com/SocialGouv/helm-charts/commit/862ba82fcabd8a5991caade19b67ae17e7f20113))
+
 ## 1.11.6 (2023-09-05)
 
 
