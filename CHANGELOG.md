@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.12.2 (2023-09-08)
+
+
+### Bug Fixes
+
+* **s3-client:** docker image tag ([8524534](https://github.com/SocialGouv/helm-charts/commit/852453400f73ecd6808c00b0efbdb82ae9288747))
+
 ## 1.12.1 (2023-09-06)
 
 
