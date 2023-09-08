@@ -102,7 +102,7 @@ cluster with enabled backup and recovery:
                     value: app
                   - name: PGHOST
                     value: RELEASE-NAME-cnpg-cluster-r
-                image: ghcr.io/socialgouv/docker/s3-client:1.1
+                image: ghcr.io/socialgouv/docker/s3-client:1.1.0
                 imagePullPolicy: IfNotPresent
                 name: s3-client
                 securityContext:
@@ -129,7 +129,7 @@ cluster with monitoring:
         app.kubernetes.io/name: cnpg-cluster
         app.kubernetes.io/version: "15"
         cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
-        helm.sh/chart: cnpg-cluster-1.12.0
+        helm.sh/chart: cnpg-cluster-1.12.1
       name: RELEASE-NAME-cnpg-cluster-rw
     spec:
       cluster:

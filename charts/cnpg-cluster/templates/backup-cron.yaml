@@ -24,7 +24,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: s3-client
-              image: ghcr.io/socialgouv/docker/s3-client:1.1
+              image: ghcr.io/socialgouv/docker/s3-client:1.1.0
               imagePullPolicy: IfNotPresent
               securityContext:
                 allowPrivilegeEscalation: false
