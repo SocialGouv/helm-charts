@@ -90,6 +90,9 @@ backup:
   # @param {string} [retentionPolicy] RetentionPolicy is the retention policy to be used for backups and WALs (i.e. '60d').
   retentionPolicy: 30d
 
+  # @param {boolean} [enabled] If the first backup has to be immediately start after creation or not
+  immediate: true
+
   # See: https://cloudnative-pg.io/documentation/1.20/backup_recovery/
   # @param {object,null} [barmanObjectStore] Object store credentials and access config
   barmanObjectStore:
@@ -177,8 +180,9 @@ recovery:
   # @param {boolean} [enabled] Enable recovery
   enabled: false
 
+  # Relative to Postgres server timezone
   # @param {string} [targetTime] Time to restore from, in RFC3339 format https://datatracker.ietf.org/doc/html/rfc3339
-  targetTime: "2020-11-26 15:22:00.00000+00"
+  targetTime: "2020-11-26T15:22:00"
 
   # See: https://cloudnative-pg.io/documentation/current/backup_recovery/
   # @param {object,null} [barmanObjectStore] Object store credentials and access config

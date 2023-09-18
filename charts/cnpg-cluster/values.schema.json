@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://raw.githubusercontent.com/socialgouv/helm-charts/v1/charts/cnpg-cluster/values.schema.json",
   "required": [],
   "properties": {
@@ -119,6 +119,11 @@
           "description": "The retention policy is expressed in the form of XXu where XX is a positive integer and\nu is in [dwm] - days, weeks, months.",
           "default": "30d"
         },
+        "immediate": {
+          "type": ["boolean"],
+          "title": "If the first backup has to be immediately start after creation or not",
+          "default": "true"
+        },
         "barmanObjectStore": {
           "type": ["object", "null"],
           "title": "Object store credentials and access config",
@@ -140,12 +145,12 @@
     },
     "minSyncReplicas": {
       "type": ["number"],
-      "title": "Minimum of syncrhronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication",
+      "title": "Minimum of synchrronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication",
       "default": "0"
     },
     "maxSyncReplicas": {
       "type": ["number"],
-      "title": "Maximum of syncrhronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication",
+      "title": "Maximum of synchrronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication",
       "default": "0"
     },
     "pg_hba": {
@@ -235,7 +240,8 @@
         "targetTime": {
           "type": ["string"],
           "title": "Time to restore from, in RFC3339 format https://datatracker.ietf.org/doc/html/rfc3339",
-          "default": "\"2020-11-26 15:22:00.00000+00\""
+          "description": "Relative to Postgres server timezone",
+          "default": "\"2020-11-26T15:22:00\""
         },
         "barmanObjectStore": {
           "type": ["object", "null"],
