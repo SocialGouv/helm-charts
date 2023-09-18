@@ -145,12 +145,12 @@
     },
     "minSyncReplicas": {
       "type": ["number"],
-      "title": "Minimum of synchrronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication",
+      "title": "Minimum of synchronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication",
       "default": "0"
     },
     "maxSyncReplicas": {
       "type": ["number"],
-      "title": "Maximum of synchrronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication",
+      "title": "Maximum of synchronous replicas. see https://cloudnative-pg.io/documentation/current/replication/#synchronous-replication",
       "default": "0"
     },
     "pg_hba": {
