@@ -120,7 +120,7 @@ cluster with enabled backup and recovery:
     backupOwnerReference: self
     cluster:
       name: RELEASE-NAME-cnpg-cluster
-    immediate: "true"
+    immediate: true
     schedule: 1 2 3 * * 0
 cluster with monitoring:
   1: |
@@ -133,7 +133,7 @@ cluster with monitoring:
         app.kubernetes.io/name: cnpg-cluster
         app.kubernetes.io/version: "15"
         cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
-        helm.sh/chart: cnpg-cluster-1.12.2
+        helm.sh/chart: cnpg-cluster-1.12.3
       name: RELEASE-NAME-cnpg-cluster-rw
     spec:
       cluster:

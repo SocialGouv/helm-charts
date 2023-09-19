@@ -10,5 +10,5 @@ spec:
   cluster:
     name: {{ include "cnpg-cluster.fullname" $ }}
   schedule: "{{ .Values.backup.schedule }}"
-  immediate: "{{ (or .Values.backup.immediate "true") }}"
+  immediate: {{ .Values.backup.immediate }}
 {{- end }}
