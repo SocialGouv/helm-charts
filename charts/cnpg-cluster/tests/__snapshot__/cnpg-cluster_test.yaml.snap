@@ -122,6 +122,39 @@ cluster with enabled backup and recovery:
       name: RELEASE-NAME-cnpg-cluster
     immediate: true
     schedule: 1 2 3 * * 0
+cluster with latest recovery enabled:
+  1: |
+    bootstrap:
+      recovery:
+        source: recovery-cluster
+    externalClusters:
+      - barmanObjectStore:
+          destinationPath: s3://backups/
+          endpointURL: http://minio:9000
+          s3Credentials:
+            accessKeyId:
+              key: ACCESS_KEY_ID
+              name: minio
+            region:
+              key: ACCESS_REGION
+              name: minio
+            secretAccessKey:
+              key: ACCESS_SECRET_KEY
+              name: minio
+          serverName: my-cluster-to-restore
+        name: recovery-cluster
+    imageName: ghcr.io/cloudnative-pg/postgis:15
+    imagePullPolicy: IfNotPresent
+    instances: 1
+    maxSyncReplicas: 0
+    minSyncReplicas: 0
+    monitoring:
+      enablePodMonitor: false
+    postgresql:
+      parameters: null
+      pg_hba: null
+    storage:
+      size: 8Gi
 cluster with monitoring:
   1: |
     apiVersion: postgresql.cnpg.io/v1
@@ -133,7 +166,7 @@ cluster with monitoring:
         app.kubernetes.io/name: cnpg-cluster
         app.kubernetes.io/version: "15"
         cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
-        helm.sh/chart: cnpg-cluster-1.12.3
+        helm.sh/chart: cnpg-cluster-1.12.4
       name: RELEASE-NAME-cnpg-cluster-rw
     spec:
       cluster:

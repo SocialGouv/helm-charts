@@ -67,6 +67,13 @@ tests:
       - template: cluster.cnpg.yaml
         matchSnapshot:
           path: spec
+  - it: cluster with latest recovery enabled
+    values:
+      - ./values/recovery2.yaml
+    asserts:
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec
   - it: cluster with enabled backup and recovery
     values:
       - ./values/recovery.yaml
