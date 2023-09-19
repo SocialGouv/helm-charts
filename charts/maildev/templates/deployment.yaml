@@ -46,6 +46,9 @@ spec:
             httpGet:
               path: /healthz
               port: http
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
