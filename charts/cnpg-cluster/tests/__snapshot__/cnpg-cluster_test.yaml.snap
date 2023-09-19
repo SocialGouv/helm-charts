@@ -39,6 +39,9 @@ cluster with enabled backup and recovery:
             accessKeyId:
               key: ACCESS_KEY_ID
               name: minio
+            region:
+              key: ACCESS_REGION
+              name: minio
             secretAccessKey:
               key: ACCESS_SECRET_KEY
               name: minio
@@ -117,6 +120,7 @@ cluster with enabled backup and recovery:
     backupOwnerReference: self
     cluster:
       name: RELEASE-NAME-cnpg-cluster
+    immediate: "true"
     schedule: 1 2 3 * * 0
 cluster with monitoring:
   1: |
@@ -129,7 +133,7 @@ cluster with monitoring:
         app.kubernetes.io/name: cnpg-cluster
         app.kubernetes.io/version: "15"
         cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
-        helm.sh/chart: cnpg-cluster-1.12.1
+        helm.sh/chart: cnpg-cluster-1.12.2
       name: RELEASE-NAME-cnpg-cluster-rw
     spec:
       cluster:
@@ -164,6 +168,9 @@ cluster with recovery enabled:
           s3Credentials:
             accessKeyId:
               key: ACCESS_KEY_ID
+              name: minio
+            region:
+              key: ACCESS_REGION
               name: minio
             secretAccessKey:
               key: ACCESS_SECRET_KEY
