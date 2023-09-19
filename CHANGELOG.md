@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.12.5 (2023-09-19)
+
+
+### Bug Fixes
+
+* **cnpg:** no default targetTime ([#45](https://github.com/SocialGouv/helm-charts/issues/45)) ([21d8e98](https://github.com/SocialGouv/helm-charts/commit/21d8e989f7bbd53b4152508b03bc66689016cbe7))
+
 ## 1.12.4 (2023-09-19)
 
 
