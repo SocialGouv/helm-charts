@@ -32,6 +32,9 @@ cron enabled:
                 path: /healthz
                 port: http
             resources: {}
+            securityContext:
+              runAsGroup: 1000
+              runAsUser: 1000
             volumeMounts:
               - mountPath: /home/node/maildev-data
                 name: data
@@ -139,6 +142,9 @@ custom resources:
               requests:
                 cpu: 12m
                 memory: 10m
+            securityContext:
+              runAsGroup: 1000
+              runAsUser: 1000
             volumeMounts:
               - mountPath: /home/node/maildev-data
                 name: data
@@ -179,6 +185,9 @@ default manifest:
                 path: /healthz
                 port: http
             resources: {}
+            securityContext:
+              runAsGroup: 1000
+              runAsUser: 1000
             volumeMounts:
               - mountPath: /home/node/maildev-data
                 name: data
@@ -219,6 +228,9 @@ persistence and existingClaim enabled:
                 path: /healthz
                 port: http
             resources: {}
+            securityContext:
+              runAsGroup: 1000
+              runAsUser: 1000
             volumeMounts:
               - mountPath: /home/node/maildev-data
                 name: data
@@ -260,6 +272,9 @@ persistence enabled:
                 path: /healthz
                 port: http
             resources: {}
+            securityContext:
+              runAsGroup: 1000
+              runAsUser: 1000
             volumeMounts:
               - mountPath: /home/node/maildev-data
                 name: data
