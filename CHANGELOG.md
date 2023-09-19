@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.12.4 (2023-09-19)
+
+
+### Bug Fixes
+
+* **cnpg:** immediate is boolean ([#44](https://github.com/SocialGouv/helm-charts/issues/44)) ([aaa151e](https://github.com/SocialGouv/helm-charts/commit/aaa151e33caef481a40b787f9bdd919a7a8eaccf))
+
 ## 1.12.3 (2023-09-19)
 
 
