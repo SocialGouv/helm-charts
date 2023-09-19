@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.12.6 (2023-09-19)
+
+
+### Bug Fixes
+
+* securityContext maildev ([#46](https://github.com/SocialGouv/helm-charts/issues/46)) ([ff8786b](https://github.com/SocialGouv/helm-charts/commit/ff8786bf6d300bbf13d05ced708470dedb866f87))
+
 ## 1.12.5 (2023-09-19)
 
 
