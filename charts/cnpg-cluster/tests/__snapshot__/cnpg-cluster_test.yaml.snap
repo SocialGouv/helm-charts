@@ -166,7 +166,7 @@ cluster with monitoring:
         app.kubernetes.io/name: cnpg-cluster
         app.kubernetes.io/version: "15"
         cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
-        helm.sh/chart: cnpg-cluster-1.12.4
+        helm.sh/chart: cnpg-cluster-1.12.5
       name: RELEASE-NAME-cnpg-cluster-rw
     spec:
       cluster:
