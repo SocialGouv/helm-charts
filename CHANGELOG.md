@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.13.0 (2023-09-25)
+
+
+### Features
+
+* **cnpg:** add values.resources ([#47](https://github.com/SocialGouv/helm-charts/issues/47)) ([3481e53](https://github.com/SocialGouv/helm-charts/commit/3481e53edf0927a449f9161a08189b2001ab002e))
+
 ## 1.12.6 (2023-09-19)
 
 
