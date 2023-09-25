@@ -54,6 +54,10 @@ resources:
 # @param {object} [nodeSelector] Postgres instances labels for pod assignment
 nodeSelector: {}
 
+# Name of the priority class which will be used in every generated Pod, if the PriorityClass specified does not exist, the pod will not be able to schedule. Please refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass for more information
+# @param {string} [priorityClassName] Name of the priority class which will be used in every generated Pod
+priorityClassName: ""
+
 # @param {array} [tolerations] Postgres instances labels for tolerations pod assignment
 tolerations: []
 

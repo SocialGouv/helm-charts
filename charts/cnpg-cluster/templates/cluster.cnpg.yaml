@@ -92,6 +92,10 @@ spec:
     source: {{ .Values.replica.source }}
   {{- end }}
 
+  {{- if .Values.priorityClassName }}
+  priorityClassName: {{ .Values.priorityClassName }}
+  {{- end }}
+
   bootstrap:
     {{- if .Values.recovery.enabled }}
     recovery:
