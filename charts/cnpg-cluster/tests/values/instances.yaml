@@ -1,1 +1,8 @@
 instances: 2
+resources:
+  requests:
+    cpu: 0.42
+    memory: 314Mb
+  limits:
+    cpu: 0.84
+    memory: 628Mb

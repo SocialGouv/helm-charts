@@ -1,3 +1,11 @@
+cluster with custom instances:
+  1: |
+    limits:
+      cpu: 0.84
+      memory: 628Mb
+    requests:
+      cpu: 0.42
+      memory: 314Mb
 cluster with custom pg_hba:
   1: |
     parameters: null
@@ -166,7 +174,7 @@ cluster with monitoring:
         app.kubernetes.io/name: cnpg-cluster
         app.kubernetes.io/version: "15"
         cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
-        helm.sh/chart: cnpg-cluster-1.12.5
+        helm.sh/chart: cnpg-cluster-1.12.6
       name: RELEASE-NAME-cnpg-cluster-rw
     spec:
       cluster:
