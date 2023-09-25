@@ -2,6 +2,14 @@ apiVersion: v1
 entries:
   buildkit-service:
   - apiVersion: v2
+    created: "2023-09-25T14:57:08.565786449Z"
+    description: Helm chart for buildkit service deployment
+    digest: 9d3e7c63cb6ed7e0acfc1e27b4430a03a9ef43ac9a68d391bbe50908712587c5
+    name: buildkit-service
+    urls:
+    - https://SocialGouv.github.io/helm-charts/buildkit-service-1.14.0.tgz
+    version: 1.14.0
+  - apiVersion: v2
     created: "2023-09-25T13:45:09.933472563Z"
     description: Helm chart for buildkit service deployment
     digest: 541b7e680a3e4ea09ad891afeaf5cc6bf8dd9508f6dbaf2a9c01d9a3003798a8
@@ -322,6 +330,16 @@ entries:
     - https://SocialGouv.github.io/helm-charts/buildkit-service-1.6.0.tgz
     version: 1.6.0
   cnpg-cluster:
+  - apiVersion: v2
+    appVersion: "15"
+    created: "2023-09-25T14:57:08.566691475Z"
+    description: A Helm chart to create cloudnative-pg.io clusters
+    digest: 93a774f5eb797eaa7343d3e806545bf1635a5d383ef63ec71c9fdae38ca22997
+    name: cnpg-cluster
+    type: application
+    urls:
+    - https://SocialGouv.github.io/helm-charts/cnpg-cluster-1.14.0.tgz
+    version: 1.14.0
   - apiVersion: v2
     appVersion: "15"
     created: "2023-09-25T13:45:09.93459568Z"
@@ -904,6 +922,14 @@ entries:
     version: 1.1.0
   maildev:
   - apiVersion: v2
+    created: "2023-09-25T14:57:08.567147887Z"
+    description: A Helm chart for maildev
+    digest: 4d3d4d99cb40c91765c2b2a6c5db00c5a505d607c2c821885783629996fdd644
+    name: maildev
+    urls:
+    - https://SocialGouv.github.io/helm-charts/maildev-1.14.0.tgz
+    version: 1.14.0
+  - apiVersion: v2
     created: "2023-09-25T13:45:09.935253491Z"
     description: A Helm chart for maildev
     digest: 80a5d285d9b4a301a35baadd837294c3bd98efe2feeaf47191954711e948348c
@@ -1393,6 +1419,14 @@ entries:
     version: 1.0.0
   pgweb:
   - apiVersion: v2
+    created: "2023-09-25T14:57:08.567677402Z"
+    description: A Helm chart for pgweb
+    digest: b9737508b895ee1ca1f92d81e400f131424007bd380605b56a1a9846f971b2f8
+    name: pgweb
+    urls:
+    - https://SocialGouv.github.io/helm-charts/pgweb-1.14.0.tgz
+    version: 1.14.0
+  - apiVersion: v2
     created: "2023-09-25T13:45:09.936038703Z"
     description: A Helm chart for pgweb
     digest: 01dbb8b5ebae4cdfb6479983f7d3cf54ef728a4831e493749be7259d3393a1f6
@@ -1632,4 +1666,4 @@ entries:
     urls:
     - https://SocialGouv.github.io/helm-charts/pgweb-1.9.0.tgz
     version: 1.9.0
-generated: "2023-09-25T13:45:09.932353645Z"
+generated: "2023-09-25T14:57:08.564949526Z"
