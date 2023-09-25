@@ -34,6 +34,9 @@ tests:
       - template: cluster.cnpg.yaml
         matchSnapshot:
           path: spec.resources
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.priorityClassName
   - it: cluster with custom image tag
     values:
       - ./values/tag.yaml
