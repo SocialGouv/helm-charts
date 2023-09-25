@@ -31,6 +31,9 @@ tests:
         equal:
           path: spec.instances
           value: 2
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.resources
   - it: cluster with custom image tag
     values:
       - ./values/tag.yaml
