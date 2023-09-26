@@ -167,23 +167,11 @@ cluster with latest recovery enabled:
       size: 8Gi
 cluster with monitoring:
   1: |
-    apiVersion: postgresql.cnpg.io/v1
-    kind: Pooler
-    metadata:
-      labels:
-        app.kubernetes.io/instance: RELEASE-NAME
-        app.kubernetes.io/managed-by: Helm
-        app.kubernetes.io/name: cnpg-cluster
-        app.kubernetes.io/version: "15"
-        cnpg.io/poolerName: RELEASE-NAME-cnpg-cluster-rw
-        helm.sh/chart: cnpg-cluster-1.13.0
-      name: RELEASE-NAME-cnpg-cluster-rw
-    spec:
-      cluster:
-        name: RELEASE-NAME-cnpg-cluster
-      instances: 3
-      monitoring:
-        enablePodMonitor: true
+    cluster:
+      name: RELEASE-NAME-cnpg-cluster
+    instances: 3
+    monitoring:
+      enablePodMonitor: true
 cluster with pg_basebackup:
   1: |
     - connectionParameters:
