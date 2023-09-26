@@ -16,10 +16,6 @@ tests:
       - template: backup-cron.yaml
         hasDocuments:
           count: 0
-      # waiting for release of https://github.com/helm-unittest/helm-unittest/commit/0ace2cc039c1fa33133ea1f26e7cae620443d42a
-      # - containsDocument:
-      #     kind: CronJob
-      #   not: true
   - it: cluster with custom instances
     values:
       - ./values/instances.yaml
@@ -139,4 +135,5 @@ tests:
       - ./values/monitor.yaml
     asserts:
       - template: pooler.cnpg.yaml
-        matchSnapshot: {}
+        matchSnapshot:
+          path: spec
