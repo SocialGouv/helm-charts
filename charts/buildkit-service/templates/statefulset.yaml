@@ -28,6 +28,7 @@ spec:
           image: alpine:3
           securityContext:
             runAsUser: 0
+            runAsNonRoot: false
           volumeMounts:
             - name: cache
               mountPath: /buildkit-cache
@@ -92,6 +93,7 @@ spec:
               type: Unconfined
             runAsUser: 1000
             runAsGroup: 1000
+            runAsNonRoot: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
