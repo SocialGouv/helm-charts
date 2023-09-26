@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.14.2 (2023-09-26)
+
+
+### Bug Fixes
+
+* buildkit default storage ReadWriteOnce ([#49](https://github.com/SocialGouv/helm-charts/issues/49)) ([3c0eb76](https://github.com/SocialGouv/helm-charts/commit/3c0eb76125638a00faf7cba0b90db443e02c3566))
+
 ## 1.14.1 (2023-09-26)
 
 
