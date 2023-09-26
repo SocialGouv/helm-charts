@@ -54,7 +54,7 @@ storage:
   className: ""
   size: "500Gi"
   accessModes:
-    - "ReadWriteMany"
+    - "ReadWriteOnce"
 
 worker:
   platforms: ["linux/amd64"]
