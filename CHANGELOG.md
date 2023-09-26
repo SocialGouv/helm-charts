@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.14.3 (2023-09-26)
+
+
+### Bug Fixes
+
+* compat kyverno runAsNonRoot ([#51](https://github.com/SocialGouv/helm-charts/issues/51)) ([7ab4be5](https://github.com/SocialGouv/helm-charts/commit/7ab4be5ca0f4e18afb9c4fba3ff32a45a1630800))
+
 ## 1.14.2 (2023-09-26)
 
 
