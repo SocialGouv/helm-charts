@@ -24,7 +24,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: s3-client
-              image: ghcr.io/socialgouv/docker/s3-client:1.1.0
+              image: ghcr.io/socialgouv/docker/s3-client:1.2.0
               imagePullPolicy: IfNotPresent
               securityContext:
                 allowPrivilegeEscalation: false
@@ -62,5 +62,6 @@ spec:
                   value: {{ .Values.dbName }}
                 - name: PGHOST
                   value: {{ include "cnpg-cluster.fullname" $ }}-r
-
+                - name: RETENTION_DAYS
+                  value: {{ .Values.backup.sqlDumpRetentionDays }}
 {{- end}}

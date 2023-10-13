@@ -123,6 +123,11 @@
           "description": "The retention policy is expressed in the form of XXu where XX is a positive integer and\nu is in [dwm] - days, weeks, months.",
           "default": "30d"
         },
+        "sqlDumpRetentionDays": {
+          "type": ["string"],
+          "title": "Retention period in days for SQL dumps",
+          "default": "30"
+        },
         "immediate": {
           "type": ["boolean"],
           "title": "If the first backup has to be immediately start after creation or not",

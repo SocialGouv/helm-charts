@@ -94,6 +94,9 @@ backup:
   # @param {string} [retentionPolicy] RetentionPolicy is the retention policy to be used for backups and WALs (i.e. '60d').
   retentionPolicy: 30d
 
+  # @param {string} [sqlDumpRetentionDays] Retention period in days for sql dumps
+  sqlDumpRetentionDays: "30"
+
   # @param {boolean} [enabled] If the first backup has to be immediately start after creation or not
   immediate: true
 
