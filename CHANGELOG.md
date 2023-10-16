@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.15.0 (2023-10-16)
+
+
+### Features
+
+* **cnpg:** Add new sqlDumpRetentionDays option to rotate dumps ([#52](https://github.com/SocialGouv/helm-charts/issues/52)) ([26bf012](https://github.com/SocialGouv/helm-charts/commit/26bf01239d25b9f87645ac04370a5659fac880b2))
+
 ## 1.14.3 (2023-09-26)
 
 
