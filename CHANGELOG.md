@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.15.1 (2023-10-17)
+
+
+### Bug Fixes
+
+* **cnpg:** force retention days to string ([976044d](https://github.com/SocialGouv/helm-charts/commit/976044d8c8ee23eb9f052d8b5b298127a384f4a6))
+
 ## 1.15.0 (2023-10-16)
 
 
