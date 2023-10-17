@@ -116,7 +116,7 @@ cluster with enabled backup and recovery:
                   - name: PGHOST
                     value: RELEASE-NAME-cnpg-cluster-r
                   - name: RETENTION_DAYS
-                    value: 30
+                    value: "30"
                 image: ghcr.io/socialgouv/docker/s3-client:1.2.0
                 imagePullPolicy: IfNotPresent
                 name: s3-client

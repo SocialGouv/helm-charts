@@ -63,5 +63,5 @@ spec:
                 - name: PGHOST
                   value: {{ include "cnpg-cluster.fullname" $ }}-r
                 - name: RETENTION_DAYS
-                  value: {{ .Values.backup.sqlDumpRetentionDays }}
+                  value: "{{ .Values.backup.sqlDumpRetentionDays }}"
 {{- end}}
