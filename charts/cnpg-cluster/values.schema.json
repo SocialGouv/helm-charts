@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "$id": "https://raw.githubusercontent.com/socialgouv/helm-charts/v1/charts/cnpg-cluster/values.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema",
   "required": [],
   "properties": {
@@ -125,7 +126,7 @@
         },
         "sqlDumpRetentionDays": {
           "type": ["string"],
-          "title": "Retention period in days for sql dumps",
+          "title": "Retention period in days for SQL dumps",
           "default": "\"30\""
         },
         "immediate": {
