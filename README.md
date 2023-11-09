@@ -14,6 +14,7 @@ See on [GitHub](https://github.com/SocialGouv/helm-charts).
 | [maildev](./charts/maildev)                   | [maildev](https://github.com/maildev/maildev) SMTP      |
 | [buildkit-service](./charts/buildkit-service) | [buildkit](https://github.com/moby/buildkit)            |
 | [pgweb](./charts/pgweb)                       | [pgweb](https://hub.docker.com/r/sosedoff/pgweb)        |
+| [clamav](./charts/clamav)                     | [ClamAV](https://www.clamav.net/) + Rest API            |
 
 Issues and contributions welcome 🤗
 
