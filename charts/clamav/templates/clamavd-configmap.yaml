@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clamavd-configmap
+data:
+  clamd.conf: |-
+    {{ .Files.Get "clamd.conf" | nindent 4 }}
