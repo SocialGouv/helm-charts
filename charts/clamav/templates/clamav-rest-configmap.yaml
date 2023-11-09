@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clamav-rest-configmap
+data:
+  # property-like keys; each key maps to a simple value
+  node-env: 'production'
+  clamd-ip: 'clamavd-service'
+  app-form-key: "{{ .Values.clamavRest.app.formKey }}"
+  app-max-file-size: "{{ .Values.clamavRest.app.maxFilesSize }}"

@@ -1,0 +1,12 @@
+clamavd:
+  image:
+    name: clamav/clamav
+    version: 1.2.1
+
+clamavRest:
+  image:
+    name: benzino77/clamav-rest-api
+    version: 1.2.2
+  app:
+    maxFileSize: "26214400"
+    formKey: "FILES"

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Unique key of the Deployment instance
+  name: clamavd
+  labels:
+    app: clamavd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clamavd
+  template:
+    metadata:
+      labels:
+        # Apply this label to pods and default
+        # the Deployment label selector to this value
+        app: clamavd
+    spec:
+      securityContext:
+        runAsNonRoot: false
+      containers:
+        - name: clamavd
+          # Run this image
+          image: "{{ .Values.clamavd.image.name }}:{{ .Values.clamavd.image.version }}"
+          ports:
+            - containerPort: 3310
+              protocol: TCP
+              name: clamavd-port
+          volumeMounts:
+            - name: clamavd-conf
+              mountPath: "/etc/clamav/clamd.conf"
+              subPath: "clamd.conf"
+      volumes:
+        - name: clamavd-conf
+          configMap:
+            name: clamavd-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clamavd-service
+spec:
+  selector:
+    app: clamavd
+  ports:
+    - protocol: TCP
+      port: 3310
+      targetPort: 3310
