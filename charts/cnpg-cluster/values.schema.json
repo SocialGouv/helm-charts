@@ -1,7 +1,7 @@
 {
   "type": "object",
-  "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://raw.githubusercontent.com/socialgouv/helm-charts/v1/charts/cnpg-cluster/values.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "required": [],
   "properties": {
     "instances": {
@@ -61,7 +61,8 @@
     },
     "priorityClassName": {
       "type": ["string"],
-      "title": "Name of the priority class which will be used in every generated Pod, if the PriorityClass specified does not exist, the pod will not be able to schedule. Please refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass for more information"
+      "title": "Name of the priority class which will be used in every generated Pod",
+      "description": "Name of the priority class which will be used in every generated Pod, if the PriorityClass specified does not exist, the pod will not be able to schedule. Please refer to https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass for more information"
     },
     "tolerations": {
       "type": ["array"],
@@ -126,7 +127,7 @@
         "sqlDumpRetentionDays": {
           "type": ["string"],
           "title": "Retention period in days for SQL dumps",
-          "default": "30"
+          "default": "\"30\""
         },
         "immediate": {
           "type": ["boolean"],
@@ -249,8 +250,7 @@
         "targetTime": {
           "type": ["string"],
           "title": "Time to restore from, in RFC3339 format https://datatracker.ietf.org/doc/html/rfc3339",
-          "description": "Relative to Postgres server timezone",
-          "default": "\"2020-11-26T15:22:00\""
+          "description": "Relative to Postgres server timezone"
         },
         "barmanObjectStore": {
           "type": ["object", "null"],
@@ -260,7 +260,10 @@
       }
     },
     "postInitApplicationSQL": {
-      "type": ["string"],
+      "type": ["array"],
+      "items": {
+        "type": "string"
+      },
       "title": "List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)"
     },
     "postInitApplicationSQLRefs": {
