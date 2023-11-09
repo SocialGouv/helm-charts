@@ -222,3 +222,11 @@ postInitApplicationSQLRefs:
   # secretRefs:
   # - name: post-init-sql-secret
   #   key: secret.sql
+
+dumpReplication:
+  enabled: true
+  imageRclone:
+    pullSecrets: 
+    name: ghcr.io/socialgouv/docker/s3-client
+    tag: 
+  config: 

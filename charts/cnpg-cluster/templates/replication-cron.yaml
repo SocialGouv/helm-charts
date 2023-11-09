@@ -1,0 +1,59 @@
+{{- if .Values.dumpReplication.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  labels:
+    app: cnpg-replication-s3-client
+  name: {{ include "cnpg-cluster.fullname" $ }}-replication-cron
+spec:
+  schedule: {{ or .Values.backup.sqlDumpSchedule .Values.backup.schedule "0 0 * * *" }}
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          labels:
+            app: cnpg-replication-s3-client
+          name: replication-cron
+        spec:
+          securityContext:
+            runAsUser: 1001
+            runAsGroup: 1001
+            fsGroup: 1001
+          restartPolicy: Never
+          containers:
+            - name: s3-replication
+              image: "{{ .Values.dumpReplication.imageRclone.name }}:{{ .Values.dumpReplication.imageRclone.tag }}"
+              imagePullPolicy: IfNotPresent
+{{- if .Values.dumpReplication.imageRclone.imagePullSecret }}
+              imagePullSecret:
+                name: docker-credentials
+{{- end-}}
+              securityContext:
+                allowPrivilegeEscalation: false
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Values.backup.barmanObjectStore.s3Credentials.accessKeyId.name  }}
+                      key: bucket_access_key
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Values.backup.barmanObjectStore.s3Credentials.secretAccessKey.name }}
+                      key: bucket_secret_key
+                - name: AWS_DEFAULT_REGION
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Values.backup.barmanObjectStore.s3Credentials.region.name }}
+                      key: bucket_region
+                - name: AWS_ENDPOINT_URL
+                  value: {{ .Values.backup.barmanObjectStore.endpointURL }}
+                - name: DESTINATION_PATH
+                  value: {{ trimSuffix "/" .Values.backup.barmanObjectStore.destinationPath }}/{{ include "cnpg-cluster.fullname" . }}/dumps
+                - name: RETENTION_DAYS
+                  value: "{{ .Values.backup.sqlDumpRetentionDays }}"
+                
+            
+{{- end}}
