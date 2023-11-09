@@ -210,7 +210,7 @@ recovery:
     #     key:
 
 # @param {string[]} [postInitApplicationSQL] List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)
-postInitApplicationSQL: ""
+postInitApplicationSQL: []
 
 # Points references to ConfigMaps or Secrets which contain SQL files, the general implementation order to these references is from all Secrets to all ConfigMaps, and inside Secrets or ConfigMaps, the implementation order is same as the order of each array (by default empty
 # See https://cloudnative-pg.io/documentation/current/api_reference/#postinitapplicationsqlrefs
