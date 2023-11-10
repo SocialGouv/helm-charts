@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.17.2 (2023-11-10)
+
+
+### Bug Fixes
+
+* **vaultwarden:** fix directory structure ([e91f452](https://github.com/SocialGouv/helm-charts/commit/e91f4524bc43907663f6d108b2ee8434e64feb51))
+
 ## 1.17.1 (2023-11-10)
 
 
