@@ -62,13 +62,4 @@ spec:
               name: {{ .Values.service.name }}
               port:
                 name: "http"
-        {{- if .Values.websocket.enabled }}
-        - path: {{ $ingress.pathWs }}
-          pathType: {{ $ingress.pathTypeWs }}
-          backend:
-            service:
-              name: {{ .Values.service.name }}
-              port:
-                name: "websocket"
-        {{- end }}
 {{- end }}

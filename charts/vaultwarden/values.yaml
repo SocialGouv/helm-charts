@@ -11,7 +11,7 @@ image:
   ## @param image.tag Vaultwarden image tag
   ## Ref: https://hub.docker.com/r/vaultwarden/server/tags
   ##
-  tag: "1.29.2-alpine"
+  tag: "1.30.0-alpine"
   ## @param image.pullPolicy Vaultwarden image pull policy
   ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
@@ -27,14 +27,7 @@ image:
 ## Example: https://warden.contoso.com:8443
 ##
 domain: ""
-## @param websocket.enabled Enable websocket notifications
-## @param websocket.address Websocket listen address
-## @param websocket.port Websocket listen port
-##
-websocket:
-  enabled: true
-  address: "0.0.0.0"
-  port: 3012
+
 ## @param rocket.port Rocket port
 ## @param rocket.workers Rocket number of workers
 ##
@@ -160,9 +153,6 @@ ingress:
   ## @param ingress.path Default application path for the ingress
   ##
   path: "/"
-  ## @param ingress.pathWs Path for the websocket ingress
-  ##
-  pathWs: "/notifications/hub"
   ## @param ingress.pathType Path type for the ingress
   ## Ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
   ##

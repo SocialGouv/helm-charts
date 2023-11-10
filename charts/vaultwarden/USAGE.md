@@ -1,4 +1,3 @@
-
 # Vaultwarden
 
 [Vaultwarden](https://github.com/dani-garcia/vaultwarden), is an alternative implementation of the Bitwarden server API written in Rust and compatible with [upstream Bitwarden clients](https://bitwarden.com/download/).
@@ -240,9 +239,6 @@ helm -n $NAMESPACE uninstall $RELEASE_NAME
 | `image.pullPolicy`  | Vaultwarden image pull policy                 | `IfNotPresent`       |
 | `image.pullSecrets` | Specify docker-registry secret names          | `[]`                 |
 | `domain`            | Domain name where the application is accessed | `""`                 |
-| `websocket.enabled` | Enable websocket notifications                | `true`               |
-| `websocket.address` | Websocket listen address                      | `0.0.0.0`            |
-| `websocket.port`    | Websocket listen port                         | `3012`               |
 | `rocket.port`       | Rocket port                                   | `8080`               |
 | `rocket.workers`    | Rocket number of workers                      | `10`                 |
 | `webVaultEnabled`   | Enable Web Vault                              | `true`               |
@@ -285,7 +281,6 @@ helm -n $NAMESPACE uninstall $RELEASE_NAME
 | `ingress.tls`                     | Enable TLS on the ingress resource.                                            | `true`               |
 | `ingress.hostname`                | Hostname for the ingress.                                                      | `warden.contoso.com` |
 | `ingress.path`                    | Default application path for the ingress                                       | `/`                  |
-| `ingress.pathWs`                  | Path for the websocket ingress                                                 | `/notifications/hub` |
 | `ingress.pathType`                | Path type for the ingress                                                      | `Prefix`             |
 | `ingress.pathTypeWs`              | Path type for the ingress                                                      | `Exact`              |
 | `ingress.tlsSecret`               | Kubernetes secret containing the SSL certificate when using the "nginx" class. | `""`                 |
