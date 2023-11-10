@@ -27,7 +27,7 @@ Add the repository:
 helm repo add vaultwarden https://guerzon.github.io/vaultwarden
 ```
 
-Refer to the detailed documentation [here](./charts/vaultwarden/README.md).
+Refer to the detailed documentation [here](./USAGE.md).
 
 ## Disclaimer
 
@@ -41,7 +41,7 @@ See [LICENSE](./LICENSE).
 
 ## Author
 
-This Helm chart was created and maintained by [Lester Guerzon](https://blog.pidnull.io).
+This Helm chart was originally created by [Lester Guerzon](https://blog.pidnull.io).
 
 ### Credits
 
