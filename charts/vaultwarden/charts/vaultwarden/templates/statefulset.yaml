@@ -47,6 +47,10 @@ spec:
       tolerations:
         {{- toYaml .Values.tolerations | nindent 8 }}
       {{- end }}
+      securityContext:
+        runAsUser: {{ .Values.runAsUser }}
+        runAsGroup: {{ .Values.runAsUser }}
+        fsGroup: {{ .Values.runAsUser }}
       {{- if .Values.initContainers }}
       initContainers:
         {{- toYaml .Values.initContainers | nindent 8 }}
@@ -58,6 +62,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "vaultwarden.fullname" . }}
+          securityContext:
+            allowPrivilegeEscalation: false
           env:
             {{- if or (.Values.smtp.username.value) (.Values.smtp.username.existingSecretKey )}}
             - name: SMTP_USERNAME
