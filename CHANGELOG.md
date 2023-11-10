@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.17.3 (2023-11-10)
+
+
+### Bug Fixes
+
+* **bitwarden:** upgrade chart and remove websockets ([77e1715](https://github.com/SocialGouv/helm-charts/commit/77e17158a2cc6f44dca9f5c5a4b9928900b3aa79))
+
 ## 1.17.2 (2023-11-10)
 
 
