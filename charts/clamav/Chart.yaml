@@ -1,4 +1,4 @@
 apiVersion: v2
 name: clamav
-version: 1.16.3
+version: 1.17.0
 description: A ClamAV service with a REST API

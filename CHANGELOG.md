@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.17.0 (2023-11-10)
+
+
+### Features
+
+* **vaulwarden:** add helm chart for vaulwarden (fork) ([e7cbc42](https://github.com/SocialGouv/helm-charts/commit/e7cbc42621953447476aa84bc5155be7c5d09a1d))
+
 ## 1.16.3 (2023-11-09)
 
 ## 1.16.2 (2023-11-09)
