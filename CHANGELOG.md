@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.17.1 (2023-11-10)
+
+
+### Bug Fixes
+
+* **vaulwarden:** run as non root ([b4d3498](https://github.com/SocialGouv/helm-charts/commit/b4d3498069906ca2b37e2fbc12e961b80fa37dc1))
+
 ## 1.17.0 (2023-11-10)
 
 
