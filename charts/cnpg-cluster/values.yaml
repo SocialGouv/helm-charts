@@ -7,6 +7,9 @@
 # @param {number} [instances] Number of Postgres instances in the cluster
 instances: 1
 
+# @param {string} [logLevel] The instances log level, one of the following values: error, warning, info (default), debug, trace
+logLevel: info
+
 # @param {object} [annotations] CNPG cluster annotations
 annotations: {}
 

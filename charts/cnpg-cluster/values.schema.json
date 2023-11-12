@@ -1,13 +1,18 @@
 {
   "type": "object",
-  "$id": "https://raw.githubusercontent.com/socialgouv/helm-charts/v1/charts/cnpg-cluster/values.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://raw.githubusercontent.com/socialgouv/helm-charts/v1/charts/cnpg-cluster/values.schema.json",
   "required": [],
   "properties": {
     "instances": {
       "type": ["number"],
       "title": "Number of Postgres instances in the cluster",
       "default": "1"
+    },
+    "logLevel": {
+      "type": ["string"],
+      "title": "The instances log level, one of the following values: error, warning, info (default), debug, trace",
+      "default": "info"
     },
     "annotations": {
       "type": ["object"],
@@ -260,11 +265,11 @@
       }
     },
     "postInitApplicationSQL": {
-      "type": ["array"],
+      "type": "array",
+      "title": "List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)",
       "items": {
-        "type": "string"
-      },
-      "title": "List of SQL queries to be executed as a superuser in the application database right after is created - to be used with extreme care (by default empty)"
+        "type": ["string"]
+      }
     },
     "postInitApplicationSQLRefs": {
       "type": ["object", "null"],
