@@ -1,6 +1,8 @@
 monitoring:
   enablePodMonitor: true
 
+logLevel: debug
+
 poolers:
   rw:
     instances: 3
