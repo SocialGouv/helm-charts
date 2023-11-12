@@ -137,3 +137,7 @@ tests:
       - template: pooler.cnpg.yaml
         matchSnapshot:
           path: spec
+      - template: cluster.cnpg.yaml
+        equal:
+          path: spec.logLevel
+          value: "debug"

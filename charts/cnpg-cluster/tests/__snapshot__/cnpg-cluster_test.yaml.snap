@@ -60,6 +60,7 @@ cluster with enabled backup and recovery:
     imageName: ghcr.io/cloudnative-pg/postgis:15
     imagePullPolicy: IfNotPresent
     instances: 1
+    logLevel: info
     maxSyncReplicas: 0
     minSyncReplicas: 0
     monitoring:
@@ -158,6 +159,7 @@ cluster with latest recovery enabled:
     imageName: ghcr.io/cloudnative-pg/postgis:15
     imagePullPolicy: IfNotPresent
     instances: 1
+    logLevel: info
     maxSyncReplicas: 0
     minSyncReplicas: 0
     monitoring:
@@ -213,6 +215,7 @@ cluster with recovery enabled:
     imageName: ghcr.io/cloudnative-pg/postgis:15
     imagePullPolicy: IfNotPresent
     instances: 1
+    logLevel: info
     maxSyncReplicas: 0
     minSyncReplicas: 0
     monitoring:
@@ -264,6 +267,7 @@ cluster with scheduled backup enabled:
     imageName: ghcr.io/cloudnative-pg/postgis:15
     imagePullPolicy: IfNotPresent
     instances: 1
+    logLevel: info
     maxSyncReplicas: 0
     minSyncReplicas: 0
     monitoring:
