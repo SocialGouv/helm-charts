@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.18.0 (2023-11-12)
+
+
+### Features
+
+* **cnpg-cluster:** add Values.logLevel ([#55](https://github.com/SocialGouv/helm-charts/issues/55)) ([8c58c3e](https://github.com/SocialGouv/helm-charts/commit/8c58c3e5153c028a1d086ca11e64d5f307275102))
+
 ## 1.17.5 (2023-11-11)
 
 ## 1.17.4 (2023-11-11)
