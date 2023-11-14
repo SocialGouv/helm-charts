@@ -57,3 +57,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: clamav-rest
+      name: clamav-rest-port
