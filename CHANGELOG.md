@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.18.1 (2023-11-14)
+
+
+### Bug Fixes
+
+* clusterIP svc for clamav ([#56](https://github.com/SocialGouv/helm-charts/issues/56)) ([682a56c](https://github.com/SocialGouv/helm-charts/commit/682a56c96926db66d70ac0a105d83b295acfbd00))
+
 ## 1.18.0 (2023-11-12)
 
 
