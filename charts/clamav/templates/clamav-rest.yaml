@@ -51,11 +51,9 @@ kind: Service
 metadata:
   name: clamav-rest
 spec:
-  type: NodePort
   selector:
     app: clamav-rest
   ports:
     - protocol: TCP
-      port: 3000
+      port: 80
       targetPort: clamav-rest
-      nodePort: 30080
