@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.18.2 (2023-11-14)
+
+
+### Bug Fixes
+
+* service name ([d21971a](https://github.com/SocialGouv/helm-charts/commit/d21971ad4723627eda84fbcd1b6d953ae1091bbe))
+
 ## 1.18.1 (2023-11-14)
 
 
