@@ -104,7 +104,7 @@ backup:
   immediate: true
 
   # See: https://cloudnative-pg.io/documentation/1.20/backup_recovery/
-  # @param {object,null} [barmanObjectStore] Object store credentials and access config
+  # @param {https://raw.githubusercontent.com/SocialGouv/helm-charts/cnpg-schema/charts/cnpg-cluster/barmanObjectStore.schema.json} [barmanObjectStore] Object store credentials and access config
   barmanObjectStore:
     # destinationPath:
     # endpointURL:
@@ -164,7 +164,7 @@ replica:
 pg_basebackup:
   # @param {boolean} [enabled] Enable pg_basebackup bootstrap, see https://cloudnative-pg.io/documentation/current/bootstrap/#bootstrap-from-a-live-cluster-pg_basebackup
   enabled: false
-  # @param {string,null} [source] externalCluster cluster name for the pg_basebackup
+  # @param {string} [source] externalCluster cluster name for the pg_basebackup
   source:
 
 # @param {https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/extensions.json} [extensions]
@@ -180,9 +180,9 @@ monitoring:
   # @param {boolean} [enablePodMonitor] Enable metrics monitoring. see https://cloudnative-pg.io/documentation/current/monitoring/
   enablePodMonitor: false
 
-# @param {string,null} [superuserSecretName] To force the super user secret name
+# @param {string} [superuserSecretName] To force the super user secret name
 superuserSecretName:
-# @param {string,null} [dbSecretName] To force the DB secret name
+# @param {string} [dbSecretName] To force the DB secret name
 dbSecretName:
 
 # @param {object} [recovery] Recovery. see https://cloudnative-pg.io/documentation/current/backup_recovery/#recovery
@@ -195,7 +195,7 @@ recovery:
   targetTime: ""
 
   # See: https://cloudnative-pg.io/documentation/current/backup_recovery/
-  # @param {object,null} [barmanObjectStore] Object store credentials and access config
+  # @param {https://raw.githubusercontent.com/SocialGouv/helm-charts/cnpg-schema/charts/cnpg-cluster/barmanObjectStore.schema.json} [barmanObjectStore] Object store credentials and access config
   barmanObjectStore:
     # destinationPath:
     # endpointURL:
@@ -217,7 +217,7 @@ postInitApplicationSQL: []
 
 # Points references to ConfigMaps or Secrets which contain SQL files, the general implementation order to these references is from all Secrets to all ConfigMaps, and inside Secrets or ConfigMaps, the implementation order is same as the order of each array (by default empty
 # See https://cloudnative-pg.io/documentation/current/api_reference/#postinitapplicationsqlrefs
-# @param {object,null} [postInitApplicationSQLRefs]
+# @param {object} [postInitApplicationSQLRefs]
 postInitApplicationSQLRefs:
   # configMapRefs:
   # - name: post-init-sql-configmap

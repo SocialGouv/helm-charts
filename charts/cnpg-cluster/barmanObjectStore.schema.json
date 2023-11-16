@@ -2,7 +2,9 @@
   "$id": "https://raw.githubusercontent.com/socialgouv/helm-charts/v1/charts/cnpg-cluster/barmanObjectStore.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
+  "required": ["destinationPath"],
   "description": "The configuration for the barman-cloud tool suite",
+  "additionalProperties": false,
   "properties": {
     "azureCredentials": {
       "description": "The credentials to use to upload data to Azure Blob Storage",
@@ -258,6 +260,5 @@
       },
       "type": "object"
     }
-  },
-  "required": ["destinationPath"]
+  }
 }

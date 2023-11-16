@@ -140,8 +140,8 @@
           "default": "true"
         },
         "barmanObjectStore": {
-          "type": ["object", "null"],
           "title": "Object store credentials and access config",
+          "$ref": "https://raw.githubusercontent.com/SocialGouv/helm-charts/cnpg-schema/charts/cnpg-cluster/barmanObjectStore.schema.json",
           "description": "See: https://cloudnative-pg.io/documentation/1.20/backup_recovery/"
         }
       }
@@ -204,7 +204,7 @@
           "default": "false"
         },
         "source": {
-          "type": ["string", "null"],
+          "type": ["string"],
           "title": "externalCluster cluster name for the pg_basebackup"
         }
       }
@@ -235,11 +235,11 @@
       }
     },
     "superuserSecretName": {
-      "type": ["string", "null"],
+      "type": ["string"],
       "title": "To force the super user secret name"
     },
     "dbSecretName": {
-      "type": ["string", "null"],
+      "type": ["string"],
       "title": "To force the DB secret name"
     },
     "recovery": {
@@ -258,8 +258,8 @@
           "description": "Relative to Postgres server timezone"
         },
         "barmanObjectStore": {
-          "type": ["object", "null"],
           "title": "Object store credentials and access config",
+          "$ref": "https://raw.githubusercontent.com/SocialGouv/helm-charts/cnpg-schema/charts/cnpg-cluster/barmanObjectStore.schema.json",
           "description": "See: https://cloudnative-pg.io/documentation/current/backup_recovery/"
         }
       }
@@ -272,7 +272,7 @@
       }
     },
     "postInitApplicationSQLRefs": {
-      "type": ["object", "null"],
+      "type": ["object"],
       "description": "Points references to ConfigMaps or Secrets which contain SQL files, the general implementation order to these references is from all Secrets to all ConfigMaps, and inside Secrets or ConfigMaps, the implementation order is same as the order of each array (by default empty\nSee https://cloudnative-pg.io/documentation/current/api_reference/#postinitapplicationsqlrefs"
     }
   }
