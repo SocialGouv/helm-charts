@@ -141,7 +141,7 @@
         },
         "barmanObjectStore": {
           "title": "Object store credentials and access config",
-          "$ref": "https://raw.githubusercontent.com/SocialGouv/helm-charts/cnpg-schema/charts/cnpg-cluster/barmanObjectStore.schema.json",
+          "$ref": "https://raw.githubusercontent.com/socialgouv/helm-charts/v1/charts/cnpg-cluster/barmanObjectStore.schema.json",
           "description": "See: https://cloudnative-pg.io/documentation/1.20/backup_recovery/"
         }
       }
@@ -259,7 +259,7 @@
         },
         "barmanObjectStore": {
           "title": "Object store credentials and access config",
-          "$ref": "https://raw.githubusercontent.com/SocialGouv/helm-charts/cnpg-schema/charts/cnpg-cluster/barmanObjectStore.schema.json",
+          "$ref": "https://raw.githubusercontent.com/socialgouv/helm-charts/v1/charts/cnpg-cluster/barmanObjectStore.schema.json",
           "description": "See: https://cloudnative-pg.io/documentation/current/backup_recovery/"
         }
       }
