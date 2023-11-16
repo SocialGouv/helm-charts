@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.18.3 (2023-11-16)
+
+
+### Bug Fixes
+
+* **cnpg:** upgrade s3-client image to abort on dump error ([b7b85fe](https://github.com/SocialGouv/helm-charts/commit/b7b85fe01dd04483eb47aaae9c4d31a5b22b8a62))
+
 ## 1.18.2 (2023-11-14)
 
 
