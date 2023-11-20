@@ -1,0 +1,240 @@
+should render:
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app: clamav-rest
+      name: clamav-rest
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: clamav-rest
+      template:
+        metadata:
+          labels:
+            app: clamav-rest
+        spec:
+          containers:
+            - env:
+                - name: NODE_ENV
+                  valueFrom:
+                    configMapKeyRef:
+                      key: node-env
+                      name: clamav-rest-configmap
+                - name: CLAMD_IP
+                  valueFrom:
+                    configMapKeyRef:
+                      key: clamd-ip
+                      name: clamav-rest-configmap
+                - name: APP_FORM_KEY
+                  valueFrom:
+                    configMapKeyRef:
+                      key: app-form-key
+                      name: clamav-rest-configmap
+                - name: APP_MAX_FILE_SIZE
+                  valueFrom:
+                    configMapKeyRef:
+                      key: app-max-file-size
+                      name: clamav-rest-configmap
+              image: benzino77/clamav-rest-api:1.2.2
+              name: clamav-rest-api
+              ports:
+                - containerPort: 3000
+                  name: clamav-rest
+                  protocol: TCP
+              securityContext:
+                runAsUser: 1000
+  2: |
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: clamav-rest
+    spec:
+      ports:
+        - name: clamav-rest-port
+          port: 80
+          protocol: TCP
+          targetPort: clamav-rest
+      selector:
+        app: clamav-rest
+  3: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app: clamavd
+      name: clamavd
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: clamavd
+      template:
+        metadata:
+          labels:
+            app: clamavd
+        spec:
+          containers:
+            - image: clamav/clamav:1.2.1
+              name: clamavd
+              ports:
+                - containerPort: 3310
+                  name: clamavd-port
+                  protocol: TCP
+              volumeMounts:
+                - mountPath: /etc/clamav/clamd.conf
+                  name: clamavd-conf
+                  subPath: clamd.conf
+          securityContext:
+            runAsNonRoot: false
+          volumes:
+            - configMap:
+                name: clamavd-configmap
+              name: clamavd-conf
+  4: |
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: clamavd-service
+    spec:
+      ports:
+        - port: 3310
+          protocol: TCP
+          targetPort: 3310
+      selector:
+        app: clamavd
+  5: |
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: clamav
+      namespace: null
+    spec:
+      ingress:
+        - from:
+            - podSelector: {}
+        - from:
+            - namespaceSelector:
+                matchExpressions:
+                  - key: network-policy/source
+                    operator: In
+                    values:
+                      - monitoring
+                      - ingress-controller
+        - from:
+            - namespaceSelector:
+                matchExpressions:
+                  - key: application
+                    operator: Exists
+      podSelector: {}
+      policyTypes:
+        - Ingress
+should use custom image:
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app: clamav-rest
+      name: clamav-rest
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: clamav-rest
+      template:
+        metadata:
+          labels:
+            app: clamav-rest
+        spec:
+          containers:
+            - env:
+                - name: NODE_ENV
+                  valueFrom:
+                    configMapKeyRef:
+                      key: node-env
+                      name: clamav-rest-configmap
+                - name: CLAMD_IP
+                  valueFrom:
+                    configMapKeyRef:
+                      key: clamd-ip
+                      name: clamav-rest-configmap
+                - name: APP_FORM_KEY
+                  valueFrom:
+                    configMapKeyRef:
+                      key: app-form-key
+                      name: clamav-rest-configmap
+                - name: APP_MAX_FILE_SIZE
+                  valueFrom:
+                    configMapKeyRef:
+                      key: app-max-file-size
+                      name: clamav-rest-configmap
+              image: clamav-rest/clamav:43.1.2
+              name: clamav-rest-api
+              ports:
+                - containerPort: 3000
+                  name: clamav-rest
+                  protocol: TCP
+              securityContext:
+                runAsUser: 1000
+  2: |
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: clamav-rest
+    spec:
+      ports:
+        - name: clamav-rest-port
+          port: 80
+          protocol: TCP
+          targetPort: clamav-rest
+      selector:
+        app: clamav-rest
+  3: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app: clamavd
+      name: clamavd
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: clamavd
+      template:
+        metadata:
+          labels:
+            app: clamavd
+        spec:
+          containers:
+            - image: clamav-d/clamav:42.1.2
+              name: clamavd
+              ports:
+                - containerPort: 3310
+                  name: clamavd-port
+                  protocol: TCP
+              volumeMounts:
+                - mountPath: /etc/clamav/clamd.conf
+                  name: clamavd-conf
+                  subPath: clamd.conf
+          securityContext:
+            runAsNonRoot: false
+          volumes:
+            - configMap:
+                name: clamavd-configmap
+              name: clamavd-conf
+  4: |
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: clamavd-service
+    spec:
+      ports:
+        - port: 3310
+          protocol: TCP
+          targetPort: 3310
+      selector:
+        app: clamavd

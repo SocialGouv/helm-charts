@@ -1,0 +1,28 @@
+suite: test cnpg-cluster
+tests:
+  - it: should render
+    asserts:
+      - template: clamav-rest.yaml
+        matchSnapshot: {}
+      - template: clamavd.yaml
+        matchSnapshot: {}
+      - template: network-policy.yaml
+        matchSnapshot: {}
+      - template: network-policy.yaml
+        hasDocuments:
+          count: 1
+  - it: should not render netpol
+    values:
+      - ./values/no-netpol.yaml
+    asserts:
+      - template: network-policy.yaml
+        hasDocuments:
+          count: 0
+  - it: should use custom image
+    values:
+      - ./values/image.yaml
+    asserts:
+      - template: clamav-rest.yaml
+        matchSnapshot: {}
+      - template: clamavd.yaml
+        matchSnapshot: {}
