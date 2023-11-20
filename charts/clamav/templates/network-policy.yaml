@@ -1,0 +1,27 @@
+{{- if .Values.netpol.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: clamav
+  namespace: clamav
+spec:
+  ingress:
+  - from:
+    - podSelector: {}
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: network-policy/source
+          operator: In
+          values:
+          - monitoring
+          - ingress-controller
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: application
+          operator: Exists
+  podSelector: {}
+  policyTypes:
+  - Ingress
+{{- end }}
