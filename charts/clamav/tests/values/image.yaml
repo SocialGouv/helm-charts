@@ -1,0 +1,9 @@
+clamavd:
+  image:
+    name: clamav-d/clamav
+    version: 42.1.2
+
+clamavRest:
+  image:
+    name: clamav-rest/clamav
+    version: 43.1.2

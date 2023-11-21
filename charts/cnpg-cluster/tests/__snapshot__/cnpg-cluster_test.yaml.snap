@@ -118,7 +118,7 @@ cluster with enabled backup and recovery:
                     value: RELEASE-NAME-cnpg-cluster-r
                   - name: RETENTION_DAYS
                     value: "30"
-                image: ghcr.io/socialgouv/docker/s3-client:1.2.0
+                image: ghcr.io/socialgouv/docker/s3-client:1.2.1
                 imagePullPolicy: IfNotPresent
                 name: s3-client
                 securityContext:
