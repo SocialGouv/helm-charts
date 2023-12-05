@@ -1,0 +1,8 @@
+name: "matomo-sync-cronjob"
+cronjobSecretName: "matomo-sync-secret"
+matomoId:
+matomoUrl: "https://matomo.fabrique.social.gouv.fr"
+table: "matomo"
+db:
+  secretName: "pg-matomo-app"
+  secretKey: "DATABASE_URL"

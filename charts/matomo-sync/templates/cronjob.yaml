@@ -1,0 +1,58 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  annotations:
+  labels:
+    application: "{{ .Values.name }}"
+    component: "{{ .Values.name }}"
+  name: cronjob-{{ .Values.name }}
+spec:
+  schedule: 30 * * * *
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      activeDeadlineSeconds: 3600
+      ttlSecondsAfterFinished: 3600
+      template:
+        metadata:
+          labels:
+            application: "{{ .Values.name }}"
+            component: "{{ .Values.name }}"
+          name: cronjob-{{ .Values.name }}
+        spec:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            runAsNonRoot: true
+          restartPolicy: OnFailure
+          containers:
+            - command:
+                - sh
+                - -c
+                - npx @socialgouv/matomo-postgres
+              securityContext:
+                allowPrivilegeEscalation: false
+              env:
+                - name: STARTDATE
+                  value: "2019-01-01"
+                - name: DEBUG
+                  value: "*"
+                - name: MATOMO_URL
+                  value: "{{ .Values.matomoUrl }}"
+                - name: MATOMO_SITE
+                  value: "{{ required "a Matomo ID is required" .Values.matomoId }}"
+                - name: DESTINATION_TABLE
+                  value: "{{ or .Values.table `matomo` }}"
+                - name: PGDATABASE
+                  valueFrom:
+                    secretKeyRef:
+                      name: "{{ .Values.db.secretName }}"
+                      key: "{{ .Values.db.secretKey }}"
+              envFrom:
+                - secretRef:
+                    name: "{{ .Values.cronjobSecretName}}"
+              image: node:14-alpine
+              imagePullPolicy: IfNotPresent
+              name: container
