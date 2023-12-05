@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.19.0 (2023-12-05)
+
+
+### Features
+
+* matomo sync ([03a456a](https://github.com/SocialGouv/helm-charts/commit/03a456afc154fb5b06b5d97744501f3a27dc711c))
+
 ## 1.18.4 (2023-11-21)
 
 ## 1.18.3 (2023-11-16)
