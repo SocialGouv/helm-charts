@@ -258,15 +258,15 @@
           "description": "Relative to Postgres server timezone"
         },
         "database": {
-          "type": ["string"],
+          "type": ["string", "null"],
           "title": "Database to restore to"
         },
         "owner": {
-          "type": ["string"],
+          "type": ["string", "null"],
           "title": "Database owner to restore to"
         },
         "secretName": {
-          "type": ["string"],
+          "type": ["string", "null"],
           "title": "Secret where owner password is set"
         },
         "barmanObjectStore": {

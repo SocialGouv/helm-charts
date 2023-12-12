@@ -194,13 +194,13 @@ recovery:
   # @param {string} [targetTime] Time to restore from, in RFC3339 format https://datatracker.ietf.org/doc/html/rfc3339
   targetTime: ""
 
-  # @param {string} [database] Database to restore to
+  # @param {string,null} [database] Database to restore to
   database:
 
-  # @param {string} [owner] Database owner to restore to
+  # @param {string,null} [owner] Database owner to restore to
   owner:
 
-  # @param {string} [secretName] Secret where owner password is set
+  # @param {string,null} [secretName] Secret where owner password is set
   secretName:
 
   # See: https://cloudnative-pg.io/documentation/current/backup_recovery/
