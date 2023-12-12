@@ -257,6 +257,18 @@
           "title": "Time to restore from, in RFC3339 format https://datatracker.ietf.org/doc/html/rfc3339",
           "description": "Relative to Postgres server timezone"
         },
+        "database": {
+          "type": ["string"],
+          "title": "Database to restore to"
+        },
+        "owner": {
+          "type": ["string"],
+          "title": "Database owner to restore to"
+        },
+        "secretName": {
+          "type": ["string"],
+          "title": "Secret where owner password is set"
+        },
         "barmanObjectStore": {
           "type": ["object", "null"],
           "title": "Object store credentials and access config",

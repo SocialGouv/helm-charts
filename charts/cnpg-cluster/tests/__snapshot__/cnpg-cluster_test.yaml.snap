@@ -139,6 +139,10 @@ cluster with latest recovery enabled:
   1: |
     bootstrap:
       recovery:
+        database: destination_db
+        owner: destination_owner
+        secret:
+          name: some-secret
         source: recovery-cluster
     externalClusters:
       - barmanObjectStore:

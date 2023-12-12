@@ -1,5 +1,8 @@
 recovery:
   enabled: true
+  database: destination_db
+  owner: destination_owner
+  secretName: some-secret
   barmanObjectStore:
     destinationPath: s3://backups/
     endpointURL: http://minio:9000
