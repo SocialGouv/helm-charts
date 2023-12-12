@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.20.0 (2023-12-12)
+
+
+### Features
+
+* **cnpg:** more recovery options ([#60](https://github.com/SocialGouv/helm-charts/issues/60)) ([01f644f](https://github.com/SocialGouv/helm-charts/commit/01f644f408b95f7c0d2b5497ee4eba864a1b3f10))
+
 ## 1.19.1 (2023-12-12)
 
 
