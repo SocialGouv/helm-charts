@@ -1,4 +1,5 @@
 {{- range $name, $spec := .Values.poolers }}
+---
 apiVersion: postgresql.cnpg.io/v1
 kind: Pooler
 metadata:
