@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.19.1 (2023-12-12)
+
+
+### Bug Fixes
+
+* cnpg loop syntax ([#59](https://github.com/SocialGouv/helm-charts/issues/59)) ([a636f82](https://github.com/SocialGouv/helm-charts/commit/a636f82da846b601c2585c87c479ac261439fb26))
+
 ## 1.19.0 (2023-12-05)
 
 
