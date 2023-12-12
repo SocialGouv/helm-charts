@@ -101,6 +101,16 @@ spec:
     {{- if .Values.recovery.enabled }}
     recovery:
       source: "recovery-cluster"
+      {{ if .Values.recovery.database }}
+      database: {{ .Values.recovery.database }}
+      {{- end }}
+      {{ if .Values.recovery.owner }}
+      owner: {{ .Values.recovery.owner }}
+      {{- end }}
+      {{ if .Values.recovery.secretName }}
+      secret:
+        name: {{ .Values.recovery.secretName }}
+      {{ end }}
       {{- if .Values.recovery.targetTime }}
       recoveryTarget:
         targetTime: "{{ .Values.recovery.targetTime }}"
