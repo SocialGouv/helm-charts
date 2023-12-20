@@ -13,6 +13,9 @@ tests:
       - template: cluster.cnpg.yaml
         hasDocuments:
           count: 1
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.storage
       - template: backup-cron.yaml
         hasDocuments:
           count: 0
@@ -27,6 +30,9 @@ tests:
         equal:
           path: spec.instances
           value: 2
+      - template: cluster.cnpg.yaml
+        matchSnapshot:
+          path: spec.storage
       - template: cluster.cnpg.yaml
         matchSnapshot:
           path: spec.resources
