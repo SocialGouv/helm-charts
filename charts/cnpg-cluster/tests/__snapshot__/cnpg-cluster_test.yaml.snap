@@ -1,12 +1,17 @@
+cluster should render:
+  1: |
+    size: 8Gi
 cluster with custom instances:
   1: |
+    size: 20Gi
+  2: |
     limits:
       cpu: 0.84
       memory: 628Mb
     requests:
       cpu: 0.42
       memory: 314Mb
-  2: |
+  3: |
     some-priority-class-name
 cluster with custom pg_hba:
   1: |

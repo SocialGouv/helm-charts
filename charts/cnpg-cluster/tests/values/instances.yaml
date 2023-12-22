@@ -1,5 +1,7 @@
 instances: 2
 priorityClassName: some-priority-class-name
+persistence:
+  size: 20Gi
 resources:
   requests:
     cpu: 0.42
