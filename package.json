@@ -1,5 +1,5 @@
 {
-  "version": "1.20.0",
+  "version": "1.20.1",
   "repository": "git@github.com:SocialGouv/helm-charts.git",
   "license": "MIT",
   "private": true,
