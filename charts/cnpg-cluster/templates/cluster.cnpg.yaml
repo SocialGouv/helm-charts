@@ -78,6 +78,10 @@ spec:
       {{- with .Values.postgresqlParameters }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+    shared_preload_libraries:
+      {{- with .Values.sharedPreloadLibraries }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
 
   monitoring:
     enablePodMonitor: {{ .Values.monitoring.enablePodMonitor }}

@@ -152,6 +152,9 @@ pg_hba: []
 # @param {https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/parameters.json} [postgresqlParameters] PostgreSQL parameters. See https://www.postgresql.org/docs/9.3/auth-pg-hba-conf.html
 postgresqlParameters: {}
 
+# @param {array} [sharedPreloadLibraries] PostgreSQL shared preload libraries. See https://cloudnative-pg.io/documentation/current/cloudnative-pg.v1/#postgresql-cnpg-io-v1-PostgresConfiguration
+sharedPreloadLibraries: {}
+
 # @param {array} [externalClusters] define external clusters for recovery/replication see https://cloudnative-pg.io/documentation/current/api_reference/#externalcluster
 externalClusters: []
 

@@ -177,6 +177,9 @@
       "$ref": "https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/parameters.json",
       "description": "Define your parameters on https://pgtune.leopard.in.ua"
     },
+    "sharedPreloadLibraries": {
+      "title": "PostgreSQL shared preload libraries. See https://cloudnative-pg.io/documentation/current/cloudnative-pg.v1/#postgresql-cnpg-io-v1-PostgresConfiguration"
+    },
     "externalClusters": {
       "type": ["array"],
       "title": "define external clusters for recovery/replication see https://cloudnative-pg.io/documentation/current/api_reference/#externalcluster"
