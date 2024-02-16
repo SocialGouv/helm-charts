@@ -173,6 +173,8 @@ pg_basebackup:
 # @param {https://raw.githubusercontent.com/SocialGouv/json-schemas/main/postgres/extensions.json} [extensions]
 extensions: []
 
+postgresqlInitCommands: []
+
 # @param {string} [dbName] Name of the default database to create
 dbName: app
 # @param {string} [dbName] Name of the default user to create
