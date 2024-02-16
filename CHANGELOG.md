@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.22.1 (2024-02-16)
+
+
+### Bug Fixes
+
+* cnpg-cluster ([c931992](https://github.com/SocialGouv/helm-charts/commit/c9319921105a409fe211468259838d845e61660c))
+
 ## 1.22.0 (2024-02-16)
 
 

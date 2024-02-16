@@ -1,4 +1,4 @@
 apiVersion: v2
 description: A Helm chart for pgweb
 name: pgweb
-version: 1.22.0
+version: 1.22.1
