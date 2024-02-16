@@ -133,7 +133,7 @@ spec:
       # postgis configuration plugins
       postInitTemplateSQL:
         {{- range $cmd := .Values.postgresqlInitCommands }}
-          - {{ $cmd | quote }};
+          - {{ $cmd | quote }}
         {{- end }}
         {{- range $name := .Values.extensions }}
           - CREATE EXTENSION IF NOT EXISTS "{{ $name }}";
