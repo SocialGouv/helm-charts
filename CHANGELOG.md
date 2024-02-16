@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.22.0 (2024-02-16)
+
+
+### Features
+
+* **cnpg-cluster:** postgresqlInitCommands ([847bb6d](https://github.com/SocialGouv/helm-charts/commit/847bb6d301293363a7b2311f9ad8bc542be4b74f))
+
 ## 1.21.0 (2024-02-16)
 
 
