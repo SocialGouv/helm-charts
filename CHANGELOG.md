@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.21.0 (2024-02-16)
+
+
+### Features
+
+* **cnpg-cluster:** sharedPreloadLibraries ([b40bd69](https://github.com/SocialGouv/helm-charts/commit/b40bd690b94872d690d0649689fe82118066cb02))
+
 ## 1.20.1 (2023-12-22)
 
 ## 1.20.0 (2023-12-12)
