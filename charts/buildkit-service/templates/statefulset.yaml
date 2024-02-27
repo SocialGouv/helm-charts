@@ -1,11 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "buildkit.fullname" . }}
   labels:
     {{- include "buildkit.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  serviceName: {{ include "buildkit.fullname" . }}
   selector:
     matchLabels:
       {{- include "buildkit.selectorLabels" . | nindent 6 }}
@@ -21,6 +22,7 @@ spec:
     spec:
       securityContext:
         fsGroup: 1000
+      
       initContainers:
         - name: permissions-fixer
           image: alpine:3
@@ -34,6 +36,7 @@ spec:
             - sh
             - -c
             - (chown 1000:1000 /buildkit-cache; chmod 0755 /buildkit-cache;)
+
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -117,3 +120,15 @@ spec:
           secret:
             secretName: {{ or .Values.tls.secretName (include "buildkit.fullname" .) }}
         {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: cache
+      spec:
+        {{ if .Values.storage.className }}
+        storageClassName: {{ .Values.storage.className | quote }}
+        {{ end }}
+        resources:
+          requests:
+            storage: {{ .Values.storage.size }}
+        accessModes: {{ .Values.storage.accessModes | toYaml | nindent 10 }}
+    
