@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.24.0 (2024-02-27)
+
+
+### Features
+
+* **buildkit-:** sts to deployment ([a49409a](https://github.com/SocialGouv/helm-charts/commit/a49409a4f8eeb39c3b6f4493a15d8bf9bfd109a3))
+
 ## 1.23.0 (2024-02-16)
 
 
