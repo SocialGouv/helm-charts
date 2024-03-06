@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.24.3 (2024-03-06)
+
+
+### Bug Fixes
+
+* buildkit config parse 0.13.0 ([82e2287](https://github.com/SocialGouv/helm-charts/commit/82e228713402f78034ce3520cc1dd3d346bf24ef))
+
 ## 1.24.2 (2024-02-27)
 
 ## 1.24.1 (2024-02-27)
