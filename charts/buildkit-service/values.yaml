@@ -8,7 +8,7 @@ image:
   # -- Pull policy
   pullPolicy: IfNotPresent
   # -- Image tag
-  tag: "v0.11.6-rootless"
+  tag: "v0.13.0-rootless"
 
 # -- Enable debug logging
 debugLog: true
