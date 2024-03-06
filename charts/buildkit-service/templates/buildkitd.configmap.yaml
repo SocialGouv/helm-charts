@@ -29,7 +29,9 @@ data:
       rootless = true
       
       gc = true
+      {{ if .Values.gc.keepStorage }}
       gckeepstorage = {{ .Values.gc.keepStorage }}
+      {{ end }}
       snapshotter = {{ .Values.snapshotter }}
 
       platforms = {{ .Values.worker.platforms | toJson }}
