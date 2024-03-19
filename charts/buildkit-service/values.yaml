@@ -1,6 +1,6 @@
 debug: true
 
-replicaCount: 1
+replicaCount: 
 
 image:
   # -- Image name
