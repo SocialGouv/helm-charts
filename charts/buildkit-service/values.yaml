@@ -1,6 +1,25 @@
 debug: true
 
-replicaCount: 
+replicaCount: 1
+
+hpa:
+  enabled: false
+  minReplicas: 3
+  maxReplicas: 10
+  annotations: {}
+  metrics:
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 75
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
 
 image:
   # -- Image name
@@ -58,6 +77,7 @@ storage:
 
 worker:
   platforms: ["linux/amd64"]
+  maxParallelism: 4
 
 gc:
   # -- storage size with a margin in MB

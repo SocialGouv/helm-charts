@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "buildkit.labels" . | nindent 4 }}
 spec:
-  {{ if .Values.replicaCount }}
+  {{ if not .Values.hpa.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{ end }}
   serviceName: {{ include "buildkit.fullname" . }}

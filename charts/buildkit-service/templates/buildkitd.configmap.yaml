@@ -28,6 +28,8 @@ data:
       
       rootless = true
       
+      max-parallelism = {{ .Values.worker.maxParallelism }}
+
       gc = true
       {{ if .Values.gc.keepStorage }}
       gckeepstorage = {{ .Values.gc.keepStorage }}
