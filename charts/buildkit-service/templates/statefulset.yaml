@@ -89,7 +89,8 @@ spec:
               - debug
               - workers
             initialDelaySeconds: 5
-            periodSeconds: 30
+            periodSeconds: 60
+            failureThreshold: 15
           securityContext:
             seccompProfile:
               type: Unconfined
