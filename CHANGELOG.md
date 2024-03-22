@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.24.7 (2024-03-22)
+
+
+### Bug Fixes
+
+* clamav ([2962550](https://github.com/SocialGouv/helm-charts/commit/2962550453ac733a9c63b9520b9cb464c4f64491))
+
 ## 1.24.6 (2024-03-20)
 
 
