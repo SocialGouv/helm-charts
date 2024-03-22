@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  # Unique key of the Deployment instance
   name: clamavd
   labels:
     app: clamavd
@@ -13,16 +12,23 @@ spec:
   template:
     metadata:
       labels:
-        # Apply this label to pods and default
-        # the Deployment label selector to this value
         app: clamavd
     spec:
       securityContext:
-        runAsNonRoot: false
+        runAsUser: 100
+        runAsGroup: 101
+        fsGroup: 101
       containers:
         - name: clamavd
-          # Run this image
           image: "{{ .Values.clamavd.image.name }}:{{ .Values.clamavd.image.version }}"
+          command: ["/init-unprivileged"]
+          resources:
+            requests:
+              cpu: "1"
+              memory: 4Gi
+            limits:
+              cpu: "1"
+              memory: 4Gi
           ports:
             - containerPort: 3310
               protocol: TCP

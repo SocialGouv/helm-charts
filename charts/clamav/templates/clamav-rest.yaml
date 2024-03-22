@@ -16,10 +16,16 @@ spec:
     spec:
       containers:
         - name: clamav-rest-api
-          # Run this image
           image: "{{ .Values.clamavRest.image.name }}:{{ .Values.clamavRest.image.version }}"
           securityContext:
             runAsUser: 1000
+          resources:
+            requests:
+              cpu: 300m
+              memory: 500Mi
+            limits:
+              cpu: 300m
+              memory: 500Mi
           env:
             - name: NODE_ENV
               valueFrom:
