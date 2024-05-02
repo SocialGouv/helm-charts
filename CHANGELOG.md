@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.25.2 (2024-05-02)
+
+
+### Bug Fixes
+
+* defaults ([d6c68f6](https://github.com/SocialGouv/helm-charts/commit/d6c68f60fb1ec2c4dc1fe6a65527645b20862019))
+
 ## 1.25.1 (2024-05-02)
 
 
