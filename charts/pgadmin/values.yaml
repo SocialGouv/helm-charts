@@ -6,24 +6,24 @@ image:
 
 pgadmin:
   secrets:
-  - name: pg-app
-    keys:
-      user: PGUSER
-      password: PGPASSWORD
-      host: PGHOST
-      port: PGPORT
-      database: PGDATABASE
-  - name: pg-n8n
-    keys:
-      user: PGUSER
-      password: PGPASSWORD
-      host: PGHOST
-      port: PGPORT
-      database: PGDATABASE
-  - name: pg-strapi
-    keys:
-      user: PGUSER
-      password: PGPASSWORD
-      host: PGHOST
-      port: PGPORT
-      database: PGDATABASE
+    - name: pg-app
+      keys:
+        user: PGUSER
+        password: PGPASSWORD
+        host: PGHOST
+        port: PGPORT
+        database: PGDATABASE
+    - name: pg-n8n-app
+      keys:
+        user: PGUSER
+        password: PGPASSWORD
+        host: PGHOST
+        port: PGPORT
+        database: PGDATABASE
+    - name: pg-strapi-app
+      keys:
+        user: PGUSER
+        password: PGPASSWORD
+        host: PGHOST
+        port: PGPORT
+        database: PGDATABASE
