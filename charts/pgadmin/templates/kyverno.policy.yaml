@@ -14,7 +14,7 @@ spec:
             names:
               - pg-app
       context:
-      {{- range $secret := .Values.pgadmin.secrets }}
+      {{- range $secret := .Values.secrets }}
       - name: {{ $secret.name }}-user
         apiCall:
           urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
@@ -46,7 +46,7 @@ spec:
             servers: |
               {
                 "Servers": {
-                  {{- range $key, $secret := .Values.pgadmin.secrets }}
+                  {{- range $key, $secret := .Values.secrets }}
                   "{{ add1 $key }}": {
                     "Username": "{{`{{`}}base64_decode({{ $secret.name }}-user){{`}}`}}"
                     "Host": "{{`{{`}}base64_decode({{ $secret.name }}-host){{`}}`}}"
