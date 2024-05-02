@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.25.1 (2024-05-02)
+
+
+### Bug Fixes
+
+* dbs ([43b69f9](https://github.com/SocialGouv/helm-charts/commit/43b69f9dea27af4d9d33fcd0dd96396ac86bcaaa))
+
 ## 1.25.0 (2024-05-02)
 
 
