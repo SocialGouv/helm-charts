@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.26.3 (2024-05-02)
+
+
+### Bug Fixes
+
+* pgadmin namespace ([4f830ba](https://github.com/SocialGouv/helm-charts/commit/4f830bad8b9114ff5f5cceab5940d813b4304535))
+
 ## 1.26.2 (2024-05-02)
 
 
