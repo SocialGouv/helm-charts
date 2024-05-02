@@ -17,23 +17,23 @@ spec:
         {{- end }}
       context:
       {{- range $key, $secret := .Values.secrets }}
-      - name: {{ $secret.name }}-user
+      - name: {{ $secret.name }}_user
         apiCall:
           urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
           jmesPath: 'data."{{ $secret.keys.user }}"'
-      - name: {{ $secret.name }}-host
+      - name: {{ $secret.name }}_host
         apiCall:
           urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
           jmesPath: 'data."{{ $secret.keys.host }}"'
-      - name: {{ $secret.name }}-port
+      - name: {{ $secret.name }}_port
         apiCall:
           urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
           jmesPath: 'data."{{ $secret.keys.port }}"'
-      - name: {{ $secret.name }}-password
+      - name: {{ $secret.name }}_password
         apiCall:
           urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
           jmesPath: 'data."{{ $secret.keys.password }}"'
-      - name: {{ $secret.name }}-database
+      - name: {{ $secret.name }}_database
         apiCall:
           urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
           jmesPath: 'data."{{ $secret.keys.database }}"'
@@ -50,11 +50,11 @@ spec:
                 "Servers": {
                   {{- range $key, $secret := .Values.secrets }}
                   "{{ add1 $key }}": {
-                    "Username": "{{`{{`}}base64_decode({{ $secret.name }}-user){{`}}`}}"
-                    "Host": "{{`{{`}}base64_decode({{ $secret.name }}-host){{`}}`}}"
-                    "Port": "{{`{{`}}base64_decode({{ $secret.name }}-port){{`}}`}}"
-                    "Password": "{{`{{`}}base64_decode({{ $secret.name }}-password){{`}}`}}"
-                    "Name": "{{`{{`}}base64_decode({{ $secret.name }}-database){{`}}`}}"
+                    "Username": "{{`{{`}}base64_decode({{ $secret.name }}_user){{`}}`}}"
+                    "Host": "{{`{{`}}base64_decode({{ $secret.name }}_host){{`}}`}}"
+                    "Port": "{{`{{`}}base64_decode({{ $secret.name }}_port){{`}}`}}"
+                    "Password": "{{`{{`}}base64_decode({{ $secret.name }}_password){{`}}`}}"
+                    "Name": "{{`{{`}}base64_decode({{ $secret.name }}_database){{`}}`}}"
                   }
                   {{- end }}
                 }
