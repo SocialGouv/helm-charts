@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.26.0 (2024-05-02)
+
+
+### Features
+
+* pgadmin secret name match ([8e89b2b](https://github.com/SocialGouv/helm-charts/commit/8e89b2bde28132ccff535ceb22ce75e047a27470))
+
 ## 1.25.2 (2024-05-02)
 
 
