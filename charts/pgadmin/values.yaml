@@ -1,0 +1,29 @@
+replicaCount: 1
+image:
+  repository: "dpage/pgadmin4"
+  tag: "8.5"
+  pullPolicy: "Always"
+
+pgadmin:
+  secrets:
+  - name: pg-app
+    keys:
+      user: PGUSER
+      password: PGPASSWORD
+      host: PGHOST
+      port: PGPORT
+      database: PGDATABASE
+  - name: pg-n8n
+    keys:
+      user: PGUSER
+      password: PGPASSWORD
+      host: PGHOST
+      port: PGPORT
+      database: PGDATABASE
+  - name: pg-strapi
+    keys:
+      user: PGUSER
+      password: PGPASSWORD
+      host: PGHOST
+      port: PGPORT
+      database: PGDATABASE

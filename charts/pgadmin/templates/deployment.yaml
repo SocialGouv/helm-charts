@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ (or .Values.component .Chart.Name) | lower }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    component: {{ (or .Values.component .Chart.Name) | lower }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      component: {{ (or .Values.component .Chart.Name) | lower }}
+  template:
+    metadata:
+      labels:
+        component: {{ (or .Values.component .Chart.Name) | lower }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+          securityContext:
+            runAsUser: 5050
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

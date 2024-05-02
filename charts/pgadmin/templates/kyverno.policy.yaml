@@ -1,0 +1,59 @@
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: generate-pgadmin-servers
+spec:
+  background: true
+  rules:
+    - name: gensecret
+      match:
+        any:
+        - resources:
+            kinds:
+              - Secret
+            names:
+              - pg-app
+      context:
+      {{- range $secret := .Values.pgadmin.secrets }}
+      - name: {{ $secret.name }}-user
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.user }}"'
+      - name: {{ $secret.name }}-host
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.host }}"'
+      - name: {{ $secret.name }}-port
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.port }}"'
+      - name: {{ $secret.name }}-password
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.password }}"'
+      - name: {{ $secret.name }}-database
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.database }}"'
+      {{- end }}
+      generate:
+        apiVersion: v1
+        kind: Secret
+        name: pgadmin-servers
+        namespace: {{ .Values.namespace }}
+        data:
+          stringData:
+            servers: |
+              {
+                "Servers": {
+                  {{- range $key, $secret := .Values.pgadmin.secrets }}
+                  "{{ add1 $key }}": {
+                    "Username": "{{`{{`}}base64_decode({{ $secret.name }}-user){{`}}`}}"
+                    "Host": "{{`{{`}}base64_decode({{ $secret.name }}-host){{`}}`}}"
+                    "Port": "{{`{{`}}base64_decode({{ $secret.name }}-port){{`}}`}}"
+                    "Password": "{{`{{`}}base64_decode({{ $secret.name }}-password){{`}}`}}"
+                    "Name": "{{`{{`}}base64_decode({{ $secret.name }}-database){{`}}`}}"
+                  }
+                  {{- end }}
+                }
+              }
