@@ -8,11 +8,13 @@ spec:
     - name: gensecret
       match:
         any:
+        {{- range $secret := .Values.secrets }}
         - resources:
             kinds:
               - Secret
             names:
-              - pg-app
+              - {{ $secret.name }}
+        {{- end }}
       context:
       {{- range $secret := .Values.secrets }}
       - name: {{ $secret.name }}-user

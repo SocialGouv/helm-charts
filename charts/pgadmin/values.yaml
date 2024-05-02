@@ -3,11 +3,11 @@ image:
   repository: "dpage/pgadmin4"
   tag: "8.5"
   pullPolicy: "Always"
-# secrets:
-#   - name: pg-app
-#     keys:
-#       user: PGUSER
-#       password: PGPASSWORD
-#       host: PGHOST
-#       port: PGPORT
-#       database: PGDATABASE
+secrets:
+  - name: pg-app
+    keys:
+      user: PGUSER
+      password: PGPASSWORD
+      host: PGHOST
+      port: PGPORT
+      database: PGDATABASE
