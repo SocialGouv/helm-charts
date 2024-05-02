@@ -8,7 +8,7 @@ spec:
     - name: gensecret
       match:
         any:
-        {{- range $secret := .Values.secrets }}
+        {{- range $key, $secret := .Values.secrets }}
         - resources:
             kinds:
               - Secret
@@ -16,7 +16,7 @@ spec:
               - {{ $secret.name }}
         {{- end }}
       context:
-      {{- range $secret := .Values.secrets }}
+      {{- range $key, $secret := .Values.secrets }}
       - name: {{ $secret.name }}-user
         apiCall:
           urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
