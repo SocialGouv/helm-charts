@@ -35,7 +35,7 @@ spec:
           jmesPath: 'data."{{ $secret.keys.password }}"'
       - name: {{ $secret.name }}_database
         apiCall:
-          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ if hasSuffix "-superuser" $secret.name }}{{ trimSuffix "-superuser" $secret.name }}-app{{else}}{{ $secret.name }}{{ end }}"
           jmesPath: 'data."{{ $secret.keys.database }}"'
       {{- end }}
       generate:
