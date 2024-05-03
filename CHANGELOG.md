@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.27.0 (2024-05-03)
+
+
+### Features
+
+* **pgadmin:** manage passfiles ([3f91cd8](https://github.com/SocialGouv/helm-charts/commit/3f91cd8dfffdf0fe4b455c056cac579bba0fc17b))
+
 ## 1.26.13 (2024-05-03)
 
 
