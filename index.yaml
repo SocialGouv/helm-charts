@@ -2,6 +2,14 @@ apiVersion: v1
 entries:
   buildkit-service:
   - apiVersion: v2
+    created: "2024-05-03T10:09:43.595185613Z"
+    description: Helm chart for buildkit service deployment
+    digest: 0e7837e2dc645678a7fba5ec7aa20c3c03de2a8d4b1c2443161ee8b502cdf41f
+    name: buildkit-service
+    urls:
+    - https://SocialGouv.github.io/helm-charts/buildkit-service-1.26.10.tgz
+    version: 1.26.10
+  - apiVersion: v2
     created: "2024-05-03T09:58:01.194394307Z"
     description: Helm chart for buildkit service deployment
     digest: 2284b0e964ad7597d2abe516df79d4d17ea923db7a4cbaad9107634b0c3c97e8
@@ -723,6 +731,14 @@ entries:
     version: 1.6.0
   clamav:
   - apiVersion: v2
+    created: "2024-05-03T10:09:43.595428769Z"
+    description: A ClamAV service with a REST API
+    digest: 89911319dad8155a2470a3775b25c289f7e5b1dcacc00e5e21ac38fc8cfd4039
+    name: clamav
+    urls:
+    - https://SocialGouv.github.io/helm-charts/clamav-1.26.10.tgz
+    version: 1.26.10
+  - apiVersion: v2
     created: "2024-05-03T09:58:01.194792034Z"
     description: A ClamAV service with a REST API
     digest: 61f7ec332166663febea77103f72a80fca9af033ba6b6c4fd1f33002d0a7d6f5
@@ -1074,6 +1090,16 @@ entries:
     - https://SocialGouv.github.io/helm-charts/clamav-1.16.0.tgz
     version: 1.16.0
   cnpg-cluster:
+  - apiVersion: v2
+    appVersion: "15"
+    created: "2024-05-03T10:09:43.596093895Z"
+    description: A Helm chart to create cloudnative-pg.io clusters
+    digest: 0f21f3ae2d87f6071df091698f79ebee496fe3645eab3d99c05ad5078895a89d
+    name: cnpg-cluster
+    type: application
+    urls:
+    - https://SocialGouv.github.io/helm-charts/cnpg-cluster-1.26.10.tgz
+    version: 1.26.10
   - apiVersion: v2
     appVersion: "15"
     created: "2024-05-03T09:58:01.195674713Z"
@@ -2156,6 +2182,14 @@ entries:
     version: 1.1.0
   maildev:
   - apiVersion: v2
+    created: "2024-05-03T10:09:43.596473667Z"
+    description: A Helm chart for maildev
+    digest: 7f4df8274bbb1213327e9ded4627ecb380f349cad8c72187ced47aa5034b186c
+    name: maildev
+    urls:
+    - https://SocialGouv.github.io/helm-charts/maildev-1.26.10.tgz
+    version: 1.26.10
+  - apiVersion: v2
     created: "2024-05-03T09:58:01.196095675Z"
     description: A Helm chart for maildev
     digest: 80f63aa76eb7d8b50082a0c4959f771e5124dcdd678df6fe356233e42edfa8be
@@ -3045,6 +3079,13 @@ entries:
     version: 1.0.0
   matomo-sync:
   - apiVersion: v2
+    created: "2024-05-03T10:09:43.596631222Z"
+    digest: 0e1811c9c18975415336f2bba6dd6b8b89afeba92c76c825d1c6f5e16687925e
+    name: matomo-sync
+    urls:
+    - https://SocialGouv.github.io/helm-charts/matomo-sync-1.26.10.tgz
+    version: 1.26.10
+  - apiVersion: v2
     created: "2024-05-03T09:58:01.196362166Z"
     digest: cd6ee1ca21fc94e5155352912cd731cd424d8f51762d5bca355910d4a5fd4801
     name: matomo-sync
@@ -3249,6 +3290,13 @@ entries:
     version: 1.19.0
   pgadmin:
   - apiVersion: v2
+    created: "2024-05-03T10:09:43.59677955Z"
+    digest: 4ecc79f28aa5717645d0fb0b09b30a17482d939a61e8943db476d40fdb87b1ac
+    name: pgadmin
+    urls:
+    - https://SocialGouv.github.io/helm-charts/pgadmin-1.26.10.tgz
+    version: 1.26.10
+  - apiVersion: v2
     created: "2024-05-03T09:58:01.196601005Z"
     digest: 15699ab2f9f1e6cdeb4d6711a2d6a1caff20aaa726e096211546b93de0bd7cbe
     name: pgadmin
@@ -3340,6 +3388,14 @@ entries:
     - https://SocialGouv.github.io/helm-charts/pgadmin-1.25.0.tgz
     version: 1.25.0
   pgweb:
+  - apiVersion: v2
+    created: "2024-05-03T10:09:43.597188937Z"
+    description: A Helm chart for pgweb
+    digest: 777b98f85a10b325724a35d19748199fbd5bca06386dbc0b10419873fd9ec46c
+    name: pgweb
+    urls:
+    - https://SocialGouv.github.io/helm-charts/pgweb-1.26.10.tgz
+    version: 1.26.10
   - apiVersion: v2
     created: "2024-05-03T09:58:01.197084373Z"
     description: A Helm chart for pgweb
@@ -3981,6 +4037,28 @@ entries:
     - https://SocialGouv.github.io/helm-charts/pgweb-1.9.0.tgz
     version: 1.9.0
   vaultwarden:
+  - apiVersion: v2
+    appVersion: 1.29.2
+    created: "2024-05-03T10:09:43.598238494Z"
+    description: vaultwarden is an unofficial Bitwarden-compatible server written
+      in Rust
+    digest: e79e85e6dade399f977c6689c09afef3493d84024993c1e0da4f6a871cae4814
+    keywords:
+    - Rust
+    - vaultwarden
+    kubeVersion: '>=1.12.0-0'
+    maintainers:
+    - email: guerzon@proton.me
+      name: guerzon
+      url: https://github.com/guerzon
+    name: vaultwarden
+    sources:
+    - https://github.com/guerzon/vaultwarden
+    - https://github.com/dani-garcia/vaultwarden
+    type: application
+    urls:
+    - https://SocialGouv.github.io/helm-charts/vaultwarden-1.26.10.tgz
+    version: 1.26.10
   - apiVersion: v2
     appVersion: 1.29.2
     created: "2024-05-03T09:58:01.198146971Z"
@@ -4817,4 +4895,4 @@ entries:
     urls:
     - https://SocialGouv.github.io/helm-charts/vaultwarden-1.17.2.tgz
     version: 1.17.2
-generated: "2024-05-03T09:58:01.193203919Z"
+generated: "2024-05-03T10:09:43.594451557Z"
