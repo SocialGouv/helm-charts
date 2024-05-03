@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.26.5 (2024-05-03)
+
+
+### Bug Fixes
+
+* default user creds ([cef9d1d](https://github.com/SocialGouv/helm-charts/commit/cef9d1d9aa36227e460b1f8c3d6bf541485330fc))
+
 ## 1.26.4 (2024-05-03)
 
 
