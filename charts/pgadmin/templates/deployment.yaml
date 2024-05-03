@@ -35,6 +35,13 @@ spec:
             httpGet:
               path: /
               port: http
+          {{- if .Values.defaultUser }}
+          env:
+          - name: PGADMIN_DEFAULT_EMAIL
+            value: {{ .Values.defaultUser.email }}
+          - name: PGADMIN_DEFAULT_PASSWORD
+            value: {{ .Values.defaultUser.password }}
+          {{- end }}
           securityContext:
             runAsUser: 5050
           resources:
