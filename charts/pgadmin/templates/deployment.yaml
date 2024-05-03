@@ -35,6 +35,7 @@ spec:
             httpGet:
               path: /
               port: http
+            periodSeconds: 30
           {{- if .Values.defaultUser }}
           env:
           - name: PGADMIN_DEFAULT_EMAIL
