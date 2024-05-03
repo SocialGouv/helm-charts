@@ -35,14 +35,14 @@ spec:
           jmesPath: 'data."{{ $secret.keys.password }}"'
       - name: {{ $secret.name | replace "-" "_" }}_database
         apiCall:
-          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ if hasSuffix "-superuser" $secret.name }}{{ trimSuffix "-superuser" $secret.name }}-app{{else}}{{ $secret.name }}{{ end }}"
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
           jmesPath: 'data."{{ $secret.keys.database }}"'
       {{- end }}
       generate:
         apiVersion: v1
         kind: Secret
         name: pgadmin-servers
-        namespace: "{{ or .Values.namespace .Values.global.namespace .Release.namespace }}"
+        namespace: "{{ or .Values.namespace .Values.global.namespace .Release.Namespace }}"
         data:
           stringData:
             servers: |
@@ -50,12 +50,15 @@ spec:
                 "Servers": {
                   {{- range $key, $secret := .Values.secrets }}
                   "{{ add1 $key }}": {
-                    "Username": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_user){{`}}`}}"
-                    "Host": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_host){{`}}`}}"
-                    "Port": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_port){{`}}`}}"
-                    "Password": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_password){{`}}`}}"
-                    "Name": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_database){{`}}`}}"
-                  }
+                    "Username": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_user){{`}}`}}",
+                    "Group": "Servers",
+                    "SSLMode": "require",
+                    "MaintenanceDB": "{{ if hasSuffix "-superuser" $secret.name }}postgres{{else}}{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_database){{`}}`}}{{ end }}",
+                    "Host": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_host){{`}}`}}",
+                    "Port": {{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_port){{`}}`}},
+                    "PassFile": "/secrets/servers/{{ $secret.name }}/password",
+                    "Name": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_host){{`}}`}}"
+                  }{{ if ne (len $.Values.secrets) (add1 $key) }},{{ end }}
                   {{- end }}
                 }
               }

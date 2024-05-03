@@ -15,6 +15,21 @@ spec:
       labels:
         component: {{ (or .Values.component .Chart.Name) | lower }}
     spec:
+      volumes:
+        - name: servers
+          secret:
+            secretName: pgadmin-servers
+            items:
+              - key: servers
+                path: servers.json
+        {{- range .Values.secrets }}
+        - name: {{ .name }}
+          secret:
+            secretName: {{ .name }}
+            items:
+            - key: {{ .keys.password }}
+              path: "password"
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -46,8 +61,19 @@ spec:
             value: "8080"
           - name: PGADMIN_DISABLE_POSTFIX
             value: "yes"
+          - name: PGADMIN_CONFIG_SERVER_MODE
+            value: "False"
+          - name: PGADMIN_SERVER_JSON_FILE
+            value: "/secrets/pgadmin-config/servers.json"
           {{- end }}
           securityContext:
             runAsUser: 5050
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: "/secrets/pgadmin-config"
+              name: servers
+            {{- range .Values.secrets }}
+            - name: {{ .name }}
+              mountPath: "/secrets/servers/{{ .name }}"
+            {{- end }}
