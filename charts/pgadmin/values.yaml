@@ -15,3 +15,7 @@ defaultUser:
 #       host: PGHOST
 #       port: PGPORT
 #       database: PGDATABASE
+ingress:
+  enabled: true
+  annotations: {}
+
