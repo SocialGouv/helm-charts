@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.26.8 (2024-05-03)
+
+
+### Bug Fixes
+
+* startup probe period ([0db8992](https://github.com/SocialGouv/helm-charts/commit/0db89925eb02200d53325051cf3d0a1f77b26933))
+
 ## 1.26.7 (2024-05-03)
 
 
