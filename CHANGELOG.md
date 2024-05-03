@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.26.12 (2024-05-03)
+
+
+### Bug Fixes
+
+* **pgadmin:** add ingress and service ([92dd463](https://github.com/SocialGouv/helm-charts/commit/92dd463512ee124e87f59700ee7dcbd58011f812))
+
 ## 1.26.11 (2024-05-03)
 
 
