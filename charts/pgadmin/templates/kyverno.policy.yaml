@@ -42,7 +42,7 @@ spec:
         apiVersion: v1
         kind: Secret
         name: pgadmin-servers
-        namespace: "{{`{{`}}request.namespace{{`}}`}}"
+        namespace: "{{ or .Values.namespace .Values.global.namespace .Release.namespace }}"
         data:
           stringData:
             servers: |

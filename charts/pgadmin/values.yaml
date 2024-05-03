@@ -3,6 +3,7 @@ image:
   repository: "dpage/pgadmin4"
   tag: "8.5"
   pullPolicy: "Always"
+namespace:
 defaultUser:
   email: admin@example.org
   password: password
