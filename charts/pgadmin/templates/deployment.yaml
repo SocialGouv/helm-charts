@@ -43,9 +43,9 @@ spec:
           - name: PGADMIN_DEFAULT_PASSWORD
             value: {{ .Values.defaultUser.password }}
           - name: PGADMIN_LISTEN_PORT
-            value: 8080
+            value: "8080"
           - name: PGADMIN_DISABLE_POSTFIX
-            value: yes
+            value: "yes"
           {{- end }}
           securityContext:
             runAsUser: 5050
