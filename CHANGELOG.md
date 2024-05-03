@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.26.11 (2024-05-03)
+
+
+### Bug Fixes
+
+* namespace value ([cdf6010](https://github.com/SocialGouv/helm-charts/commit/cdf6010f61414b5c98d8f8fdb8d37f0fc5fbc97f))
+
 ## 1.26.10 (2024-05-03)
 
 
