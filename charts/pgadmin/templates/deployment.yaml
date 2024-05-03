@@ -25,15 +25,28 @@ spec:
         {{- range .Values.secrets }}
         - name: {{ .name }}
           secret:
-            secretName: {{ .name }}
+            secretName: passfile-{{ .name }}
             items:
-            - key: {{ .keys.password }}
+            - key: passfile
               path: "password"
         {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          lifecycle:
+            postStart:
+              exec:
+                command: # See the following issue: https://github.com/pgadmin-org/pgadmin4/issues/6741
+                - /bin/sh
+                - -c
+                - |
+                  for d in /secrets/servers/* ; do
+                    mkdir -p /tmp/passfiles/$(basename $d)
+                    cp $d/password /tmp/passfiles/$(basename $d)/password;
+                    chown pgadmin:root /tmp/passfiles/$(basename $d)/password;
+                    chmod 600 /tmp/passfiles/$(basename $d)/password;
+                  done
           ports:
             - name: http
               containerPort: 8080

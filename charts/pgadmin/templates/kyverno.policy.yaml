@@ -56,9 +56,36 @@ spec:
                     "MaintenanceDB": "{{ if hasSuffix "-superuser" $secret.name }}postgres{{else}}{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_database){{`}}`}}{{ end }}",
                     "Host": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_host){{`}}`}}",
                     "Port": {{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_port){{`}}`}},
-                    "PassFile": "/secrets/servers/{{ $secret.name }}/password",
+                    "PassFile": "/tmp/passfiles/{{ $secret.name }}/password",
                     "Name": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_host){{`}}`}}"
                   }{{ if ne (len $.Values.secrets) (add1 $key) }},{{ end }}
                   {{- end }}
                 }
               }
+    {{- range $key, $secret := .Values.secrets }}
+    - name: gensecret-filepass-{{ add1 $key }}
+      match:
+        any:
+        - resources:
+            kinds:
+              - Secret
+            names:
+              - {{ $secret.name }}
+      context:
+      - name: password
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.password }}"'
+      - name: user
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.user }}"'
+      generate:
+        apiVersion: v1
+        kind: Secret
+        name: passfile-{{ $secret.name }}
+        namespace: "{{ or $.Values.namespace $.Values.global.namespace .Release.Namespace }}"
+        data:
+          stringData:
+            passfile: "*:*:*:{{`{{`}}base64_decode(user){{`}}`}}:{{`{{`}}base64_decode(password){{`}}`}}"
+    {{- end }}
