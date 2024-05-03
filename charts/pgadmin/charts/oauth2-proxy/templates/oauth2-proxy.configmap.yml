@@ -1,0 +1,23 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  labels:
+    component: {{ include "common.names.fullname" . }}
+    application: {{ include "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
+  annotations:
+    {{ if .Values.annotations }}
+    {{ range $key, $val := .Values.annotations }}
+    "{{ $key }}": {{ $val | quote }}
+    {{ end }}
+    {{ end }}
+data:
+  OAUTH2_PROXY_HTTP_ADDRESS: "0.0.0.0:4180"
+  OAUTH2_PROXY_SCOPE: "user:email"
+  OAUTH2_PROXY_PROVIDER: github
+  OAUTH2_PROXY_GITHUB_ORG: SocialGouv
+  OAUTH2_PROXY_BANNER: Recosante private access
+  OAUTH2_PROXY_FOOTER: SocialGouv auth
+  OAUTH2_PROXY_EMAIL_DOMAINS: "*"
+  OAUTH2_PROXY_COOKIE_SECURE: "false"
+  OAUTH2_PROXY_CUSTOM_SIGN_IN_LOGO: "https://socialgouv.github.io/support/_media/marianne.jpeg"

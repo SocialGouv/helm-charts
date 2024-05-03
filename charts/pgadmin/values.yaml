@@ -19,5 +19,5 @@ defaultUser:
 #       port: PGPORT
 #       database: PGDATABASE
 ingress:
-  enabled: true
+  enabled: false
   annotations: {}

@@ -1,3 +1,7 @@
 apiVersion: v2
 name: pgadmin
 version: 1.27.2
+dependencies:
+  - name: oauth2-proxy
+    version: 0.0.0
+    repository: file://./charts/oauth2-proxy
