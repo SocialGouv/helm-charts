@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.27.1 (2024-05-06)
+
+
+### Bug Fixes
+
+* **pgadmin:** merge secret ([22bc818](https://github.com/SocialGouv/helm-charts/commit/22bc8180f53af02fe3b62588c2a648be4155a121))
+
 ## 1.27.0 (2024-05-03)
 
 
