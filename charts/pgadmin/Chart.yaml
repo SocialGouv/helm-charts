@@ -3,11 +3,6 @@ name: pgadmin
 version: 1.27.2
 dependencies:
   - name: oauth2-proxy
-<<<<<<< HEAD
     version: "^1.27.2"
-    repository: file://./charts/oauth2-proxy
-=======
-    version: "^1.26.12"
     repository: https://socialgouv.github.io/helm-charts
->>>>>>> b83df8d (feat: move oatuh chart away from pgadmin)
     condition: oauth2-proxy.enabled
