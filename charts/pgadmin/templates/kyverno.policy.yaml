@@ -1,0 +1,69 @@
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: generate-pgadmin-servers
+spec:
+  generateExisting: true
+  background: true
+  rules:
+    - name: gensecret
+      match:
+        any:
+        {{- range $key, $secret := .Values.secrets }}
+        - resources:
+            kinds:
+              - Secret
+            names:
+              - {{ $secret.name }}
+        {{- end }}
+      context:
+      {{- range $key, $secret := .Values.secrets }}
+      - name: {{ $secret.name | replace "-" "_" }}_user
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.user }}"'
+      - name: {{ $secret.name | replace "-" "_" }}_host
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.host }}"'
+      - name: {{ $secret.name | replace "-" "_" }}_port
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.port }}"'
+      - name: {{ $secret.name | replace "-" "_" }}_password
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.password }}"'
+      - name: {{ $secret.name | replace "-" "_" }}_database
+        apiCall:
+          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
+          jmesPath: 'data."{{ $secret.keys.database }}"'
+      {{- end }}
+      generate:
+        synchronize: true
+        apiVersion: v1
+        kind: Secret
+        name: pgadmin-servers
+        namespace: "{{ or .Values.namespace .Values.global.namespace .Release.Namespace }}"
+        data:
+          stringData:
+            {{- range $key, $secret := .Values.secrets }}
+            passfile-{{ $secret.name }}: "*:*:*:{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_user){{`}}`}}:{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_password){{`}}`}}"
+            {{- end }}
+            servers.json: |
+              {
+                "Servers": {
+                  {{- range $key, $secret := .Values.secrets }}
+                  "{{ add1 $key }}": {
+                    "Username": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_user){{`}}`}}",
+                    "Group": "Servers",
+                    "SSLMode": "require",
+                    "MaintenanceDB": "{{ if hasSuffix "-superuser" $secret.name }}postgres{{else}}{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_database){{`}}`}}{{ end }}",
+                    "Host": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_host){{`}}`}}",
+                    "Port": {{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_port){{`}}`}},
+                    "PassFile": "/tmp/passfiles/passfile-{{ $secret.name }}",
+                    "Name": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_host){{`}}`}}"
+                  }{{ if ne (len $.Values.secrets) (add1 $key) }},{{ end }}
+                  {{- end }}
+                }
+              }

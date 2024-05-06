@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ (or .Values.component .Chart.Name) | lower }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    component: {{ (or .Values.component .Chart.Name) | lower }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      component: {{ (or .Values.component .Chart.Name) | lower }}
+  template:
+    metadata:
+      labels:
+        component: {{ (or .Values.component .Chart.Name) | lower }}
+    spec:
+      volumes:
+        - name: pgadmin-secrets
+          secret:
+            secretName: pgadmin-servers
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          lifecycle:
+            postStart:
+              exec:
+                command: # See the following issue: https://github.com/pgadmin-org/pgadmin4/issues/6741
+                - /bin/sh
+                - -c
+                - |
+                  mkdir /tmp/passfiles
+                  cp /secrets/pgadmin-config/passfile-* /tmp/passfiles/
+                  chown pgadmin:root /tmp/passfiles/passfile-*
+                  chmod 600 /tmp/passfiles/passfile-*
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 30
+          {{- if .Values.defaultUser }}
+          env:
+          - name: PGADMIN_DEFAULT_EMAIL
+            value: {{ .Values.defaultUser.email }}
+          - name: PGADMIN_DEFAULT_PASSWORD
+            value: {{ .Values.defaultUser.password }}
+          - name: PGADMIN_LISTEN_PORT
+            value: "8080"
+          - name: PGADMIN_DISABLE_POSTFIX
+            value: "yes"
+          - name: PGADMIN_CONFIG_SERVER_MODE
+            value: "False"
+          - name: PGADMIN_SERVER_JSON_FILE
+            value: "/secrets/pgadmin-config/servers.json"
+          - name: PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED
+            value: "False"
+          - name: PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED
+            value: "False"
+          {{- end }}
+          securityContext:
+            runAsUser: 5050
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: "/secrets/pgadmin-config"
+              name: pgadmin-secrets
