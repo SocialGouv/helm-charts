@@ -3,5 +3,6 @@ name: pgadmin
 version: 1.27.2
 dependencies:
   - name: oauth2-proxy
-    version: 0.0.0
+    version: "^1.27.2"
     repository: file://./charts/oauth2-proxy
+    condition: oauth2-proxy.enabled
