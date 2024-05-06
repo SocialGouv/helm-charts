@@ -1,0 +1,17 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  labels:
+    component: {{ include "common.names.fullname" . }}
+    application: {{ include "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
+  annotations:
+    {{ if .Values.annotations }}
+    {{ range $key, $val := .Values.annotations }}
+    "{{ $key }}": {{ $val | quote }}
+    {{ end }}
+    {{ end }}
+data:
+  {{ range $key, $value := .Values.config }}
+  {{ $key }}: {{ $value | quote }}
+  {{ end }}

@@ -1,0 +1,16 @@
+env: []
+envFrom: []
+
+ingress:
+  enabled: true
+  host:
+  annotations: {}
+
+upstream:
+
+additionalArgs: []
+replicas: 1
+
+image:
+  name: quay.io/oauth2-proxy/oauth2-proxy
+  tag: v7.4.0
