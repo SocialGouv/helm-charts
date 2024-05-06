@@ -3,6 +3,7 @@ kind: Policy
 metadata:
   name: generate-pgadmin-servers
 spec:
+  generateExisting: true
   background: true
   rules:
     - name: gensecret
@@ -39,13 +40,17 @@ spec:
           jmesPath: 'data."{{ $secret.keys.database }}"'
       {{- end }}
       generate:
+        synchronize: true
         apiVersion: v1
         kind: Secret
         name: pgadmin-servers
         namespace: "{{ or .Values.namespace .Values.global.namespace .Release.Namespace }}"
         data:
           stringData:
-            servers: |
+            {{- range $key, $secret := .Values.secrets }}
+            passfile-{{ $secret.name }}: "*:*:*:{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_user){{`}}`}}:{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_password){{`}}`}}"
+            {{- end }}
+            servers.json: |
               {
                 "Servers": {
                   {{- range $key, $secret := .Values.secrets }}
@@ -56,36 +61,9 @@ spec:
                     "MaintenanceDB": "{{ if hasSuffix "-superuser" $secret.name }}postgres{{else}}{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_database){{`}}`}}{{ end }}",
                     "Host": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_host){{`}}`}}",
                     "Port": {{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_port){{`}}`}},
-                    "PassFile": "/tmp/passfiles/{{ $secret.name }}/password",
+                    "PassFile": "/tmp/passfiles/passfile-{{ $secret.name }}",
                     "Name": "{{`{{`}}base64_decode({{ $secret.name | replace "-" "_" }}_host){{`}}`}}"
                   }{{ if ne (len $.Values.secrets) (add1 $key) }},{{ end }}
                   {{- end }}
                 }
               }
-    {{- range $key, $secret := .Values.secrets }}
-    - name: gensecret-filepass-{{ add1 $key }}
-      match:
-        any:
-        - resources:
-            kinds:
-              - Secret
-            names:
-              - {{ $secret.name }}
-      context:
-      - name: password
-        apiCall:
-          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
-          jmesPath: 'data."{{ $secret.keys.password }}"'
-      - name: user
-        apiCall:
-          urlPath: "/api/v1/namespaces/{{`{{`}}request.namespace{{`}}`}}/secrets/{{ $secret.name }}"
-          jmesPath: 'data."{{ $secret.keys.user }}"'
-      generate:
-        apiVersion: v1
-        kind: Secret
-        name: passfile-{{ $secret.name }}
-        namespace: "{{ or $.Values.namespace $.Values.global.namespace .Release.Namespace }}"
-        data:
-          stringData:
-            passfile: "*:*:*:{{`{{`}}base64_decode(user){{`}}`}}:{{`{{`}}base64_decode(password){{`}}`}}"
-    {{- end }}

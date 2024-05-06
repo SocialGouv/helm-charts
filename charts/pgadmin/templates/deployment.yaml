@@ -16,20 +16,9 @@ spec:
         component: {{ (or .Values.component .Chart.Name) | lower }}
     spec:
       volumes:
-        - name: servers
+        - name: pgadmin-secrets
           secret:
             secretName: pgadmin-servers
-            items:
-              - key: servers
-                path: servers.json
-        {{- range .Values.secrets }}
-        - name: {{ .name }}
-          secret:
-            secretName: passfile-{{ .name }}
-            items:
-            - key: passfile
-              path: "password"
-        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -41,12 +30,10 @@ spec:
                 - /bin/sh
                 - -c
                 - |
-                  for d in /secrets/servers/* ; do
-                    mkdir -p /tmp/passfiles/$(basename $d)
-                    cp $d/password /tmp/passfiles/$(basename $d)/password;
-                    chown pgadmin:root /tmp/passfiles/$(basename $d)/password;
-                    chmod 600 /tmp/passfiles/$(basename $d)/password;
-                  done
+                  mkdir /tmp/passfiles
+                  cp /secrets/pgadmin-config/passfile-* /tmp/passfiles/
+                  chown pgadmin:root /tmp/passfiles/passfile-*
+                  chmod 600 /tmp/passfiles/passfile-*
           ports:
             - name: http
               containerPort: 8080
@@ -78,6 +65,8 @@ spec:
             value: "False"
           - name: PGADMIN_SERVER_JSON_FILE
             value: "/secrets/pgadmin-config/servers.json"
+          - name: PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED
+            value: "False"
           {{- end }}
           securityContext:
             runAsUser: 5050
@@ -85,8 +74,4 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - mountPath: "/secrets/pgadmin-config"
-              name: servers
-            {{- range .Values.secrets }}
-            - name: {{ .name }}
-              mountPath: "/secrets/servers/{{ .name }}"
-            {{- end }}
+              name: pgadmin-secrets
