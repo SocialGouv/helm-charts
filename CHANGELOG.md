@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.27.2 (2024-05-06)
+
+
+### Bug Fixes
+
+* **pgadmin:** disable upgrade check ([6b78ac6](https://github.com/SocialGouv/helm-charts/commit/6b78ac68ebf202c3ea6aed26830c71278a76fead))
+
 ## 1.27.1 (2024-05-06)
 
 
