@@ -67,6 +67,8 @@ spec:
             value: "/secrets/pgadmin-config/servers.json"
           - name: PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED
             value: "False"
+          - name: PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED
+            value: "False"
           {{- end }}
           securityContext:
             runAsUser: 5050
