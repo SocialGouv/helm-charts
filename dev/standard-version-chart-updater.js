@@ -23,9 +23,9 @@ module.exports = {
         ) {
           dependency.version = version
         }
-        if (dependency.repository === "https://socialgouv.github.io/helm-charts" && dependency.version.startsWith("^")) {
-          dependency.version = "^" + version
-        }
+        // if (dependency.repository === "https://socialgouv.github.io/helm-charts" && dependency.version.startsWith("^")) {
+        //   dependency.version = "^" + version
+        // }
       }
     }
     return yaml.dump(chart, { indent: 2 })
