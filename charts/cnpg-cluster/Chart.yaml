@@ -2,5 +2,5 @@ apiVersion: v2
 name: cnpg-cluster
 description: A Helm chart to create cloudnative-pg.io clusters
 type: application
-version: 1.28.13
+version: 1.28.14
 appVersion: '15'
