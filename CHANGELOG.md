@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.28.9 (2024-05-07)
+
+
+### Bug Fixes
+
+* **oauth2-proxy:** whitespace in templates ([ca0b12c](https://github.com/SocialGouv/helm-charts/commit/ca0b12c1b504139a90a32a85919ae7688f0548d5))
+
 ## 1.28.8 (2024-05-07)
 
 
