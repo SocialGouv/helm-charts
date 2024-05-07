@@ -2,6 +2,14 @@ apiVersion: v1
 entries:
   buildkit-service:
   - apiVersion: v2
+    created: "2024-05-07T09:20:45.705495525Z"
+    description: Helm chart for buildkit service deployment
+    digest: 57633f184bfc82dd448c23b233381e15e04af76f2ed64b1ce3f7525034d05293
+    name: buildkit-service
+    urls:
+    - https://SocialGouv.github.io/helm-charts/buildkit-service-1.28.9.tgz
+    version: 1.28.9
+  - apiVersion: v2
     created: "2024-05-07T08:06:44.713684293Z"
     description: Helm chart for buildkit service deployment
     digest: bae924c362f9d6294e70d2c1fda1ee54e4903b63faae38a6ae743f50d81070fe
@@ -827,6 +835,14 @@ entries:
     version: 1.6.0
   clamav:
   - apiVersion: v2
+    created: "2024-05-07T09:20:45.705778314Z"
+    description: A ClamAV service with a REST API
+    digest: 21289c4a3c2e1bf9a7c82a12b392f1c88a075fa4682fc9a204fc9081c33def9b
+    name: clamav
+    urls:
+    - https://SocialGouv.github.io/helm-charts/clamav-1.28.9.tgz
+    version: 1.28.9
+  - apiVersion: v2
     created: "2024-05-07T08:06:44.713932946Z"
     description: A ClamAV service with a REST API
     digest: e535862f9c462eadfd0af26533e2226c8086c14b49262886bbfd4d3b73bb2921
@@ -1282,6 +1298,16 @@ entries:
     - https://SocialGouv.github.io/helm-charts/clamav-1.16.0.tgz
     version: 1.16.0
   cnpg-cluster:
+  - apiVersion: v2
+    appVersion: "15"
+    created: "2024-05-07T09:20:45.706486818Z"
+    description: A Helm chart to create cloudnative-pg.io clusters
+    digest: 99f6eec3cead87e1e011bcfdc7cebfd81c97a249117d6af8112caa9f918c7ef9
+    name: cnpg-cluster
+    type: application
+    urls:
+    - https://SocialGouv.github.io/helm-charts/cnpg-cluster-1.28.9.tgz
+    version: 1.28.9
   - apiVersion: v2
     appVersion: "15"
     created: "2024-05-07T08:06:44.714622619Z"
@@ -2494,6 +2520,14 @@ entries:
     version: 1.1.0
   common:
   - apiVersion: v2
+    created: "2024-05-07T09:20:45.706594319Z"
+    digest: 075b41ecfe6ffe3eaccbc466dec814deb92c79ffae5642d3306c0ed1a0cfca25
+    name: common
+    type: library
+    urls:
+    - https://SocialGouv.github.io/helm-charts/common-1.28.9.tgz
+    version: 1.28.9
+  - apiVersion: v2
     created: "2024-05-07T08:06:44.714740048Z"
     digest: 09908e582fb4cdf003d72442fb195e378b4f147b20272372a11214a297e1b2e7
     name: common
@@ -2542,6 +2576,14 @@ entries:
     - https://SocialGouv.github.io/helm-charts/common-1.28.1.tgz
     version: 1.28.1
   maildev:
+  - apiVersion: v2
+    created: "2024-05-07T09:20:45.706978688Z"
+    description: A Helm chart for maildev
+    digest: 24acbd1536d2e7d72d0dc056eb67649e6c3fc7d180fbded8143afacf4d059ace
+    name: maildev
+    urls:
+    - https://SocialGouv.github.io/helm-charts/maildev-1.28.9.tgz
+    version: 1.28.9
   - apiVersion: v2
     created: "2024-05-07T08:06:44.715140453Z"
     description: A Helm chart for maildev
@@ -3536,6 +3578,13 @@ entries:
     version: 1.0.0
   matomo-sync:
   - apiVersion: v2
+    created: "2024-05-07T09:20:45.707139278Z"
+    digest: 70f5db8ae5328fb9b2800a093d918eecaf06aef21827d5fac740b15038d3db6d
+    name: matomo-sync
+    urls:
+    - https://SocialGouv.github.io/helm-charts/matomo-sync-1.28.9.tgz
+    version: 1.28.9
+  - apiVersion: v2
     created: "2024-05-07T08:06:44.715280894Z"
     digest: 0fd5404d1dce76442caac98b5dfced6e5ce0d1022b24941449b929e4e82739e3
     name: matomo-sync
@@ -3831,6 +3880,17 @@ entries:
     version: 1.19.0
   oauth2-proxy:
   - apiVersion: v2
+    created: "2024-05-07T09:20:45.707574241Z"
+    dependencies:
+    - name: common
+      repository: https://socialgouv.github.io/helm-charts
+      version: 1.28.7
+    digest: 9f8d32bab66c220c8f1c01d7d8b504815756ef82ba0118cca24be274110ac247
+    name: oauth2-proxy
+    urls:
+    - https://SocialGouv.github.io/helm-charts/oauth2-proxy-1.28.9.tgz
+    version: 1.28.9
+  - apiVersion: v2
     created: "2024-05-07T08:06:44.715625174Z"
     dependencies:
     - name: common
@@ -3886,6 +3946,18 @@ entries:
     - https://SocialGouv.github.io/helm-charts/oauth2-proxy-1.28.4.tgz
     version: 1.28.4
   pgadmin:
+  - apiVersion: v2
+    created: "2024-05-07T09:20:45.708134829Z"
+    dependencies:
+    - condition: oauth2-proxy.enabled
+      name: oauth2-proxy
+      repository: https://socialgouv.github.io/helm-charts
+      version: 1.28.7
+    digest: e8d04c8718cf1cf12a4bfc011a77bceb476a29b65107801b1affed5a673ff8a8
+    name: pgadmin
+    urls:
+    - https://SocialGouv.github.io/helm-charts/pgadmin-1.28.9.tgz
+    version: 1.28.9
   - apiVersion: v2
     created: "2024-05-07T08:06:44.716102482Z"
     dependencies:
@@ -4075,6 +4147,14 @@ entries:
     - https://SocialGouv.github.io/helm-charts/pgadmin-1.25.0.tgz
     version: 1.25.0
   pgweb:
+  - apiVersion: v2
+    created: "2024-05-07T09:20:45.708604908Z"
+    description: A Helm chart for pgweb
+    digest: 869622f3d40b51b1cf497eb6d1bb4c6c2052ee73d9bec952508ac2292528bcc9
+    name: pgweb
+    urls:
+    - https://SocialGouv.github.io/helm-charts/pgweb-1.28.9.tgz
+    version: 1.28.9
   - apiVersion: v2
     created: "2024-05-07T08:06:44.716506584Z"
     description: A Helm chart for pgweb
@@ -4820,6 +4900,28 @@ entries:
     - https://SocialGouv.github.io/helm-charts/pgweb-1.9.0.tgz
     version: 1.9.0
   vaultwarden:
+  - apiVersion: v2
+    appVersion: 1.29.2
+    created: "2024-05-07T09:20:45.710527318Z"
+    description: vaultwarden is an unofficial Bitwarden-compatible server written
+      in Rust
+    digest: c03f0a69c5d6f33c88f39f3be700a465fc8ff2b0b40c0d2ff9d8018cb76e1e15
+    keywords:
+    - Rust
+    - vaultwarden
+    kubeVersion: '>=1.12.0-0'
+    maintainers:
+    - email: guerzon@proton.me
+      name: guerzon
+      url: https://github.com/guerzon
+    name: vaultwarden
+    sources:
+    - https://github.com/guerzon/vaultwarden
+    - https://github.com/dani-garcia/vaultwarden
+    type: application
+    urls:
+    - https://SocialGouv.github.io/helm-charts/vaultwarden-1.28.9.tgz
+    version: 1.28.9
   - apiVersion: v2
     appVersion: 1.29.2
     created: "2024-05-07T08:06:44.717357036Z"
@@ -5942,4 +6044,4 @@ entries:
     urls:
     - https://SocialGouv.github.io/helm-charts/vaultwarden-1.17.2.tgz
     version: 1.17.2
-generated: "2024-05-07T08:06:44.712766631Z"
+generated: "2024-05-07T09:20:45.704585795Z"
