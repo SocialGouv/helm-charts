@@ -3,5 +3,5 @@ name: oauth2-proxy
 version: 1.28.6
 dependencies:
   - name: common
-    version: ^1.0.0
+    version: ^1.28.6
     repository: https://socialgouv.github.io/helm-charts
