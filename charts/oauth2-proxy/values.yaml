@@ -11,6 +11,7 @@ config:
 #   OAUTH2_PROXY_EMAIL_DOMAINS: "*"
 #   OAUTH2_PROXY_COOKIE_SECURE: "false"
 #   OAUTH2_PROXY_CUSTOM_SIGN_IN_LOGO: "https://socialgouv.github.io/support/_media/marianne.jpeg"
+#   OAUTH2_PROXY_REDIRECT_URL:
 
 ingress:
   enabled: true

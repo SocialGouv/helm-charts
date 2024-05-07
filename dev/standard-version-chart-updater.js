@@ -17,12 +17,13 @@ module.exports = {
     const { dependencies } = chart
     if (dependencies) {
       for (const dependency of dependencies) {
-        if (
-          dependency.repository.startsWith("file://./charts/") ||
-          dependency.repository.startsWith("file://../")
-        ) {
-          dependency.version = version
-        }
+        // if (
+        //   dependency.repository.startsWith("file://./charts/") ||
+        //   dependency.repository.startsWith("file://../")
+        // ) {
+        //   dependency.version = version
+        // }
+        dependency.version = version
         // if (dependency.repository === "https://socialgouv.github.io/helm-charts" && dependency.version.startsWith("^")) {
         //   dependency.version = "^" + version
         // }
