@@ -6,12 +6,12 @@ metadata:
     application: {{ include "common.names.fullname" . }}
   name: {{ include "common.names.fullname" . }}
   annotations:
-    {{ if .Values.annotations }}
-    {{ range $key, $val := .Values.annotations }}
+    {{- if .Values.annotations }}
+    {{- range $key, $val := .Values.annotations }}
     "{{ $key }}": {{ $val | quote }}
-    {{ end }}
-    {{ end }}
+    {{- end }}
+    {{- end }}
 data:
-  {{ range $key, $value := .Values.config }}
+  {{- range $key, $value := .Values.config }}
   {{ $key }}: {{ $value | quote }}
-  {{ end }}
+  {{- end }}
