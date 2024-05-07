@@ -1,6 +1,6 @@
 apiVersion: v2
 name: oauth2-proxy
-version: 1.28.15
+version: 1.28.16
 dependencies:
   - name: common
     version: 1.28.15
