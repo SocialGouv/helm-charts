@@ -24,6 +24,7 @@ ingress:
 
 oauth2-proxy:
   enabled: true
+  upstream: https://pgadmin
   config:
     OAUTH2_PROXY_HTTP_ADDRESS: "0.0.0.0:4180"
     OAUTH2_PROXY_SCOPE: "user:email"

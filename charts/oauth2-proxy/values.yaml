@@ -1,7 +1,7 @@
 env: []
 envFrom: []
 
-# config:
+config:
 #   OAUTH2_PROXY_HTTP_ADDRESS: "0.0.0.0:4180"
 #   OAUTH2_PROXY_SCOPE: "user:email"
 #   OAUTH2_PROXY_PROVIDER: github
@@ -14,10 +14,11 @@ envFrom: []
 
 ingress:
   enabled: true
-  host:
   annotations: {}
 
 upstream:
+
+host:
 
 additionalArgs: []
 replicas: 1
