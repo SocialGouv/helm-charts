@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.28.10 (2024-05-07)
+
+
+### Bug Fixes
+
+* **pgadmin-oauth:** configmap ([9f0b83a](https://github.com/SocialGouv/helm-charts/commit/9f0b83ad3c024e32777392dbf47ff5347efe5ef4))
+
 ## 1.28.9 (2024-05-07)
 
 
