@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.28.13 (2024-05-07)
+
+
+### Bug Fixes
+
+* **oauth2-proxy:** explicit redirect uri ([b7561d1](https://github.com/SocialGouv/helm-charts/commit/b7561d155ad100db42ad1fab2d47a8213ae40c6c))
+
 ## 1.28.12 (2024-05-07)
 
 
