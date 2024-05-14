@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.29.0 (2024-05-14)
+
+
+### Features
+
+* **buildkit:** init sysctl fixer ([a6e00d4](https://github.com/SocialGouv/helm-charts/commit/a6e00d445cbeabaea9b4c82c45822b65248146af))
+
 ## 1.28.20 (2024-05-07)
 
 
