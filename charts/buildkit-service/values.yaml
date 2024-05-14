@@ -104,5 +104,5 @@ init:
   fixSysctl:
     enabled: false
     mode: initContainer # securityContext | initContainer
-    maxbytes: 25000000
-    maxkeys: 1000000
+    maxbytes: "25000000"
+    maxkeys: "1000000"
