@@ -8,18 +8,18 @@ hpa:
   maxReplicas: 10
   annotations: {}
   metrics:
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 75
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 80
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 75
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
 
 image:
   # -- Image name
@@ -99,3 +99,10 @@ snapshotter: "auto"
 history:
   maxAge: 172800
   maxEntries: 50
+
+init:
+  fixSysctl:
+    enabled: false
+    mode: initContainer # securityContext | initContainer
+    maxbytes: 25000000
+    maxkeys: 1000000

@@ -24,6 +24,13 @@ spec:
     spec:
       securityContext:
         fsGroup: 1000
+        {{ if and .Values.init.fixSysctl.enabled (eq .Values.init.fixSysctl.mode "securityContext") }}
+        sysctls:
+        - name: kernel.keys.maxbytes
+          value: {{ .Values.init.fixSysctl.maxbytes | quote }}
+        - name: kernel.keys.maxkeys
+          value: {{ .Values.init.fixSysctl.maxkeys | quote }}
+        {{ end }}
       
       initContainers:
         - name: permissions-fixer
@@ -38,7 +45,20 @@ spec:
             - sh
             - -c
             - (chown 1000:1000 /buildkit-cache; chmod 0755 /buildkit-cache;)
-
+        {{ if and .Values.init.fixSysctl.enabled (eq .Values.init.fixSysctl.mode "initContainer") }}
+        - name: init-sysctl
+          image: busybox
+          imagePullPolicy: Always
+          command:
+          - sh
+          - -c
+          - |
+            echo "Setting kernel parameters"
+            echo {{ .Values.init.fixSysctl.maxbytes }} > /proc/sys/kernel/keys/maxbytes
+            echo {{ .Values.init.fixSysctl.maxkeys }} > /proc/sys/kernel/keys/maxkeys
+          securityContext:
+            privileged: true
+        {{ end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
