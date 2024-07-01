@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.29.2 (2024-07-01)
+
+
+### Bug Fixes
+
+* oauth-proxy for pgweb ([60f8757](https://github.com/SocialGouv/helm-charts/commit/60f87577647097f503b6d9ee27b281f47258910a))
+
 ## 1.29.1 (2024-05-14)
 
 
