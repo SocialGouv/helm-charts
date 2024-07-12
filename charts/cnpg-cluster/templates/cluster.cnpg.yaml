@@ -104,7 +104,7 @@ spec:
   bootstrap:
     {{- if .Values.recovery.enabled }}
     recovery:
-      source: "recovery-cluster"
+      source: {{ .Values.recovery.externalClusterName | default "recovery-cluster" }}
       {{ if .Values.recovery.database }}
       database: {{ .Values.recovery.database }}
       {{- end }}
