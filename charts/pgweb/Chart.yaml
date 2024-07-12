@@ -1,7 +1,7 @@
 apiVersion: v2
 description: A Helm chart for pgweb
 name: pgweb
-version: 1.29.2
+version: 1.29.3
 dependencies:
   - name: oauth2-proxy
     version: 1.29.1

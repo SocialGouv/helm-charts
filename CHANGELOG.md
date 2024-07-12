@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.29.3 (2024-07-12)
+
+
+### Bug Fixes
+
+* allow custom name for externalCluster ([3cac44b](https://github.com/SocialGouv/helm-charts/commit/3cac44be286291d749b16e74973b6cb501633777))
+
 ## 1.29.2 (2024-07-01)
 
 
