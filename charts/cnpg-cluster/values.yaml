@@ -209,6 +209,9 @@ recovery:
   # @param {string,null} [secretName] Secret where owner password is set
   secretName:
 
+  # @param {string,null} [externalClusterName] Name for the external cluster to recover from
+  externalClusterName:
+
   # See: https://cloudnative-pg.io/documentation/current/backup_recovery/
   # @param {object,null} [barmanObjectStore] Object store credentials and access config
   barmanObjectStore:
