@@ -153,7 +153,7 @@ spec:
 
   externalClusters:
   {{- if .Values.recovery.enabled }}
-    - name: {{ or .Values.recovery.externalClusterName "recovery-cluster" }}
+    - name: {{ .Values.recovery.externalClusterName | default "recovery-cluster" }}
       barmanObjectStore:
         {{- toYaml .Values.recovery.barmanObjectStore | nindent 8 }}
   {{- end }}
