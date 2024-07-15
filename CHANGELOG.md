@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.29.6 (2024-07-15)
+
+
+### Bug Fixes
+
+* **pgadmin:** support annotations and disable high-availablity kontinuous plugin ([af9bcc2](https://github.com/SocialGouv/helm-charts/commit/af9bcc2abda9995fae1c57262cfc89cddf04edf5))
+
 ## 1.29.5 (2024-07-12)
 
 
