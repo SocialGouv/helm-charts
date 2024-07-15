@@ -6,6 +6,8 @@ image:
   tag: "8.5"
   pullPolicy: "Always"
 namespace:
+annotations:
+  kontinuous/plugin.zeroDowntimeHandled: true
 host:
 defaultUser:
   email: admin@example.org
