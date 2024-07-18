@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.29.7 (2024-07-18)
+
+
+### Bug Fixes
+
+* **pgadmin:** oauth2-proxy name ([5763549](https://github.com/SocialGouv/helm-charts/commit/57635490f89be44bdbf4f8e3f56f0ac83d0f8901))
+
 ## 1.29.6 (2024-07-15)
 
 
