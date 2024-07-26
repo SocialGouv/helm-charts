@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.29.8 (2024-07-26)
+
+
+### Bug Fixes
+
+* **oauth2-proxy:** default listen address ([e636609](https://github.com/SocialGouv/helm-charts/commit/e63660987c9820f2d053860750f05f26ddd94064))
+
 ## 1.29.7 (2024-07-18)
 
 
