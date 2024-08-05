@@ -23,6 +23,9 @@ host:
 additionalArgs: []
 replicas: 1
 
+annotations:
+  kontinuous/plugin.zeroDowntimeHandled: true
+
 image:
   name: quay.io/oauth2-proxy/oauth2-proxy
   tag: v7.6.0
