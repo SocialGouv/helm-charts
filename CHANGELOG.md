@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.29.10 (2024-08-05)
+
+
+### Bug Fixes
+
+* **oauth2-proxy:** disable zero downtime ([e07eb0a](https://github.com/SocialGouv/helm-charts/commit/e07eb0a14e53475c2928d0467911ef463bac6523))
+
 ## 1.29.9 (2024-08-05)
 
 
