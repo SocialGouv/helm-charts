@@ -110,5 +110,5 @@ init:
 dns:
   enabled: false
   nameservers: ["1.1.1.1","8.8.8.8"]
-  options: null # []
-  searchDomains: null # []
+  options: null  # []
+  searchDomains: null  # []
