@@ -52,3 +52,16 @@ data:
         all = true
         keepBytes = {{ .Values.gc.defaultPolicy.keepBytes | toYaml }}
         keepDuration = {{ .Values.gc.defaultPolicy.keepDuration | toYaml }}
+
+    {{ if .Values.dns.enabled }}
+    [dns]
+    {{ if .Values.dns.nameservers }}
+    nameservers={{ .Values.dns.nameservers | toJson }}
+    {{ end }}
+    {{ if .Values.dns.options }}
+    options={{ .Values.dns.options | toJson }}
+    {{ end }}
+    {{ if .Values.dns.searchDomains }}
+    searchDomains={{ .Values.dns.searchDomains | toJson }}
+    {{ end }}
+    {{ end }}
