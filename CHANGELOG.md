@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.30.0 (2024-09-17)
+
+
+### Features
+
+* dns custom ([#64](https://github.com/SocialGouv/helm-charts/issues/64)) ([a354745](https://github.com/SocialGouv/helm-charts/commit/a354745ff2874740766331d4cc169b39efeccf37))
+
 ## 1.29.10 (2024-08-05)
 
 
