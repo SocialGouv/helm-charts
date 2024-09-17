@@ -106,3 +106,9 @@ init:
     mode: initContainer # securityContext | initContainer
     maxbytes: "25000000"
     maxkeys: "1000000"
+
+dns:
+  enabled: false
+  nameservers: ["1.1.1.1","8.8.8.8"]
+  options: null # []
+  searchDomains: null # []
