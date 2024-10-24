@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.30.1 (2024-10-24)
+
+
+### Bug Fixes
+
+* **cnpg-cluster:** Add clusterExtraLabels ([#65](https://github.com/SocialGouv/helm-charts/issues/65)) ([#66](https://github.com/SocialGouv/helm-charts/issues/66)) ([292edeb](https://github.com/SocialGouv/helm-charts/commit/292edeba560123b05f655113f2fe29a5db97a55b))
+
 ## 1.30.0 (2024-09-17)
 
 
