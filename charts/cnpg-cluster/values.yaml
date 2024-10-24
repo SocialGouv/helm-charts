@@ -13,6 +13,8 @@ logLevel: info
 # @param {object} [annotations] CNPG cluster annotations
 annotations: {}
 
+clusterExtraLabels: {}
+
 # @param {object} [image] Docker image for the PG instances
 image:
   # @param {string} [repository] CNPG compatible Postgres image. see https://github.com/cloudnative-pg/postgres-containers
