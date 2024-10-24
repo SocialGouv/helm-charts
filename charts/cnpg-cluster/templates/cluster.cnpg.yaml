@@ -4,6 +4,9 @@ metadata:
   name: {{ include "cnpg-cluster.fullname" . }}
   labels:
     {{- include "cnpg-cluster.labels" . | nindent 4 }}
+    {{- if .Values.clusterExtraLabels }}
+    {{- toYaml .Values.clusterExtraLabels | nindent 4 }}
+    {{- end }}
   annotations:
     {{- include "cnpg-cluster.annotations" . | nindent 4 }}
 spec:
