@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.30.2 (2025-01-07)
+
+
+### Bug Fixes
+
+* **ci-cd:** use token-bureau ([#67](https://github.com/SocialGouv/helm-charts/issues/67)) ([11e3b7a](https://github.com/SocialGouv/helm-charts/commit/11e3b7a0e22ee6850559f741ab45da0acf94a9a0))
+
 ## 1.30.1 (2024-10-24)
 
 
