@@ -13,6 +13,10 @@ logLevel: info
 # @param {object} [annotations] CNPG cluster annotations
 annotations: {}
 
+# @param {object} [annotations] CNPG cluster labels
+labels: {}
+
+# deprecated
 clusterExtraLabels: {}
 
 # @param {object} [image] Docker image for the PG instances
