@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.30.3 (2025-01-13)
+
+
+### Bug Fixes
+
+* cnpg labels ([573446e](https://github.com/SocialGouv/helm-charts/commit/573446e4e907deb003c4e6cd0b905ce9ec93c13d))
+
 ## 1.30.2 (2025-01-07)
 
 
