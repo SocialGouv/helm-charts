@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.30.4 (2025-02-24)
+
+
+### Bug Fixes
+
+* up vaultwarden version ([9817be1](https://github.com/SocialGouv/helm-charts/commit/9817be1c9d9a1b9c3ec11d2dbde005b9db9f3725))
+
 ## 1.30.3 (2025-01-13)
 
 
