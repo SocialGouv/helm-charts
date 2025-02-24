@@ -15,7 +15,6 @@ See on [GitHub](https://github.com/SocialGouv/helm-charts).
 | [buildkit-service](./charts/buildkit-service) | [buildkit](https://github.com/moby/buildkit) : buildkit as a service                      |
 | [pgweb](./charts/pgweb)                       | [pgweb](https://hub.docker.com/r/sosedoff/pgweb)                                          |
 | [clamav](./charts/clamav)                     | [ClamAV](https://www.clamav.net/) + Rest API                                              |
-| [vaultwarden](./charts/vaultwarden)           | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) a BitWarden rust implementation |
 
 Issues and contributions welcome 🤗
 
