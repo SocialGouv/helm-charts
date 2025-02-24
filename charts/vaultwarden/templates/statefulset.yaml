@@ -138,7 +138,9 @@ spec:
     whenScaled: Retain
   volumeClaimTemplates:
     {{- if .Values.data }}
-    - metadata:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
         name: {{ .Values.data.name }}
         labels:
           {{- include "vaultwarden.labels" . | nindent 10 }}
