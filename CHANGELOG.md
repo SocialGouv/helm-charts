@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.30.5 (2025-02-24)
+
+
+### Bug Fixes
+
+* volumeClaimTemplates ([5e58790](https://github.com/SocialGouv/helm-charts/commit/5e58790214f596e7508af75ddb5bea0cffbcd144))
+
 ## 1.30.4 (2025-02-24)
 
 
