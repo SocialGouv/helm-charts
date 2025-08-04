@@ -101,6 +101,8 @@ history:
   maxEntries: 50
 
 init:
+  permissionsFixer:
+    enabled: true
   fixSysctl:
     enabled: false
     mode: initContainer # securityContext | initContainer

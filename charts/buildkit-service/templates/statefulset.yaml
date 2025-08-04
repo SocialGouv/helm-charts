@@ -33,6 +33,7 @@ spec:
         {{ end }}
       
       initContainers:
+        {{ if .Values.init.permissionsFixer.enabled }}
         - name: permissions-fixer
           image: alpine:3
           securityContext:
@@ -45,6 +46,7 @@ spec:
             - sh
             - -c
             - (chown 1000:1000 /buildkit-cache; chmod 0755 /buildkit-cache;)
+        {{ end }}
         {{ if and .Values.init.fixSysctl.enabled (eq .Values.init.fixSysctl.mode "initContainer") }}
         - name: init-sysctl
           image: busybox
@@ -154,4 +156,3 @@ spec:
           requests:
             storage: {{ .Values.storage.size }}
         accessModes: {{ .Values.storage.accessModes | toYaml | nindent 10 }}
-    
