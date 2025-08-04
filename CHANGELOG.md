@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.30.7 (2025-08-04)
+
+
+### Bug Fixes
+
+* **buildkit:** optional permissions fixer ([7516a6b](https://github.com/SocialGouv/helm-charts/commit/7516a6bf03b0df42ca79a47bff93e1e9509b6d53))
+
 ## 1.30.6 (2025-02-24)
 
 
